@@ -1,0 +1,202 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+consumes:
+- application/json
+produces:
+- application/json
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    bearer:
+      type: bearer
+      name: Authorization
+      in: header
+security:
+  bearerAuth: []
+paths:
+  "/api/v1/users":
+    post:
+      summary: Signup
+      tags:
+      - Authentication
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: Sign up
+        '422':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                  required:
+                  - email
+                  - password
+                  - password_confirmation
+                confirm_url:
+                  type: string
+                required:
+                - user
+                - confirm_url
+  "/api/v1/users/confirmation":
+    post:
+      summary: Confirm Email
+      tags:
+      - Authentication
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: Email confirmed
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    confirmation_token:
+                      type: string
+                  required:
+                  - confirmation_token
+                required:
+                - user
+  "/api/v1/oauth/token":
+    post:
+      summary: Login
+      tags:
+      - Authentication
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: Login
+        '422':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                grant_type:
+                  type: string
+                  example: password
+              required:
+              - email
+              - password
+              - grant_type
+  "/api/v1/users/password":
+    post:
+      summary: Forgot Password
+      tags:
+      - Authentication
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: Email Sent
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                  required:
+                  - email
+                recover_url:
+                  type: string
+                required:
+                - user
+                - recover_url
+    put:
+      summary: Reset Password
+      tags:
+      - Authentication
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: Password Reset
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                    reset_password_token:
+                      type: string
+                  required:
+                  - email
+                required:
+                - user
+  "/api/v1/oauth/revoke":
+    post:
+      summary: Revoke Token
+      tags:
+      - Authentication
+      security:
+      - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: Token Revocked Successfully
+        '403':
+          description: Unotherized Token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+              required:
+              - token
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000

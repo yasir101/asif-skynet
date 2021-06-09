@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-
+  default_url_options host: ENV['ASSET_PATH']
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
+  
   scope '/api' do
     scope '/v1' do
       use_doorkeeper do
