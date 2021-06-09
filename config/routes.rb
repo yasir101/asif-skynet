@@ -2,7 +2,18 @@ Rails.application.routes.draw do
   default_url_options host: ENV['ASSET_PATH']
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
-  
+
+  devise_for :admins
+  devise_scope :admin do
+    authenticated :admin do
+      root 'dashboards#show', as: :authenticated_root
+    end
+
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+
   scope '/api' do
     scope '/v1' do
       use_doorkeeper do
@@ -21,5 +32,9 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'home#index'
+  scope module: :app, path: 'app' do
+    resource :dashboard, only: [:show]
+  end
+
+  # root to: 'home#index'
 end

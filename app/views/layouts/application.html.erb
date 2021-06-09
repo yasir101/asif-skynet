@@ -10,9 +10,43 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex align-items-center bg-auth border-top border-top-2 border-primary">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <body class="<%= current_admin && controller_name != 'home' ? '' : 'd-flex align-items-center bg-auth border-top border-top-2 border-primary' %>">
+    <% if !flash.empty? %>
+    <% flash.each do |key, value| %>
+    <script>
+      var value = '<%=value%>';
+      var key = '<%=key%>';
+      var type;
+
+      if (key == "notice")
+        type = "success";
+      else if (key == "alert")
+        type = "info";
+      else
+        type = "danger";
+
+      $.notify({
+        message: value
+      }, {
+        type: type,
+        placement: {
+          from: "top",
+          align: "center"
+        },
+      });
+    </script>
+    <% end %>
+    <% flash.clear %>
+    <% end %>
+
+    <% if current_admin && controller_name != 'home' %>
+    <%= render "shared/sidebar" %>
+    <div class="main-content">
+      <%= render "shared/header" %>
+      <%= yield %>
+    </div>
+    <% else %>
     <%= yield %>
+    <% end %>
   </body>
 </html>

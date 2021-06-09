@@ -11,6 +11,7 @@ gem 'mailjet'
 gem 'rspec-rails'
 gem 'rswag'
 gem 'rexml', '~> 3.2', '>= 3.2.5'
+gem 'active_link_to'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'

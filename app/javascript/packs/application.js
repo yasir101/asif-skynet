@@ -13,6 +13,7 @@ require("bootstrap");
 
 // Add custom files here
 require("../packs/theme.min.js");
+require("../packs/notify.js");
 
 $(document).on('turbolinks:load', function(){
   // Custom logic here
