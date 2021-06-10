@@ -11,34 +11,8 @@
   </head>
 
   <body class="<%= current_admin && controller_name != 'home' ? '' : 'd-flex align-items-center bg-auth border-top border-top-2 border-primary' %>">
-    <% if !flash.empty? %>
-    <% flash.each do |key, value| %>
-    <script>
-      var value = '<%=value%>';
-      var key = '<%=key%>';
-      var type;
-
-      if (key == "notice")
-        type = "success";
-      else if (key == "alert")
-        type = "info";
-      else
-        type = "danger";
-
-      $.notify({
-        message: value
-      }, {
-        type: type,
-        placement: {
-          from: "top",
-          align: "center"
-        },
-      });
-    </script>
-    <% end %>
-    <% flash.clear %>
-    <% end %>
-
+    <%= render "shared/flash_messages" %>
+    
     <% if current_admin && controller_name != 'home' %>
     <%= render "shared/sidebar" %>
     <div class="main-content">

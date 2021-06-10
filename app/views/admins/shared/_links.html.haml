@@ -1,0 +1,33 @@
+- if controller_name != 'sessions'
+  .text-center
+    %small.text-muted.text-center
+      Already have an account?
+      = succeed "." do
+        = link_to "Log in", new_session_path(resource_name)
+- if devise_mapping.registerable? && controller_name != 'registrations'
+  .text-center
+    %small.text-muted.text-center
+      Don't have an account yet?
+      = succeed "." do
+        = link_to "Sign up", new_registration_path(resource_name)
+- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+  .text-center
+    %small.text-muted.text-center
+      Forgot your password?
+      = succeed "." do
+        = link_to "Reset", new_password_path(resource_name)
+- if devise_mapping.confirmable? && controller_name != 'confirmations'
+  .text-center
+    %small.text-muted.text-center
+      Didn't receive confirmation instructions?
+      = succeed "." do
+        = link_to "Resend", new_confirmation_path(resource_name)
+- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+  .text-center
+    %small.text-muted.text-center
+      Didn't receive unlock instructions?
+      = succeed "." do
+        = link_to "Unlock", new_unlock_path(resource_name)
+- if devise_mapping.omniauthable?
+  - resource_class.omniauth_providers.each do |provider|
+    = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post

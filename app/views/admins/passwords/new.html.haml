@@ -1,0 +1,17 @@
+.container
+  .row.align-items-center
+    .col-12.col-md-6.offset-xl-2.offset-md-1.order-md-2.mb-5.mb-md-0
+      .text-center
+        %img.img-fluid{alt: "...", src: "/img/illustrations/happiness.svg"}/
+    .col-12.col-md-5.col-xl-4.order-md-1.my-5
+      %h1.display-4.text-center.mb-3
+        Forgot your password?
+      %p.text-muted.text-center.mb-5
+      = render "admins/shared/error_messages", resource: resource
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        .form-group
+          %label Email Address
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+        = button_tag(type: 'submit', class: "btn btn-lg w-100 btn-primary mb-3") do
+          Send me reset password instructions
+        = render "admins/shared/links"

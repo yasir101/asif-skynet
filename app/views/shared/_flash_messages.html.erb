@@ -1,0 +1,27 @@
+<% if !flash.empty? %>
+  <% flash.each do |key, value| %>
+    <script>
+      var value = '<%=value%>';
+      var key = '<%=key%>';
+      var type;
+
+      if (key == "notice")
+        type = "success";
+      else if (key == "alert")
+        type = "error";
+      else
+        type = "info";
+
+      new Noty({
+        type: type,
+        layout: 'topCenter',
+        theme: 'relax',
+        text: value,
+        timeout: '2000',
+        closeWith: ['click']
+      }).show();
+
+    </script>
+  <% end %>
+  <% flash.clear %>
+<% end %>

@@ -8,12 +8,13 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "@fortawesome/fontawesome-free/js/all";
-
+require("jquery")
 require("bootstrap");
+// window.Noty = require('noty');
 
 // Add custom files here
 require("../packs/theme.min.js");
-require("../packs/notify.js");
+window.Noty = require("../packs/noty.js");
 
 $(document).on('turbolinks:load', function(){
   // Custom logic here
