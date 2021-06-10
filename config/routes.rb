@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   default_url_options host: ENV['ASSET_PATH']
+  
+  #Swagger Routes
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
 
+  # Admin Devise Routes
   devise_for :admins, controllers: {
     registrations: 'app/admins/registrations',
     passwords: 'app/admins/passwords',
@@ -19,6 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # API Routes
   scope '/api' do
     scope '/v1' do
       use_doorkeeper do
@@ -37,6 +41,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # APP Routes
   scope module: :app, path: 'app' do
     resource :dashboard, only: [:show]
   end
