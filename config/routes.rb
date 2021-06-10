@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_scope :admin do
     authenticated :admin do
-      root 'dashboards#show', as: :authenticated_root
+      root 'app/dashboards#show', as: :authenticated_root
     end
 
     unauthenticated do

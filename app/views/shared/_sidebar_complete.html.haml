@@ -1,0 +1,357 @@
+%nav#sidebar.navbar.navbar-vertical.fixed-start.navbar-expand-md.navbar-light
+  .container-fluid
+    / Toggler
+    %button.navbar-toggler{"aria-controls" => "sidebarCollapse", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#sidebarCollapse", "data-bs-toggle" => "collapse", type: "button"}
+      %span.navbar-toggler-icon
+    / Brand
+    %a.navbar-brand{href: "./index.html"}
+      %img.navbar-brand-img.mx-auto{alt: "...", src: "./assets/img/logo.svg"}/
+    / User (xs)
+    .navbar-user.d-md-none
+      / Dropdown
+      .dropdown
+        / Toggle
+        %a#sidebarIcon.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
+          .avatar.avatar-sm.avatar-online
+            %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-1.jpg"}/
+        / Menu
+        .dropdown-menu.dropdown-menu-end{"aria-labelledby" => "sidebarIcon"}
+          %a.dropdown-item{href: "./profile-posts.html"} Profile
+          %a.dropdown-item{href: "./account-general.html"} Settings
+          %hr.dropdown-divider/
+          %a.dropdown-item{href: "./sign-in.html"} Logout
+    / Collapse
+    #sidebarCollapse.collapse.navbar-collapse
+      / Form
+      %form.mt-4.mb-3.d-md-none
+        .input-group.input-group-rounded.input-group-merge.input-group-reverse
+          %input.form-control{"aria-label" => "Search", placeholder: "Search", type: "search"}/
+          .input-group-text
+            %span.fe.fe-search
+      / Navigation
+      %ul.navbar-nav
+        %li.nav-item
+          %a.nav-link{"aria-controls" => "sidebarDashboards", "aria-expanded" => "true", "data-bs-toggle" => "collapse", href: "#sidebarDashboards", role: "button"}
+            %i.fe.fe-home
+            Dashboards
+          #sidebarDashboards.collapse.show
+            %ul.nav.nav-sm.flex-column
+              %li.nav-item
+                %a.nav-link.active{href: "./index.html"}
+                  Default
+              %li.nav-item
+                %a.nav-link{href: "./dashboard-project-management.html"}
+                  Project Management
+              %li.nav-item
+                %a.nav-link{href: "./dashboard-ecommerce.html"}
+                  E-Commerce
+        %li.nav-item
+          %a.nav-link{"aria-controls" => "sidebarPages", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarPages", role: "button"}
+            %i.fe.fe-file
+            Pages
+          #sidebarPages.collapse
+            %ul.nav.nav-sm.flex-column
+              %li.nav-item
+                %a.nav-link{"aria-controls" => "sidebarAccount", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarAccount", role: "button"}
+                  Account
+                #sidebarAccount.collapse
+                  %ul.nav.nav-sm.flex-column
+                    %li.nav-item
+                      %a.nav-link{href: "./account-general.html"}
+                        General
+                    %li.nav-item
+                      %a.nav-link{href: "./account-billing.html"}
+                        Billing
+                    %li.nav-item
+                      %a.nav-link{href: "./account-members.html"}
+                        Members
+                    %li.nav-item
+                      %a.nav-link{href: "./account-security.html"}
+                        Security
+                    %li.nav-item
+                      %a.nav-link{href: "./account-notifications.html"}
+                        Notifications
+              %li.nav-item
+                %a.nav-link{"aria-controls" => "sidebarCrm", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarCrm", role: "button"}
+                  CRM
+                #sidebarCrm.collapse
+                  %ul.nav.nav-sm.flex-column
+                    %li.nav-item
+                      %a.nav-link{href: "./crm-contacts.html"}
+                        Contacts
+                    %li.nav-item
+                      %a.nav-link{href: "./crm-companies.html"}
+                        Companies
+                    %li.nav-item
+                      %a.nav-link{href: "./crm-deals.html"}
+                        Deals
+              %li.nav-item
+                %a.nav-link{"aria-controls" => "sidebarProfile", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarProfile", role: "button"}
+                  Profile
+                #sidebarProfile.collapse
+                  %ul.nav.nav-sm.flex-column
+                    %li.nav-item
+                      %a.nav-link{href: "./profile-posts.html"}
+                        Posts
+                    %li.nav-item
+                      %a.nav-link{href: "./profile-groups.html"}
+                        Groups
+                    %li.nav-item
+                      %a.nav-link{href: "./profile-projects.html"}
+                        Projects
+                    %li.nav-item
+                      %a.nav-link{href: "./profile-files.html"}
+                        Files
+                    %li.nav-item
+                      %a.nav-link{href: "./profile-subscribers.html"}
+                        Subscribers
+              %li.nav-item
+                %a.nav-link{"aria-controls" => "sidebarProject", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarProject", role: "button"}
+                  Project
+                #sidebarProject.collapse
+                  %ul.nav.nav-sm.flex-column
+                    %li.nav-item
+                      %a.nav-link{href: "./project-overview.html"}
+                        Overview
+                    %li.nav-item
+                      %a.nav-link{href: "./project-files.html"}
+                        Files
+                    %li.nav-item
+                      %a.nav-link{href: "./project-reports.html"}
+                        Reports
+                    %li.nav-item
+                      %a.nav-link{href: "./project-new.html"}
+                        New project
+              %li.nav-item
+                %a.nav-link{"aria-controls" => "sidebarTeam", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarTeam", role: "button"}
+                  Team
+                #sidebarTeam.collapse
+                  %ul.nav.nav-sm.flex-column
+                    %li.nav-item
+                      %a.nav-link{href: "./team-overview.html"}
+                        Overview
+                    %li.nav-item
+                      %a.nav-link{href: "./team-projects.html"}
+                        Projects
+                    %li.nav-item
+                      %a.nav-link{href: "./team-members.html"}
+                        Members
+                    %li.nav-item
+                      %a.nav-link{href: "./team-new.html"}
+                        New team
+              %li.nav-item
+                %a.nav-link{"aria-controls" => "sidebarFeed", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarFeed", role: "button"}
+                  Feed
+                #sidebarFeed.collapse
+                  %ul.nav.nav-sm.flex-column
+                    %li.nav-item
+                      %a.nav-link{href: "./feed.html"}
+                        Platform
+                    %li.nav-item
+                      %a.nav-link{href: "./social-feed.html"}
+                        Social
+              %li.nav-item
+                %a.nav-link{href: "./wizard.html"}
+                  Wizard
+              %li.nav-item
+                %a.nav-link{href: "./kanban.html"}
+                  Kanban
+              %li.nav-item
+                %a.nav-link{href: "./orders.html"}
+                  Orders
+              %li.nav-item
+                %a.nav-link{href: "./invoice.html"}
+                  Invoice
+              %li.nav-item
+                %a.nav-link{href: "./pricing.html"}
+                  Pricing
+        %li.nav-item
+          %a.nav-link{href: "./widgets.html"}
+            %i.fe.fe-grid
+            Widgets
+        %li.nav-item
+          %a.nav-link{"aria-controls" => "sidebarAuth", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarAuth", role: "button"}
+            %i.fe.fe-user
+            Authentication
+          #sidebarAuth.collapse
+            %ul.nav.nav-sm.flex-column
+              %li.nav-item
+                %a.nav-link{"aria-controls" => "sidebarSignIn", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarSignIn", role: "button"}
+                  Sign in
+                #sidebarSignIn.collapse
+                  %ul.nav.nav-sm.flex-column
+                    %li.nav-item
+                      %a.nav-link{href: "./sign-in-cover.html"}
+                        Cover
+                    %li.nav-item
+                      %a.nav-link{href: "./sign-in-illustration.html"}
+                        Illustration
+                    %li.nav-item
+                      %a.nav-link{href: "./sign-in.html"}
+                        Basic
+              %li.nav-item
+                %a.nav-link{"aria-controls" => "sidebarSignUp", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarSignUp", role: "button"}
+                  Sign up
+                #sidebarSignUp.collapse
+                  %ul.nav.nav-sm.flex-column
+                    %li.nav-item
+                      %a.nav-link{href: "./sign-up-cover.html"}
+                        Cover
+                    %li.nav-item
+                      %a.nav-link{href: "./sign-up-illustration.html"}
+                        Illustration
+                    %li.nav-item
+                      %a.nav-link{href: "./sign-up.html"}
+                        Basic
+              %li.nav-item
+                %a.nav-link{"aria-controls" => "sidebarPassword", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarPassword", role: "button"}
+                  Password reset
+                #sidebarPassword.collapse
+                  %ul.nav.nav-sm.flex-column
+                    %li.nav-item
+                      %a.nav-link{href: "./password-reset-cover.html"}
+                        Cover
+                    %li.nav-item
+                      %a.nav-link{href: "./password-reset-illustration.html"}
+                        Illustration
+                    %li.nav-item
+                      %a.nav-link{href: "./password-reset.html"}
+                        Basic
+              %li.nav-item
+                %a.nav-link{"aria-controls" => "sidebarError", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarError", role: "button"}
+                  Error
+                #sidebarError.collapse
+                  %ul.nav.nav-sm.flex-column
+                    %li.nav-item
+                      %a.nav-link{href: "./error-illustration.html"}
+                        Illustration
+                    %li.nav-item
+                      %a.nav-link{href: "./error.html"}
+                        Basic
+        %li.nav-item.d-md-none
+          %a.nav-link{"aria-contrtols" => "sidebarOffcanvasActivity", "data-bs-toggle" => "offcanvas", href: "#sidebarOffcanvasActivity"}
+            %span.fe.fe-bell
+            Notifications
+      / Divider
+      %hr.navbar-divider.my-3/
+      / Heading
+      %h6.navbar-heading
+        Documentation
+      / Navigation
+      %ul.navbar-nav.mb-md-4
+        %li.nav-item
+          %a.nav-link{"aria-controls" => "sidebarBasics", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarBasics", role: "button"}
+            %i.fe.fe-clipboard
+            Basics
+          #sidebarBasics.collapse
+            %ul.nav.nav-sm.flex-column
+              %li.nav-item
+                %a.nav-link{href: "./docs/getting-started.html"}
+                  Getting Started
+              %li.nav-item
+                %a.nav-link{href: "./docs/design-file.html"}
+                  Design File
+        %li.nav-item
+          %a.nav-link{"aria-controls" => "sidebarComponents", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarComponents", role: "button"}
+            %i.fe.fe-book-open
+            Components
+          #sidebarComponents.collapse
+            %ul.nav.nav-sm.flex-column
+              %li
+                %a.nav-link{href: "./docs/components.html#alerts"}
+                  Alerts
+              %li
+                %a.nav-link{href: "./docs/components.html#autosize"}
+                  Autosize
+              %li
+                %a.nav-link{href: "./docs/components.html#avatars"}
+                  Avatars
+              %li
+                %a.nav-link{href: "./docs/components.html#badges"}
+                  Badges
+              %li
+                %a.nav-link{href: "./docs/components.html#breadcrumb"}
+                  Breadcrumb
+              %li
+                %a.nav-link{href: "./docs/components.html#buttons"}
+                  Buttons
+              %li
+                %a.nav-link{href: "./docs/components.html#buttonGroup"}
+                  Button group
+              %li
+                %a.nav-link{href: "./docs/components.html#cards"}
+                  Cards
+              %li
+                %a.nav-link{href: "./docs/components.html#charts"}
+                  Charts
+              %li
+                %a.nav-link{href: "./docs/components.html#checklist"}
+                  Checklist
+              %li
+                %a.nav-link{href: "./docs/components.html#dropdowns"}
+                  Dropdowns
+              %li
+                %a.nav-link{href: "./docs/components.html#forms"}
+                  Forms
+              %li
+                %a.nav-link{href: "./docs/components.html#icons"}
+                  Icons
+              %li
+                %a.nav-link{href: "./docs/components.html#kanban"}
+                  Kanban
+              %li
+                %a.nav-link{href: "./docs/components.html#lists"}
+                  Lists
+              %li
+                %a.nav-link{href: "./docs/components.html#map"}
+                  Map
+              %li
+                %a.nav-link{href: "./docs/components.html#modals"}
+                  Modal
+              %li
+                %a.nav-link{href: "./docs/components.html#navs"}
+                  Navs
+              %li
+                %a.nav-link{href: "./docs/components.html#navbarDocs"}
+                  Navbar
+              %li
+                %a.nav-link{href: "./docs/components.html#pageHeaders"}
+                  Page headers
+              %li
+                %a.nav-link{href: "./docs/components.html#pagination"}
+                  Pagination
+              %li
+                %a.nav-link{href: "./docs/components.html#popovers"}
+                  Popovers
+              %li
+                %a.nav-link{href: "./docs/components.html#progress"}
+                  Progress
+              %li
+                %a.nav-link{href: "./docs/components.html#socialPosts"}
+                  Social post
+              %li
+                %a.nav-link{href: "./docs/components.html#spinners"}
+                  Spinners
+              %li
+                %a.nav-link{href: "./docs/components.html#tables"}
+                  Tables
+              %li
+                %a.nav-link{href: "./docs/components.html#toasts"}
+                  Toasts
+              %li
+                %a.nav-link{href: "./docs/components.html#tooltips"}
+                  Tooltips
+              %li
+                %a.nav-link{href: "./docs/components.html#typography"}
+                  Typography
+              %li
+                %a.nav-link{href: "./docs/components.html#utilities"}
+                  Utilities
+        %li.nav-item
+          %a.nav-link{href: "./docs/changelog.html"}
+            %i.fe.fe-git-branch
+            Changelog
+            %span.badge.bg-primary.ms-auto v2.0.0
+      / Push content down
+      .mt-auto
+    / / .navbar-collapse

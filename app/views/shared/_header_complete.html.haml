@@ -1,0 +1,281 @@
+%nav#topbar.navbar.navbar-expand-md.navbar-light.d-none.d-md-flex
+  .container-fluid
+    / Form
+    %form.form-inline.me-4.d-none.d-md-flex
+      .input-group.input-group-flush.input-group-merge.input-group-reverse{"data-list" => "{\"valueNames\": [\"name\"]}"}
+        / Input
+        %input.form-control.dropdown-toggle.list-search{"aria-label" => "Search", "data-bs-toggle" => "dropdown", placeholder: "Search", type: "search"}/
+        / Prepend
+        .input-group-text
+          %i.fe.fe-search
+        / Menu
+        .dropdown-menu.dropdown-menu-card
+          .card-body
+            / List group
+            .list-group.list-group-flush.list-group-focus.list.my-n3
+              %a.list-group-item{href: "./team-overview.html"}
+                .row.align-items-center
+                  .col-auto
+                    / Avatar
+                    .avatar
+                      %img.avatar-img.rounded{alt: "...", src: "./assets/img/avatars/teams/team-logo-1.jpg"}/
+                  .col.ms-n2
+                    / Title
+                    %h4.text-body.text-focus.mb-1.name
+                      Airbnb
+                    / Time
+                    %p.small.text-muted.mb-0
+                      %span.fe.fe-clock
+                      %time{datetime: "2018-05-24"} Updated 2hr ago
+                / / .row
+              %a.list-group-item{href: "./team-overview.html"}
+                .row.align-items-center
+                  .col-auto
+                    / Avatar
+                    .avatar
+                      %img.avatar-img.rounded{alt: "...", src: "./assets/img/avatars/teams/team-logo-2.jpg"}/
+                  .col.ms-n2
+                    / Title
+                    %h4.text-body.text-focus.mb-1.name
+                      Medium Corporation
+                    / Time
+                    %p.small.text-muted.mb-0
+                      %span.fe.fe-clock
+                      %time{datetime: "2018-05-24"} Updated 2hr ago
+                / / .row
+              %a.list-group-item{href: "./project-overview.html"}
+                .row.align-items-center
+                  .col-auto
+                    / Avatar
+                    .avatar.avatar-4by3
+                      %img.avatar-img.rounded{alt: "...", src: "./assets/img/avatars/projects/project-1.jpg"}/
+                  .col.ms-n2
+                    / Title
+                    %h4.text-body.text-focus.mb-1.name
+                      Homepage Redesign
+                    / Time
+                    %p.small.text-muted.mb-0
+                      %span.fe.fe-clock
+                      %time{datetime: "2018-05-24"} Updated 4hr ago
+                / / .row
+              %a.list-group-item{href: "./project-overview.html"}
+                .row.align-items-center
+                  .col-auto
+                    / Avatar
+                    .avatar.avatar-4by3
+                      %img.avatar-img.rounded{alt: "...", src: "./assets/img/avatars/projects/project-2.jpg"}/
+                  .col.ms-n2
+                    / Title
+                    %h4.text-body.text-focus.mb-1.name
+                      Travels  Time
+                    / Time
+                    %p.small.text-muted.mb-0
+                      %span.fe.fe-clock
+                      %time{datetime: "2018-05-24"} Updated 4hr ago
+                / / .row
+              %a.list-group-item{href: "./project-overview.html"}
+                .row.align-items-center
+                  .col-auto
+                    / Avatar
+                    .avatar.avatar-4by3
+                      %img.avatar-img.rounded{alt: "...", src: "./assets/img/avatars/projects/project-3.jpg"}/
+                  .col.ms-n2
+                    / Title
+                    %h4.text-body.text-focus.mb-1.name
+                      Safari Exploration
+                    / Time
+                    %p.small.text-muted.mb-0
+                      %span.fe.fe-clock
+                      %time{datetime: "2018-05-24"} Updated 4hr ago
+                / / .row
+              %a.list-group-item{href: "./profile-posts.html"}
+                .row.align-items-center
+                  .col-auto
+                    / Avatar
+                    .avatar
+                      %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-1.jpg"}/
+                  .col.ms-n2
+                    / Title
+                    %h4.text-body.text-focus.mb-1.name
+                      Dianna Smiley
+                    / Status
+                    %p.text-body.small.mb-0
+                      %span.text-success &#x25CF;
+                      Online
+                / / .row
+              %a.list-group-item{href: "./profile-posts.html"}
+                .row.align-items-center
+                  .col-auto
+                    / Avatar
+                    .avatar
+                      %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-2.jpg"}/
+                  .col.ms-n2
+                    / Title
+                    %h4.text-body.text-focus.mb-1.name
+                      Ab Hadley
+                    / Status
+                    %p.text-body.small.mb-0
+                      %span.text-danger &#x25CF;
+                      Offline
+                / / .row
+        / / .dropdown-menu
+    / User
+    .navbar-user
+      / Dropdown
+      .dropdown.me-4.d-none.d-md-flex
+        / Toggle
+        %a.navbar-user-link{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
+          %span.icon.active
+            %i.fe.fe-bell
+        / Menu
+        .dropdown-menu.dropdown-menu-end.dropdown-menu-card
+          .card-header
+            / Title
+            %h5.card-header-title
+              Notifications
+            / Link
+            %a.small{href: "#!"}
+              View all
+          / / .card-header
+          .card-body
+            / List group
+            .list-group.list-group-flush.list-group-activity.my-n3
+              %a.list-group-item.text-reset{href: "#!"}
+                .row
+                  .col-auto
+                    / Avatar
+                    .avatar.avatar-sm
+                      %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-1.jpg"}/
+                  .col.ms-n2
+                    / Content
+                    .small
+                      %strong Dianna Smiley
+                      shared your post with Ab Hadley, Adolfo Hess,
+                      and 3 others.
+                    / Time
+                    %small.text-muted
+                      2m ago
+                / / .row
+              %a.list-group-item.text-reset{href: "#!"}
+                .row
+                  .col-auto
+                    / Avatar
+                    .avatar.avatar-sm
+                      %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-2.jpg"}/
+                  .col.ms-n2
+                    / Content
+                    .small
+                      %strong Ab Hadley
+                      reacted to your post with a &#x1F60D;
+                    / Time
+                    %small.text-muted
+                      2m ago
+                / / .row
+              %a.list-group-item.text-reset{href: "#!"}
+                .row
+                  .col-auto
+                    / Avatar
+                    .avatar.avatar-sm
+                      %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-3.jpg"}/
+                  .col.ms-n2
+                    / Content
+                    .small
+                      %strong Adolfo Hess
+                      commented
+                      %blockquote.mb-0
+                        \&#x201C;I don&#x2019;t think this really makes sense to do without approval from Johnathan
+                        since he&#x2019;s the one...&#x201D;
+                    / Time
+                    %small.text-muted
+                      2m ago
+                / / .row
+              %a.list-group-item.text-reset{href: "#!"}
+                .row
+                  .col-auto
+                    / Avatar
+                    .avatar.avatar-sm
+                      %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-4.jpg"}/
+                  .col.ms-n2
+                    / Content
+                    .small
+                      %strong Daniela Dewitt
+                      subscribed to you.
+                    / Time
+                    %small.text-muted
+                      2m ago
+                / / .row
+              %a.list-group-item.text-reset{href: "#!"}
+                .row
+                  .col-auto
+                    / Avatar
+                    .avatar.avatar-sm
+                      %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-5.jpg"}/
+                  .col.ms-n2
+                    / Content
+                    .small
+                      %strong Miyah Myles
+                      shared your post with Ryu Duke, Glen Rouse, and 3 others.
+                    / Time
+                    %small.text-muted
+                      2m ago
+                / / .row
+              %a.list-group-item.text-reset{href: "#!"}
+                .row
+                  .col-auto
+                    / Avatar
+                    .avatar.avatar-sm
+                      %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-6.jpg"}/
+                  .col.ms-n2
+                    / Content
+                    .small
+                      %strong Ryu Duke
+                      reacted to your post with a &#x1F60D;
+                    / Time
+                    %small.text-muted
+                      2m ago
+                / / .row
+              %a.list-group-item.text-reset{href: "#!"}
+                .row
+                  .col-auto
+                    / Avatar
+                    .avatar.avatar-sm
+                      %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-7.jpg"}/
+                  .col.ms-n2
+                    / Content
+                    .small
+                      %strong Glen Rouse
+                      commented
+                      %blockquote.mb-0
+                        \&#x201C;I don&#x2019;t think this really makes sense to do without approval from Johnathan
+                        since he&#x2019;s the one...&#x201D;
+                    / Time
+                    %small.text-muted
+                      2m ago
+                / / .row
+              %a.list-group-item.text-reset{href: "#!"}
+                .row
+                  .col-auto
+                    / Avatar
+                    .avatar.avatar-sm
+                      %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-8.jpg"}/
+                  .col.ms-n2
+                    / Content
+                    .small
+                      %strong Grace Gross
+                      subscribed to you.
+                    / Time
+                    %small.text-muted
+                      2m ago
+                / / .row
+        / / .dropdown-menu
+      / Dropdown
+      .dropdown
+        / Toggle
+        %a.avatar.avatar-sm.avatar-online.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
+          %img.avatar-img.rounded-circle{alt: "...", src: "./assets/img/avatars/profiles/avatar-1.jpg"}/
+        / Menu
+        .dropdown-menu.dropdown-menu-end
+          %a.dropdown-item{href: "./profile-posts.html"} Profile
+          %a.dropdown-item{href: "./account-general.html"} Settings
+          %hr.dropdown-divider/
+          %a.dropdown-item{href: "./sign-in.html"} Logout
