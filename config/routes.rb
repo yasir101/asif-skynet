@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
 
-  devise_for :admins
+  devise_for :admins, controllers: {
+    registrations: 'app/admins/registrations',
+    passwords: 'app/admins/passwords',
+    confirmations: 'app/admins/confirmations'
+  }
+
   devise_scope :admin do
     authenticated :admin do
       root 'app/dashboards#show', as: :authenticated_root
@@ -28,7 +33,7 @@ Rails.application.routes.draw do
         registrations: 'api/v1/users/registrations',
         passwords: 'api/v1/users/passwords',
         confirmations: 'api/v1/users/confirmations'
-      }
+      }, scoped_views: 'api/v1/users'
     end
   end
 

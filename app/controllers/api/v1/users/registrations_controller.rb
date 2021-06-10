@@ -28,6 +28,7 @@ module Api
         private
 
         def sign_up_params
+          # write custom params here
           params.require(:user).permit(:email, :password, :password_confirmation)
         end
       end
