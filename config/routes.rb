@@ -1,5 +1,10 @@
+require('sidekiq/web')
+
 Rails.application.routes.draw do
   default_url_options host: ENV['ASSET_PATH']
+  
+  #Sidekiq Routes
+  mount Sidekiq::Web => '/sidekiq'
   
   #Swagger Routes
   mount Rswag::Ui::Engine => '/api-docs'
