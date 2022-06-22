@@ -1,0 +1,1 @@
+City.create(name: "Lahore", country_id: Country.first.id) if City.count.zero?

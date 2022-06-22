@@ -1,0 +1,1 @@
+Country.create!(name: "Pakistan") if Country.count.zero?

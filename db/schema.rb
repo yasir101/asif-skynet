@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_09_130031) do
+ActiveRecord::Schema.define(version: 2022_06_22_083637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,34 @@ ActiveRecord::Schema.define(version: 2021_06_09_130031) do
     t.index ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "areas", force: :cascade do |t|
+    t.string "name"
+    t.bigint "city_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_areas_on_city_id"
+  end
+
+  create_table "blood_groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.bigint "country_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["country_id"], name: "index_cities_on_country_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
@@ -77,6 +105,14 @@ ActiveRecord::Schema.define(version: 2021_06_09_130031) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
+  end
+
+  create_table "sub_areas", force: :cascade do |t|
+    t.string "name"
+    t.bigint "area_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["area_id"], name: "index_sub_areas_on_area_id"
   end
 
   create_table "users", force: :cascade do |t|
