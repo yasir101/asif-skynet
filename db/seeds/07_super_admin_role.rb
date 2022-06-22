@@ -1,0 +1,1 @@
+Admin.first.add_role :super_admin if !Admin.first.has_role? :super_admin

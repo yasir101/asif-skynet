@@ -1,0 +1,2 @@
+- if current_admin.has_role? :super_admin
+ = render "#{current_admin.roles.first.name}" 
