@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_22_164206) do
+ActiveRecord::Schema.define(version: 2022_06_23_060451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,36 @@ ActiveRecord::Schema.define(version: 2022_06_22_164206) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "staff_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.bigint "staff_type_id"
+    t.bigint "blood_group_id"
+    t.string "full_name"
+    t.string "father_name"
+    t.date "dob"
+    t.string "cnic"
+    t.string "mobile_primary"
+    t.string "mobile_secondary"
+    t.text "address"
+    t.text "remarks"
+    t.date "joining"
+    t.integer "starting_salary"
+    t.integer "current_salary"
+    t.string "official_mobile_no"
+    t.string "official_mobile_model"
+    t.string "official_moterbike_no"
+    t.text "others"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["blood_group_id"], name: "index_staffs_on_blood_group_id"
+    t.index ["staff_type_id"], name: "index_staffs_on_staff_type_id"
   end
 
   create_table "sub_areas", force: :cascade do |t|

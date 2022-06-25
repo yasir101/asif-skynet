@@ -23,10 +23,7 @@
     / Collapse
     #sidebarCollapse.collapse.navbar-collapse
       / Navigation
-      %ul.navbar-nav
-        %li.nav-item
-          = active_link_to dashboard_path, class: "nav-link" do
-            %i.fe.fe-activity
-            Dashboard
+      - if current_admin.has_role? :super_admin
+        = render "shared/super_admin_nav"
       .mt-auto
     / / .navbar-collapse
