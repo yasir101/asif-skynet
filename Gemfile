@@ -16,6 +16,8 @@ gem 'active_link_to'
 gem 'rename'
 gem 'bulk_insert'
 gem 'rolify'
+gem 'ransack'
+gem 'kaminari'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 # Use postgresql as the database for Active Record

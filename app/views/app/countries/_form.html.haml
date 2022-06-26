@@ -1,0 +1,12 @@
+= form_with(model: country) do |form|
+  - if country.errors.any?
+    #error_explanation  
+      - country.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .form-group
+    = form.label :name
+    = form.text_field :name, class: "form-control"
+  .actions
+    = form.submit class: "btn btn-primary"

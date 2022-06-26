@@ -1,0 +1,2 @@
+module App::SubAreasHelper
+end

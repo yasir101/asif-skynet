@@ -1,0 +1,2 @@
+module App::CountriesHelper
+end

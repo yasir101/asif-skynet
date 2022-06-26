@@ -1,0 +1,44 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h1.header-title
+            Sub Areas
+        .col-auto
+          = link_to 'New Sub Area', new_sub_area_path, class: "btn btn-outline-primary"  
+.container-fluid
+  .row
+    .col
+      .card
+        .card-body
+          = render "search", q: @q
+  .row.justify-content-md-center
+    .col-12
+      .card
+        .card-body
+          %table.table.table-sm
+            - if @sub_areas.any?  
+              %thead
+                %tr
+                  %th{scope: "col"} #
+                  %th{scope: "col"} Country
+                  %th{scope: "col"} City
+                  %th{scope: "col"} Area
+                  %th{scope: "col"} Name
+                  %th{scope: "col"} Action
+              %tbody
+                - @sub_areas.each.with_index(1) do |sub_area, index|
+                  %tr
+                    %td= index
+                    %td= sub_area.area.city.country.name
+                    %td= sub_area.area.city.name
+                    %td= sub_area.area.name
+                    %td= sub_area.name
+                    %td.text-right
+                      = link_to 'Edit', edit_sub_area_path(sub_area), class: "btn btn-outline-info btn-sm"
+            - else
+              = render 'shared/no_data'
+
+    = paginate @sub_areas 

@@ -1,0 +1,40 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h1.header-title
+            Cities
+        .col-auto
+          = link_to 'New City', new_city_path, class: "btn btn-outline-primary"  
+.container-fluid
+  .row
+    .col
+      .card
+        .card-body
+          = render "search", q: @q
+  .row.justify-content-md-center
+    .col-12
+      .card
+        .card-body
+          %table.table.table-sm
+            - if @cities.any?  
+              %thead
+                %tr
+                  %th{scope: "col"} #
+                  %th{scope: "col"} Country
+                  %th{scope: "col"} Name
+                  %th{scope: "col"} Action
+              %tbody
+                - @cities.each.with_index(1) do |city, index|
+                  %tr
+                    %td= index
+                    %td= city.country.name
+                    %td= city.name
+                    %td.text-right
+                      = link_to 'Edit', edit_city_path(city), class: "btn btn-outline-info btn-sm"
+            - else
+              = render 'shared/no_data'
+
+    = paginate @cities              

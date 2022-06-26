@@ -1,5 +1,23 @@
 %ul.navbar-nav
   %li.nav-item
     = active_link_to dashboard_path, class: "nav-link" do
-      %i.fe.fe-activity
-      Dashboard
+      %img.icon-size{:alt => "...", :src => "/img/icons/speedometer.png"}
+      &nbsp&nbspDashboard
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarCountry", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarCountry", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/google-maps.png"}
+      &nbsp&nbspArea 
+    #sidebarCountry.collapse{class: ("show" if request.fullpath.include?('app/countries') || request.fullpath.include?('app/cities') || request.fullpath.include?('app/areas')  || request.fullpath.include?('app/sub_areas'))}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to countries_path, class: "nav-link" do
+            Countries
+        %li.nav-item
+          = active_link_to cities_path, class: "nav-link" do
+            Cities
+        %li.nav-item
+          = active_link_to areas_path, class: "nav-link" do
+            Areas            
+        %li.nav-item
+          = active_link_to sub_areas_path, class: "nav-link" do
+            Sub Areas    

@@ -49,6 +49,10 @@ Rails.application.routes.draw do
   # APP Routes
   scope module: :app, path: 'app' do
     resource :dashboard, only: [:show]
+    resources :countries
+    resources :cities
+    resources :areas
+    resources :sub_areas
   end
 
   # root to: 'home#index'

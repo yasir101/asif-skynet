@@ -1,0 +1,15 @@
+= form_with(model: sub_area) do |form|
+  - if sub_area.errors.any?
+    #error_explanation  
+      - sub_area.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .form-group
+    = form.label "Area"
+    = form.collection_select :area_id, Area.all, :id, :name, {prompt: true}, class: "form-control", required: true
+  .form-group
+    = form.label :name
+    = form.text_field :name, class: "form-control"
+  .actions
+    = form.submit class: "btn btn-primary"

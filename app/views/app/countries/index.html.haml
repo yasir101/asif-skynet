@@ -1,0 +1,38 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h1.header-title
+            Countries
+        .col-auto
+          = link_to 'New Country', new_country_path, class: "btn btn-outline-primary"  
+.container-fluid
+  .row
+    .col
+      .card
+        .card-body.search-bar
+          = render "search", q: @q
+  .row.justify-content-md-center
+    .col-12
+      .card
+        .card-body
+          %table.table.table-sm
+            - if @countries.any?  
+              %thead
+                %tr
+                  %th{scope: "col"} #
+                  %th{scope: "col"} Name
+                  %th{scope: "col"} Action
+              %tbody
+                - @countries.each.with_index(1) do |country, index|
+                  %tr
+                    %td= index
+                    %td= country.name
+                    %td.text-right
+                      = link_to 'Edit', edit_country_path(country), class: "btn btn-outline-info btn-sm"
+            - else
+              = render 'shared/no_data'
+  
+    = paginate @countries
