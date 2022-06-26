@@ -1,4 +1,6 @@
 class Staff < ApplicationRecord
+  acts_as_paranoid
+  
   validates :full_name, presence: true
   validates :staff_type_id, presence: true
   validates :starting_salary, presence: true

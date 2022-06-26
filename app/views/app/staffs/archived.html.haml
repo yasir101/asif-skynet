@@ -1,0 +1,41 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h1.header-title
+            Archived Staff
+        .col-auto  
+.container-fluid
+  .row.justify-content-md-center
+    .col-12
+      .card
+        .card-body
+          %table.table.table-sm
+            - if @staffs.any?  
+              %thead
+                %tr
+                  %th{scope: "col"} #
+                  %th{scope: "col"} Type
+                  %th{scope: "col"} Name
+                  %th{scope: "col"} Father Name
+                  %th{scope: "col"} Mobile
+                  %th{scope: "col"} Current Salary
+                  %th{scope: "col"} Bloog Group
+                  %th{scope: "col"} Action
+              %tbody
+                - @staffs.each.with_index(1) do |staff, index|
+                  %tr
+                    %td= index
+                    %td= staff.staff_type.name
+                    %td= staff.full_name
+                    %td= staff.father_name
+                    %td= staff.mobile_primary
+                    %td= staff.current_salary
+                    %td= staff.blood_group.name
+                    %td.text-right
+                      = link_to 'Restore', restore_staff_path(staff), class: "btn btn-outline-info btn-sm", data: { confirm: "Are you Sure?" }
+            - else
+              = render 'shared/no_data'
+             

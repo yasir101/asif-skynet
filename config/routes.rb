@@ -53,6 +53,14 @@ Rails.application.routes.draw do
     resources :cities
     resources :areas
     resources :sub_areas
+    resources :staffs do
+      collection do
+        get :archived
+      end
+      member do
+        get :restore
+      end
+    end
   end
 
   # root to: 'home#index'

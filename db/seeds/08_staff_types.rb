@@ -1,4 +1,5 @@
 staff_types = [
+  {name: "Admin"},
   {name: "Line Man"},
   {name: "Recovery"},
   {name: "Helper"}

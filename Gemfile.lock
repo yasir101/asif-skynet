@@ -63,6 +63,9 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts_as_paranoid (0.8.1)
+      activerecord (>= 5.2, < 7.1)
+      activesupport (>= 5.2, < 7.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     bcrypt (3.1.16)
@@ -117,6 +120,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
+    jquery_mask_rails (0.1.0)
     json-schema (2.8.1)
       addressable (>= 2.4)
     kaminari (1.2.2)
@@ -320,6 +324,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to
+  acts_as_paranoid
   bootsnap (>= 1.4.4)
   bulk_insert
   byebug
@@ -330,6 +335,7 @@ DEPENDENCIES
   dotenv-rails
   haml
   jbuilder (~> 2.7)
+  jquery_mask_rails (~> 0.1.0)
   kaminari
   letter_opener
   listen (~> 3.3)

@@ -1,0 +1,49 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h1.header-title
+            Staff
+        .col-auto
+          = link_to 'New Staff', new_staff_path, class: "btn btn-outline-primary"  
+.container-fluid
+  .row
+    .col
+      .card
+        .card-body
+          = render "search", q: @q
+  .row.justify-content-md-center
+    .col-12
+      .card
+        .card-body
+          %table.table.table-sm
+            - if @staffs.any?  
+              %thead
+                %tr
+                  %th{scope: "col"} #
+                  %th{scope: "col"} Type
+                  %th{scope: "col"} Name
+                  %th{scope: "col"} Father Name
+                  %th{scope: "col"} Mobile
+                  %th{scope: "col"} Current Salary
+                  %th{scope: "col"} Bloog Group
+                  %th{scope: "col"} Action
+              %tbody
+                - @staffs.each.with_index(1) do |staff, index|
+                  %tr
+                    %td= index
+                    %td= staff.staff_type.name
+                    %td= staff.full_name
+                    %td= staff.father_name
+                    %td= staff.mobile_primary
+                    %td= staff.current_salary
+                    %td= staff.blood_group.name
+                    %td.text-right
+                      = link_to 'Edit', edit_staff_path(staff), class: "btn btn-outline-info btn-sm"
+                      = link_to "Delete", staff, method: :delete, data: { confirm: "Are you Sure?" }, class: "btn btn-outline-danger btn-sm"
+            - else
+              = render 'shared/no_data'
+
+    = paginate @staffs              

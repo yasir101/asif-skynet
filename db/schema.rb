@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_23_060451) do
+ActiveRecord::Schema.define(version: 2022_06_26_113915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,7 +151,9 @@ ActiveRecord::Schema.define(version: 2022_06_23_060451) do
     t.text "others"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
     t.index ["blood_group_id"], name: "index_staffs_on_blood_group_id"
+    t.index ["deleted_at"], name: "index_staffs_on_deleted_at"
     t.index ["staff_type_id"], name: "index_staffs_on_staff_type_id"
   end
 

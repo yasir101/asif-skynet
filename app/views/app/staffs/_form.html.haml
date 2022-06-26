@@ -1,0 +1,121 @@
+= form_with(model: staff) do |form|
+  - if staff.errors.any?
+    #error_explanation  
+      - staff.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .row
+    .col-sm-12
+      .card
+        .card-header
+          %h4.card-title-header Staff Type
+        .card-body        
+          .form-group
+            = form.label "Select Type"
+            = form.collection_select :staff_type_id, StaffType.all, :id, :name, {prompt: true}, class: "form-control", required: true
+  .row
+    .col-sm-12
+      .card
+        .card-header
+          %h4.card-title-header Basic Information
+        .card-body   
+          .row
+            .col-sm-6    
+              .form-group
+                = form.label :full_name
+                = form.text_field :full_name, class: "form-control"
+            .col-sm-6    
+              .form-group
+                = form.label :father_name
+                = form.text_field :father_name, class: "form-control"
+          
+          .row
+            .col-sm-6    
+              .form-group
+                = form.label "Date of Birth"
+                = form.date_field :dob, class: "form-control"
+            .col-sm-6    
+              .form-group
+                = form.label :cnic
+                = form.text_field :cnic, class: "form-control"      
+          
+          .row
+            .col-sm-6    
+              .form-group
+                = form.label "Mobile (Primary)"
+                = form.text_field :mobile_primary, class: "form-control"
+            .col-sm-6    
+              .form-group
+                = form.label "Mobile (Secondary)"
+                = form.text_field :mobile_secondary, class: "form-control"
+          
+          .row
+            .col-sm-6    
+              .form-group
+                = form.label :address
+                = form.text_area :address, class: "form-control", rows: 4, cols: 10
+            .col-sm-6    
+              .form-group
+                = form.label :remarks
+                = form.text_area :remarks, class: "form-control", rows: 4, cols: 10
+                          
+  .row
+    .col-sm-12
+      .card
+        .card-header
+          %h4.card-title-header Blood Group
+        .card-body        
+          .form-group
+            = form.label "Select Blood Group"
+            = form.collection_select :blood_group_id, BloodGroup.all, :id, :name, {prompt: true}, class: "form-control", required: true
+  
+  .row
+    .col-sm-12
+      .card
+        .card-header
+          %h4.card-title-header Job Information
+        .card-body
+          .row
+            .col-sm-6    
+              .form-group
+                = form.label :joining
+                = form.date_field :joining, class: "form-control"
+            .col-sm-6    
+              .form-group
+                = form.label :starting_salary
+                = form.number_field :starting_salary, class: "form-control", min: 0
+          
+          .row
+            .col-sm-6    
+              .form-group
+                = form.label :current_salary
+                = form.number_field :current_salary, class: "form-control", min: 0
+            .col-sm-6    
+              .form-group
+                = form.label :official_mobile_no
+                = form.text_field :official_mobile_no, class: "form-control"
+          
+          .row
+            .col-sm-6    
+              .form-group
+                = form.label :official_mobile_model
+                = form.text_field :official_mobile_model, class: "form-control"
+            .col-sm-6    
+              .form-group
+                = form.label :official_moterbike_no
+                = form.text_field :official_moterbike_no, class: "form-control"
+  
+  .row
+    .col-sm-12
+      .card
+        .card-header
+          %h4.card-title-header Other Information
+        .card-body
+          .row
+            .col-sm-12   
+              .form-group
+                = form.label :others
+                = form.text_area :others, class: "form-control", rows: 4, cols: 10
+  .actions
+    = form.submit class: "btn btn-primary"
