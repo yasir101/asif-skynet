@@ -61,6 +61,7 @@ Rails.application.routes.draw do
         get :restore
       end
     end
+    resources :payments
   end
 
   # root to: 'home#index'

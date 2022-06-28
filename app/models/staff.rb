@@ -8,4 +8,6 @@ class Staff < ApplicationRecord
   
   belongs_to :staff_type
   belongs_to :blood_group
+  
+  has_many :payments
 end

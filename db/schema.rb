@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_26_113915) do
+ActiveRecord::Schema.define(version: 2022_06_28_071115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,18 @@ ActiveRecord::Schema.define(version: 2022_06_26_113915) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "staff_id"
+    t.integer "amount"
+    t.date "date"
+    t.string "payment_mode"
+    t.string "purpose"
+    t.text "reason"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["staff_id"], name: "index_payments_on_staff_id"
   end
 
   create_table "roles", force: :cascade do |t|

@@ -1,0 +1,48 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h1.header-title
+            Payments
+        .col-auto
+          = link_to 'New Payment', new_payment_path, class: "btn btn-outline-primary"  
+.container-fluid
+  .row
+    .col
+      .card
+        .card-body
+          = render "search", q: @q
+  .row.justify-content-md-center
+    .col-12
+      .card
+        .card-body
+          %table.table.table-sm
+            - if @payments.any?  
+              %thead
+                %tr
+                  %th{scope: "col"} #
+                  %th{scope: "col"} Staff Name
+                  %th{scope: "col"} Amount
+                  %th{scope: "col"} Date
+                  %th{scope: "col"} Payment Mode
+                  %th{scope: "col"} Purpose
+                  %th{scope: "col"} Reason
+                  %th{scope: "col"} Action
+              %tbody
+                - @payments.each.with_index(1) do |payment, index|
+                  %tr
+                    %td= index
+                    %td= payment.staff.full_name
+                    %td= payment.amount
+                    %td= payment.date.strftime("%d-%B- %Y")
+                    %td= payment.payment_mode
+                    %td= payment.purpose
+                    %td= payment.reason
+                    %td.text-right
+                      = link_to 'Edit', edit_payment_path(payment), class: "btn btn-outline-info btn-sm"
+            - else
+              = render 'shared/no_data'
+
+    = paginate @payments              
