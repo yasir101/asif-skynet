@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_28_071115) do
+ActiveRecord::Schema.define(version: 2022_06_28_122428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,28 @@ ActiveRecord::Schema.define(version: 2022_06_28_071115) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["staff_id"], name: "index_payments_on_staff_id"
+  end
+
+  create_table "receipt_book_pages", force: :cascade do |t|
+    t.bigint "receipt_book_id"
+    t.integer "page_no"
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["receipt_book_id"], name: "index_receipt_book_pages_on_receipt_book_id"
+  end
+
+  create_table "receipt_books", force: :cascade do |t|
+    t.bigint "staff_id"
+    t.date "issue_date"
+    t.integer "book_number"
+    t.integer "from"
+    t.integer "total_pages"
+    t.integer "to"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["staff_id"], name: "index_receipt_books_on_staff_id"
   end
 
   create_table "roles", force: :cascade do |t|

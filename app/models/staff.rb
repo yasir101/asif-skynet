@@ -10,4 +10,5 @@ class Staff < ApplicationRecord
   belongs_to :blood_group
   
   has_many :payments
+  has_many :receipt_books
 end

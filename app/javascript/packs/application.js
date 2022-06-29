@@ -16,6 +16,7 @@ import $ from "jquery";
 // Add custom files here
 require("../packs/theme.min.js");
 require("../packs/jquery.mask.min.js");
+require("../packs/custome.js");
 window.Noty = require("../packs/noty.js");
 
 $(document).on("turbolinks:load", function () {

@@ -1,0 +1,43 @@
+= form_with(model: receipt_book) do |form|
+  - if receipt_book.errors.any?
+    #error_explanation  
+      - receipt_book.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .row
+    .col-sm-6
+      .form-group
+        = form.label "Staff"
+        = form.collection_select :staff_id, Staff.all, :id, :full_name, {prompt: true}, class: "form-control", required: true
+    .col-sm-6
+      .form-group
+        = form.label :issue_date
+        = form.date_field :issue_date, class: "form-control"
+  
+  .row
+    .col-sm-6
+      .form-group
+        = form.label :book_number
+        = form.number_field :book_number, class: "form-control"
+    .col-sm-6
+      .form-group
+        = form.label :from
+        = form.number_field :from, class: "form-control"
+  
+  .row
+    .col-sm-6
+      .form-group
+        = form.label :total_pages
+        = form.number_field :total_pages, class: "form-control"
+    .col-sm-6
+      .form-group
+        = form.label :to
+        = form.number_field :to, class: "form-control", readonly: true
+  .row
+    .col-sm-6
+      .form-group
+        = form.label :status
+        = form.select :status, [["Created", "Created"], ["Assigned", "Assigned"], ["Completed", "Completed"]], {prompt: "Select Mode"}, { class: 'form-control'}            
+  .actions
+    = form.submit class: "btn btn-primary"

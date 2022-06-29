@@ -43,4 +43,14 @@
       %ul.nav.nav-sm.flex-column
         %li.nav-item
           = active_link_to payments_path, class: "nav-link" do
-            Payments          
+            Payments
+  
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarBook", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarBook", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/contract.png"}
+      &nbsp&nbspReceipt Book 
+    #sidebarBook.collapse{class: ("show" if request.fullpath.include?('app/payments') )}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to receipt_books_path, class: "nav-link" do
+            Receipt Books                    
