@@ -1,0 +1,165 @@
+.row
+  .col-sm-4          
+    .card
+      / Body
+      .card-body
+        / Image
+        %img.staff-img.rounded-circle.border.border-4.border-card{:alt => "...", :src => "/img/icons/employee.png"}/
+        / Heading
+        %h2.card-title.text-center
+          = staff&.full_name
+        / Badges
+        %p.text-center.mb-4
+          %span.badge.bg-secondary-soft
+            Type: 
+            = staff&.staff_type.name
+          %span.badge.bg-secondary-soft
+            Blood Group:
+            = staff&.blood_group.name
+        
+        / List group
+        .list-group.list-group-flush.mb-4
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Joined
+              .col-auto
+                / Time
+                %time.small.text-muted{:datetime => "1988-10-24"}
+                  = staff&.joining.strftime("%d-%B-%Y")
+            / / .row
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small CNIC
+              .col-auto
+                / Text
+                %small.text-muted
+                  = staff&.cnic
+            / / .row
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Date of Birth
+              .col-auto
+                / Link
+                %a.small.text-muted
+                  = staff&.dob
+            / / .row
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Mobile (Primary)
+              .col-auto
+                / Text
+                %small.text-muted
+                  = staff&.mobile_primary
+            / / .row
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Mobile (Secondary)
+              .col-auto
+                / Link
+                %a.small.text-muted
+                  = staff&.mobile_secondary  
+  .col-sm-8          
+    .card
+      / Body
+      .card-body
+        
+        / List group
+        .list-group.list-group-flush.mb-4
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Address
+              .col-auto
+                / Time
+                %time.small.text-muted{:datetime => "1988-10-24"}
+                  = staff&.address
+            / / .row
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Remarks
+              .col-auto
+                / Text
+                %small.text-muted
+                  = staff&.remarks
+            / / .row
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Starting Salary
+              .col-auto
+                / Link
+                %a.small.text-muted
+                  = staff&.starting_salary
+            / / .row
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Current Salary
+              .col-auto
+                / Text
+                %small.text-muted
+                  = staff&.current_salary
+            / / .row
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Mobile (Secondary)
+              .col-auto
+                / Link
+                %a.small.text-muted
+                  = staff&.mobile_secondary  
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Official Mobile No
+              .col-auto
+                / Text
+                %small.text-muted
+                  = staff&.official_mobile_no
+            / / .row
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Official Mobile Model
+              .col-auto
+                / Link
+                %a.small.text-muted
+                  = staff&.official_mobile_model
+          
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Official Motorbike No
+              .col-auto
+                / Link
+                %a.small.text-muted
+                  = staff&.official_moterbike_no            
+        
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Others
+              .col-auto
+                / Link
+                %a.small.text-muted
+                  = staff&.others           

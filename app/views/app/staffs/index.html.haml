@@ -41,6 +41,7 @@
                     %td= staff.current_salary
                     %td= staff.blood_group.name
                     %td.text-right
+                      = link_to 'View', staff_path(staff), class: "btn btn-outline-success btn-sm"
                       = link_to 'Edit', edit_staff_path(staff), class: "btn btn-outline-info btn-sm"
                       = link_to "Delete", staff, method: :delete, data: { confirm: "Are you Sure?" }, class: "btn btn-outline-danger btn-sm"
             - else

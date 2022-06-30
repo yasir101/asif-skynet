@@ -1,0 +1,30 @@
+.row.justify-content-md-center
+  .col-12
+    .card.custome-height
+      .card-header
+        %h1.header-title
+          Payments
+      .card-body
+        %table.table.table-sm#several
+          - if staff.payments.any?  
+            %thead
+              %tr
+                %th{scope: "col"} #
+                %th{scope: "col"} Date
+                %th{scope: "col"} Payment Mode
+                %th{scope: "col"} Purpose
+                %th{scope: "col"} Amount
+                %th{scope: "col"} Reason
+
+            %tbody
+              - staff.payments.each.with_index(1) do |payment, index|
+                %tr
+                  %td= index
+                  %td= payment.date.strftime("%d-%B- %Y")
+                  %td= payment.payment_mode
+                  %td= payment.purpose
+                  %td= payment.amount
+                  %td= payment.reason
+                                       
+          - else
+            = render 'shared/no_data'

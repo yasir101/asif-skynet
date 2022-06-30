@@ -1,0 +1,36 @@
+.row.justify-content-md-center
+  .col-12
+    .card.custome-height
+      .card-header
+        %h1.header-title
+          Receipt Books
+      .card-body
+        %table.table.table-sm#several
+          - if staff.receipt_books.any?  
+            %thead
+              %tr
+                %th{scope: "col"} #
+                %th{scope: "col"} Issue Date
+                %th{scope: "col"} Book No
+                %th{scope: "col"} From
+                %th{scope: "col"} To
+                %th{scope: "col"} Total Pages
+                %th{scope: "col"} Collection
+                %th{scope: "col"} Blank Pages
+                %th{scope: "col"} Status
+
+            %tbody
+              - staff.receipt_books.each.with_index(1) do |book, index|
+                %tr
+                  %td= index
+                  %td= book.issue_date.strftime("%d-%B- %Y")
+                  %td= book.book_number
+                  %td= book.from
+                  %td= book.to
+                  %td= book.total_pages
+                  %td= book.receipt_book_pages.sum(:amount)
+                  %td= book.receipt_book_pages.select {|c| c.amount.nil?}.count
+                  %td= book.status
+                                       
+          - else
+            = render 'shared/no_data'

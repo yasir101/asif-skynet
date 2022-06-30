@@ -1,0 +1,11 @@
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h1.header-title
+            Staff Detail
+.container-fluid
+  = render "basic_profile", staff: @staff
+  = render "payments", staff: @staff
+  = render "receipt_books", staff: @staff
