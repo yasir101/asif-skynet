@@ -1,0 +1,20 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h6.header-pretitle
+            Overview
+          %h1.header-title
+            New Message
+        .col-auto
+          %h1.header-title
+            Balance: 
+.container-fluid   
+  .row
+    .col-sm-12
+      .card
+        .card-body
+          = render 'form', message: @message
+             

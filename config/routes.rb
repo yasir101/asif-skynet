@@ -63,6 +63,8 @@ Rails.application.routes.draw do
     end
     resources :payments
     resources :receipt_books
+    resources :message_templates
+    resources :messages
   end
 
   # root to: 'home#index'

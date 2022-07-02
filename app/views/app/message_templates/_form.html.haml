@@ -1,0 +1,15 @@
+= form_with(model: message_template) do |form|
+  - if message_template.errors.any?
+    #error_explanation  
+      - message_template.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .form-group
+    = form.label "Title"
+    = form.text_field :title, class: "form-control"
+  .form-group
+    = form.label :message
+    = form.text_area :message, class: "form-control", rows: 5
+  .actions
+    = form.submit class: "btn btn-primary"

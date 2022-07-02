@@ -1,0 +1,7 @@
+= search_form_for q do |f|
+  .row
+    .col-4
+      = f.search_field :title_or_message_cont, class: 'form-control', placeholder: 'Search'
+    .col-1      
+      = f.submit class: 'btn btn-primary'
+          

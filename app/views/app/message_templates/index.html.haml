@@ -1,0 +1,40 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h1.header-title
+            Message Templates
+        .col-auto
+          = link_to 'New Message Template', new_message_template_path, class: "btn btn-outline-primary"  
+.container-fluid
+  .row
+    .col
+      .card
+        .card-body
+          = render "search", q: @q
+  .row.justify-content-md-center
+    .col-12
+      .card
+        .card-body
+          %table.table.table-sm
+            - if @message_templates.any?  
+              %thead
+                %tr
+                  %th{scope: "col"} #
+                  %th{scope: "col"} Title
+                  %th{scope: "col"} Message
+                  %th{scope: "col"} Action
+              %tbody
+                - @message_templates.each.with_index(1) do |template, index|
+                  %tr
+                    %td= index
+                    %td= template.title
+                    %td= template.message
+                    %td.text-right
+                      = link_to 'Edit', edit_message_template_path(template), class: "btn btn-outline-info btn-sm"
+            - else
+              = render 'shared/no_data'
+
+    = paginate @message_templates              
