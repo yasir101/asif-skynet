@@ -67,3 +67,16 @@
         %li.nav-item
           = active_link_to new_message_path, class: "nav-link" do
             New Message     
+  
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarCompany", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarCompany", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/company.png"}
+      &nbsp&nbspCompany 
+    #sidebarCompany.collapse{class: ("show" if request.fullpath.include?('app/companies') || request.fullpath.include?('app/company_packages') )}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to companies_path, class: "nav-link" do
+            Companies
+        %li.nav-item
+          = active_link_to company_packages_path, class: "nav-link" do
+            Packages              

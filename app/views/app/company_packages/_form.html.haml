@@ -1,0 +1,18 @@
+= form_with(model: company_package) do |form|
+  - if company_package.errors.any?
+    #error_explanation  
+      - company_package.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .form-group
+    = form.label "Company"
+    = form.collection_select :company_id, Company.all, :id, :name, {prompt: true}, class: "form-control", required: true
+  .form-group
+    = form.label :name
+    = form.text_field :name, class: "form-control"
+  .form-group
+    = form.label :price
+    = form.number_field :price, class: "form-control"  
+  .actions
+    = form.submit class: "btn btn-primary"

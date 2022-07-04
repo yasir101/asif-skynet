@@ -1,0 +1,38 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h1.header-title
+            Companies
+        .col-auto
+          = link_to 'New Company', new_company_path, class: "btn btn-outline-primary"  
+.container-fluid
+  .row
+    .col
+      .card
+        .card-body
+          = render "search", q: @q
+  .row.justify-content-md-center
+    .col-12
+      .card
+        .card-body
+          %table.table.table-sm
+            - if @companies.any?  
+              %thead
+                %tr
+                  %th{scope: "col"} #
+                  %th{scope: "col"} Name
+                  %th{scope: "col"} Action
+              %tbody
+                - @companies.each.with_index(1) do |company, index|
+                  %tr
+                    %td= index
+                    %td= company.name
+                    %td.text-right
+                      = link_to 'Edit', edit_company_path(company), class: "btn btn-outline-info btn-sm"
+            - else
+              = render 'shared/no_data'
+
+    = paginate @companies              

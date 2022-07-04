@@ -1,0 +1,12 @@
+= form_with(model: company) do |form|
+  - if company.errors.any?
+    #error_explanation  
+      - company.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .form-group
+    = form.label :name
+    = form.text_field :name, class: "form-control"
+  .actions
+    = form.submit class: "btn btn-primary"

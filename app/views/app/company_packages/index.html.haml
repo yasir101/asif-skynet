@@ -1,0 +1,42 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h1.header-title
+            Company Packages
+        .col-auto
+          = link_to 'New Company Package', new_company_package_path, class: "btn btn-outline-primary"  
+.container-fluid
+  .row
+    .col
+      .card
+        .card-body
+          = render "search", q: @q
+  .row.justify-content-md-center
+    .col-12
+      .card
+        .card-body
+          %table.table.table-sm
+            - if @company_packages.any?  
+              %thead
+                %tr
+                  %th{scope: "col"} #
+                  %th{scope: "col"} Company
+                  %th{scope: "col"} Package Name
+                  %th{scope: "col"} Package Price
+                  %th{scope: "col"} Action
+              %tbody
+                - @company_packages.each.with_index(1) do |package, index|
+                  %tr
+                    %td= index
+                    %td= package.company.name
+                    %td= package.name
+                    %td= package.price
+                    %td.text-right
+                      = link_to 'Edit', edit_company_package_path(package), class: "btn btn-outline-info btn-sm"
+            - else
+              = render 'shared/no_data'
+
+    = paginate @company_packages              

@@ -65,6 +65,8 @@ Rails.application.routes.draw do
     resources :receipt_books
     resources :message_templates
     resources :messages
+    resources :companies
+    resources :company_packages
   end
 
   # root to: 'home#index'
