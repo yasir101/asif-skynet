@@ -11,10 +11,10 @@
                 Overview
               / Title
               %h1.header-title
-                Countries
+                Packages
             .col-auto
               / Button
-              = link_to 'New Country', new_country_path, class: "btn btn-outline-primary lift"  
+              = link_to 'New Package', new_package_path, class: "btn btn-outline-primary lift"         
           / / .row
           -# .row.align-items-center
           -#   .col
@@ -52,20 +52,27 @@
           -#     %a.dropdown-item{:href => "#!"} Something else here
         .table-responsive
           %table.table.table-sm.table-nowrap.card-table
-            - if @countries.any?
+            - if @packages.any?
               %thead
                 %tr
                   %th #
-                  %th Name
+                  %th Company
+                  %th Company Package
+                  %th Internal Package Name 
+                  %th Internal Package Price
                   %th Action
               %tbody.list
-                - @countries.each.with_index(1) do |country, index|
+                - @packages.each.with_index(1) do |package, index|
                   %tr
                     %td= index
-                    %td= country.name
+                    %td= package&.company_package&.company&.name
+                    %td= package&.company_package&.name
+                    %td= package.name
+                    %td= package.price
                     %td.text-right
-                      = link_to 'Edit', edit_country_path(country), class: "btn btn-outline-info btn-sm"
+                      = link_to 'Edit', edit_package_path(package), class: "btn btn-outline-info btn-sm"
             - else
               = render 'shared/no_data'
   .row        
-    = paginate @countries     
+    = paginate @packages     
+     

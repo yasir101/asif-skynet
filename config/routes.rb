@@ -66,7 +66,12 @@ Rails.application.routes.draw do
     resources :message_templates
     resources :messages
     resources :companies
-    resources :company_packages
+    resources :company_packages do
+      collection do
+        get :package_list
+      end
+    end
+    resources :packages
   end
 
   # root to: 'home#index'

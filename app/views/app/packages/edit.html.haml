@@ -1,0 +1,18 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h6.header-pretitle
+            Overview
+          %h1.header-title
+            Edit Package
+
+.container-fluid   
+  .row
+    .col-12.col-lg-6.col-xl
+      .card
+        .card-body
+          = render 'form', package: @package
+             

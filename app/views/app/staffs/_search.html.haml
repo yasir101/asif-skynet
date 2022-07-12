@@ -1,7 +1,6 @@
 = search_form_for q do |f|
-  .row
-    .col-4
-      = f.search_field :full_name_or_mobile_primary_or_staff_type_name_or_blood_group_name_cont, class: 'form-control', placeholder: 'Search'
-    .col-1      
-      = f.submit class: 'btn btn-primary'
-          
+  .input-group.input-group-flush.input-group-merge.input-group-reverse
+    = f.search_field :full_name_or_mobile_primary_or_staff_type_name_or_blood_group_name_cont, class: 'form-control list-search', placeholder: 'Search'
+    %span.input-group-text
+      %i.fe.fe-search
+                    

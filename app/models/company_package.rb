@@ -4,4 +4,5 @@ class CompanyPackage < ApplicationRecord
   validates :price, presence: true
   
   belongs_to :company
+  has_one :package
 end

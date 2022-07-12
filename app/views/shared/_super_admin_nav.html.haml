@@ -79,4 +79,14 @@
             Companies
         %li.nav-item
           = active_link_to company_packages_path, class: "nav-link" do
-            Packages              
+            Packages
+  
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarPackage", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarPackage", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/package.png"}
+      &nbsp&nbspPackage 
+    #sidebarPackage.collapse{class: ("show" if request.fullpath.include?('app/packages') )}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to packages_path, class: "nav-link" do
+            Internal Packages                        
