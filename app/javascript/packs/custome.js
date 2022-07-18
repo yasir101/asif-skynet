@@ -35,4 +35,12 @@ $(document).on("turbolinks:load", function () {
       },
     });
   });
+
+  // area
+
+  $("#customer_country_id").on("change", function () {
+    console.log(this.text);
+    // let prev = $("#customer_address").val();
+    // prev + $(this).val();
+  });
 });

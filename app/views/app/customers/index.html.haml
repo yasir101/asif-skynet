@@ -1,0 +1,75 @@
+.container-fluid
+  .row.justify-content-center
+    .col-12
+      / Header
+      .header
+        .header-body
+          .row.align-items-center
+            .col
+              / Pretitle
+              %h6.header-pretitle
+                Overview
+              / Title
+              %h1.header-title
+                Areas
+            .col-auto
+              / Button
+              = link_to 'New Area', new_area_path, class: "btn btn-outline-primary lift"    
+          / / .row
+          -# .row.align-items-center
+          -#   .col
+          -#     / Nav
+          -#     %ul.nav.nav-tabs.nav-overflow.header-tabs
+          -#       %li.nav-item
+          -#         %a.nav-link.active{:href => "#!"}
+          -#           All
+          -#           %span.badge.rounded-pill.bg-secondary-soft 823
+          -#       %li.nav-item
+          -#         %a.nav-link{:href => "#!"}
+          -#           Pending
+          -#           %span.badge.rounded-pill.bg-secondary-soft 24
+          -#       %li.nav-item
+          -#         %a.nav-link{:href => "#!"}
+          -#           Processing
+          -#           %span.badge.rounded-pill.bg-secondary-soft 3
+          -#       %li.nav-item
+          -#         %a.nav-link{:href => "#!"}
+          -#           Refunded
+          -#           %span.badge.rounded-pill.bg-secondary-soft 71
+      / Card
+      .card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
+        .card-header
+          / Search
+          = render "search", q: @q
+          
+          / Dropdown
+          -# .dropdown
+          -#   %button#bulkActionDropdown.btn.btn-sm.btn-white.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :type => "button"}
+          -#     Bulk action
+          -#   .dropdown-menu.dropdown-menu-end{"aria-labelledby" => "bulkActionDropdown"}
+          -#     %a.dropdown-item{:href => "#!"} Action
+          -#     %a.dropdown-item{:href => "#!"} Another action
+          -#     %a.dropdown-item{:href => "#!"} Something else here
+        .table-responsive
+          %table.table.table-sm.table-nowrap.card-table
+            - if @areas.any?
+              %thead
+                %tr
+                  %th #
+                  %th Country
+                  %th City
+                  %th Name
+                  %th Action
+              %tbody.list
+                - @areas.each.with_index(1) do |area, index|
+                  %tr
+                    %td= index
+                    %td= area.city.country.name
+                    %td= area.city.name
+                    %td= area.name
+                    %td.text-right
+                      = link_to 'Edit', edit_area_path(area), class: "btn btn-outline-info btn-sm"
+            - else
+              = render 'shared/no_data'
+  .row        
+    = paginate @areas     

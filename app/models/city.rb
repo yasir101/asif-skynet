@@ -5,4 +5,5 @@ class City < ApplicationRecord
   belongs_to :country
   
   has_many :areas
+  has_many :customer_areas
 end

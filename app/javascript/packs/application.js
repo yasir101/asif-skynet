@@ -8,6 +8,8 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "@fortawesome/fontawesome-free/js/all";
+import "chartkick/chart.js";
+
 require("jquery");
 require("bootstrap");
 // window.Noty = require('noty');
@@ -31,6 +33,15 @@ $(document).on("turbolinks:load", function () {
   });
   $("#staff_official_mobile_no").mask("0000-0000000", {
     placeholder: "0333-1234567",
+  });
+  $("#customer_cnic").mask("00000-0000000-0", {
+    placeholder: "Enter CNIC",
+  });
+  $("#customer_mobile_primary").mask("0000-0000000", {
+    placeholder: "Enter Mobile (Primary)",
+  });
+  $("#customer_mobile_secondary").mask("0000-0000000", {
+    placeholder: "Enter Mobile (Secondary)",
   });
 });
 

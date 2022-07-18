@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_04_144237) do
+ActiveRecord::Schema.define(version: 2022_07_16_184434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,50 @@ ActiveRecord::Schema.define(version: 2022_07_04_144237) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "customer_areas", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "country_id"
+    t.bigint "city_id"
+    t.bigint "area_id"
+    t.bigint "sub_area_id"
+    t.string "house_no"
+    t.string "street"
+    t.text "address"
+    t.text "remarks"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["area_id"], name: "index_customer_areas_on_area_id"
+    t.index ["city_id"], name: "index_customer_areas_on_city_id"
+    t.index ["country_id"], name: "index_customer_areas_on_country_id"
+    t.index ["customer_id"], name: "index_customer_areas_on_customer_id"
+    t.index ["sub_area_id"], name: "index_customer_areas_on_sub_area_id"
+  end
+
+  create_table "customer_packages", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "package_id"
+    t.string "username"
+    t.string "password"
+    t.date "expiry"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_customer_packages_on_customer_id"
+    t.index ["package_id"], name: "index_customer_packages_on_package_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.integer "old_ref_no"
+    t.string "name"
+    t.string "father_name"
+    t.string "cnic"
+    t.string "mobile_primary"
+    t.string "mobile_secondary"
+    t.bigint "service_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["service_id"], name: "index_customers_on_service_id"
   end
 
   create_table "message_templates", force: :cascade do |t|
@@ -198,6 +242,12 @@ ActiveRecord::Schema.define(version: 2022_07_04_144237) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "staff_types", force: :cascade do |t|

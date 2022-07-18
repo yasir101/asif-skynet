@@ -1,0 +1,139 @@
+= form_with(model: customer) do |form|
+  - if customer.errors.any?
+    #error_explanation  
+      - customer.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+            
+  .row
+    .col-12
+      .card
+        .card-header
+          %h1.header-title
+            Profile
+        .card-body
+          .row
+            .col-6    
+              .form-group
+                = form.label "Old Referance No"
+                = form.number_field :old_ref_no, class: "form-control", placeholder: "Enter Old Ref No"
+            
+            .col-6
+              .form-group
+                = form.label :name
+                = form.text_field :name, class: "form-control", placeholder: "Enter Name"
+          
+          .row
+            .col-6
+              .form-group
+                = form.label :father_name
+                = form.text_field :father_name, class: "form-control", placeholder: "Enter Father Name"
+            
+            .col-6            
+              .form-group
+                = form.label :cnic
+                = form.text_field :cnic, class: "form-control", placeholder: "Enter Father Name"
+          .row
+            .col-6 
+              .form-group
+                = form.label :mobile_primary
+                = form.text_field :mobile_primary, class: "form-control", placeholder: "Enter Mobile (Primary)"
+            .col-6   
+              .form-group
+                = form.label :mobile_secondary
+                = form.text_field :mobile_secondary, class: "form-control", placeholder: "Enter Mobile (Secondary)"
+      
+      .card
+        .card-header
+          %h1.header-title
+            Area
+        .card-body
+          = form.fields_for :customer_area do |customer_area|
+            .row
+              .col-6                
+                .form-group
+                  = customer_area.label "Country"
+                  = customer_area.collection_select :country_id, Country.all, :id, :name, {prompt: true}, class: "form-control", required: true
+              .col-6
+                .form-group
+                  = customer_area.label "City"
+                  = customer_area.collection_select :city_id, City.all, :id, :name, {prompt: true}, class: "form-control", required: true
+            
+            .row
+              .col-6                
+                .form-group
+                  = customer_area.label "Area"
+                  = customer_area.collection_select :area_id, Area.all, :id, :name, {prompt: true}, class: "form-control", required: true
+              .col-6                  
+                .form-group
+                  = customer_area.label "Sub Area"
+                  = customer_area.collection_select :sub_area_id, SubArea.all, :id, :name, {prompt: true}, class: "form-control", required: true
+            
+            .row
+              .col-6
+                .form-group
+                  = customer_area.label "House No"
+                  = customer_area.text_field :house_no, class: "form-control", placeholder: "Enter House No"
+                
+              .col-6
+                .form-group
+                  = customer_area.label "Street"
+                  = customer_area.text_field :street, class: "form-control", placeholder: "Enter Stree"
+                
+            
+            .row
+              .col-12 
+                .form-group
+                  = customer_area.label "Address"
+                  = customer_area.text_area :address, class: "form-control", placeholder: "Enter Adress"
+                
+            .row 
+              .col-12   
+                .form-group
+                  = customer_area.label "Remarks"
+                  = customer_area.text_area :remarks, class: "form-control", placeholder: "Add Remarks" 
+  
+      .card
+        .card-header
+          %h1.header-title
+            Package
+        .card-body 
+          = form.fields_for :customer_package do |customer_package| 
+            .row
+              .col-12                
+                .form-group
+                  = customer_package.label "Select Package"
+                  = customer_package.collection_select :package_id, Package.all, :id, :name, {prompt: true}, class: "form-control", required: true
+          
+            .row
+              .col-6   
+                .form-group
+                  = customer_package.label "Username"
+                  = customer_package.text_field :username, class: "form-control", placeholder: "Enter Username"
+              .col-6   
+                .form-group
+                  = customer_package.label "Password"
+                  = customer_package.text_field :password, class: "form-control", placeholder: "Enter Password"
+           
+            .row
+              .col-6
+                .form-group
+                  = customer_package.label "Expiry"
+                  = customer_package.date_field :expiry, class: "form-control"              
+      
+      .card
+        .card-header
+          %h1.header-title
+            Service
+        .card-body 
+          .row
+            .col-6                
+              .form-group
+                = form.label "Select Service"
+                = form.collection_select :service_id, Service.all, :id, :name, {prompt: true}, class: "form-control", required: true
+  
+  
+  
+  .actions
+    = form.submit class: "btn btn-primary"

@@ -72,6 +72,7 @@ Rails.application.routes.draw do
       end
     end
     resources :packages
+    resources :customers
   end
 
   # root to: 'home#index'
