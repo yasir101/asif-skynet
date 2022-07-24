@@ -44,7 +44,7 @@ module App
     
     def restore
       @staff = Staff.only_deleted.where(id: params[:id]).first
-      if @staff.recover
+      if @staff.restore
         redirect_to staffs_path, notice: 'Staff was successfully restored'
       end
     end

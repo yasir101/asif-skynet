@@ -1,0 +1,15 @@
+.card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
+  .table-responsive
+    %table.table.table-sm.table-nowrap.card-table
+      %thead
+        %tr
+          %th #
+          %th Page No#
+          %th Amount
+          
+      %tbody.list
+        - book.receipt_book_pages.each.with_index(1) do |page, index|
+          %tr
+            %td= index
+            %td= page.page_no
+            %td= page.amount

@@ -18,7 +18,7 @@ gem 'bulk_insert'
 gem 'rolify'
 gem 'ransack'
 gem 'kaminari'
-gem 'acts_as_paranoid'
+gem "paranoia", "~> 2.2"
 gem 'jquery_mask_rails', '~> 0.1.0'
 gem 'chartkick', '~> 4.2'
 gem 'groupdate'

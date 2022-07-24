@@ -23,6 +23,7 @@
                   %th{scope: "col"} Mobile
                   %th{scope: "col"} Current Salary
                   %th{scope: "col"} Bloog Group
+                  %th{scope: "col"} Deleted At
                   %th{scope: "col"} Action
               %tbody
                 - @staffs.each.with_index(1) do |staff, index|
@@ -34,6 +35,7 @@
                     %td= staff.mobile_primary
                     %td= staff.current_salary
                     %td= staff.blood_group.name
+                    %td= staff.deleted_at.strftime("%d-%B-%Y")
                     %td.text-right
                       = link_to 'Restore', restore_staff_path(staff), class: "btn btn-outline-info btn-sm", data: { confirm: "Are you Sure?" }
             - else

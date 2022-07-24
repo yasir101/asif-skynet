@@ -55,18 +55,18 @@
           = active_link_to receipt_books_path, class: "nav-link" do
             Receipt Books                    
   
-  -# %li.nav-item
-  -#   %a.nav-link{"aria-controls" => "sidebarSMS", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarSMS", role: "button"}
-  -#     %img.icon-size{:alt => "...", :src => "/img/icons/sms.png"}
-  -#     &nbsp&nbspMessage 
-  -#   #sidebarSMS.collapse{class: ("show" if request.fullpath.include?('app/message_templates') )}
-  -#     %ul.nav.nav-sm.flex-column
-  -#       %li.nav-item
-  -#         = active_link_to message_templates_path, class: "nav-link" do
-  -#           Templates         
-  -#       %li.nav-item
-  -#         = active_link_to new_message_path, class: "nav-link" do
-  -#           New Message     
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarSMS", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarSMS", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/sms.png"}
+      &nbsp&nbspMessage 
+    #sidebarSMS.collapse{class: ("show" if request.fullpath.include?('app/message_templates') )}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to message_templates_path, class: "nav-link" do
+            Templates         
+        %li.nav-item
+          = active_link_to new_message_path, class: "nav-link" do
+            New Message     
   
   %li.nav-item
     %a.nav-link{"aria-controls" => "sidebarCompany", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarCompany", role: "button"}
@@ -92,12 +92,12 @@
             Internal Packages
   
   
-  -# %li.nav-item
-  -#   %a.nav-link{"aria-controls" => "sidebarCustomer", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarCustomer", role: "button"}
-  -#     %img.icon-size{:alt => "...", :src => "/img/icons/customer.png"}
-  -#     &nbsp&nbspCustomer 
-  -#   #sidebarCustomer.collapse{class: ("show" if request.fullpath.include?('app/customers') )}
-  -#     %ul.nav.nav-sm.flex-column
-  -#       %li.nav-item
-  -#         = active_link_to "#{new_customer_path}?step=profile", class: "nav-link" do
-  -#           Customers                                  
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarCustomer", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarCustomer", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/customer.png"}
+      &nbsp&nbspCustomer 
+    #sidebarCustomer.collapse{class: ("show" if request.fullpath.include?('app/customers') )}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to "#{new_customer_path}?step=profile", class: "nav-link" do
+            Customers                                  

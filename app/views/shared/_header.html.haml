@@ -9,4 +9,4 @@
           %a.dropdown-item{href: "javascript:void(0)"} Profile
           %a.dropdown-item{href: "javascript:void(0)"} Settings
           %hr.dropdown-divider/
-          = link_to "Sign out", destroy_admin_session_path, method: :delete, class: "dropdown-item"
+          = button_to "Sign out", destroy_admin_session_path, method: :delete, class: "dropdown-item"

@@ -1,0 +1,40 @@
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h1.header-title
+            Receipt Book Detail
+.container-fluid
+  .row 
+    .col-12
+      .card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
+        .table-responsive
+          %table.table.table-sm.table-nowrap.card-table
+            %thead
+              %tr
+                %th Book Number
+                %th Staff Name
+                %th Issue Date
+                %th From
+                %th To
+                %th Total Pages
+                %th Blank Pages
+                %th Collection
+                %th Status
+            %tbody.list
+              %tr
+                %td= @receipt_book.book_number
+                %td= @receipt_book.staff.full_name
+                %td= @receipt_book.issue_date
+                %td= @receipt_book.from
+                %td= @receipt_book.to
+                %td= @receipt_book.total_pages
+                %td= @receipt_book.receipt_book_pages.select {|c| c.amount.nil?}.count
+                %td= @receipt_book.receipt_book_pages.sum(:amount)
+                %td= @receipt_book.status
+  
+  .row
+    .col-12
+      = render "receipt_book_pages", book: @receipt_book              
+          

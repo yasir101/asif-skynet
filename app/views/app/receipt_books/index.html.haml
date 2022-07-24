@@ -78,7 +78,7 @@
                     %td= book.receipt_book_pages.sum(:amount)
                     %td= book.status
                     %td.text-right
-                      = link_to 'Edit', edit_receipt_book_path(book), class: "btn btn-outline-info btn-sm"
+                      = link_to 'View', receipt_book_path(book), class: "btn btn-outline-success btn-sm"
             - else
               = render 'shared/no_data'
   .row        

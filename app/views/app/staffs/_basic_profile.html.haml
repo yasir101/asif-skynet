@@ -10,15 +10,21 @@
           = staff&.full_name
         / Badges
         %p.text-center.mb-4
-          %span.badge.bg-secondary-soft
-            Type: 
-            = staff&.staff_type.name
-          %span.badge.bg-secondary-soft
+          %span.badge.bg-danger-soft
             Blood Group:
             = staff&.blood_group.name
         
         / List group
         .list-group.list-group-flush.mb-4
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Type
+              .col-auto
+                / Time
+                %time.small.text-muted
+                  = staff&.staff_type.name
           .list-group-item
             .row.align-items-center
               .col
@@ -59,15 +65,6 @@
                 %small.text-muted
                   = staff&.mobile_primary
             / / .row
-          .list-group-item
-            .row.align-items-center
-              .col
-                / Title
-                %small Mobile (Secondary)
-              .col-auto
-                / Link
-                %a.small.text-muted
-                  = staff&.mobile_secondary  
   .col-sm-8          
     .card
       / Body
@@ -79,22 +76,12 @@
             .row.align-items-center
               .col
                 / Title
-                %small Address
+                %small Mobile (Secondary)
               .col-auto
-                / Time
-                %time.small.text-muted{:datetime => "1988-10-24"}
-                  = staff&.address
-            / / .row
-          .list-group-item
-            .row.align-items-center
-              .col
-                / Title
-                %small Remarks
-              .col-auto
-                / Text
-                %small.text-muted
-                  = staff&.remarks
-            / / .row
+                / Link
+                %a.small.text-muted
+                  = staff&.mobile_secondary  
+          / / .row
           .list-group-item
             .row.align-items-center
               .col
@@ -104,7 +91,7 @@
                 / Link
                 %a.small.text-muted
                   = staff&.starting_salary
-            / / .row
+                  
           .list-group-item
             .row.align-items-center
               .col
@@ -115,15 +102,7 @@
                 %small.text-muted
                   = staff&.current_salary
             / / .row
-          .list-group-item
-            .row.align-items-center
-              .col
-                / Title
-                %small Mobile (Secondary)
-              .col-auto
-                / Link
-                %a.small.text-muted
-                  = staff&.mobile_secondary  
+            
           .list-group-item
             .row.align-items-center
               .col
@@ -153,6 +132,26 @@
                 / Link
                 %a.small.text-muted
                   = staff&.official_moterbike_no            
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Address
+              .col-auto
+                / Time
+                %time.small.text-muted{:datetime => "1988-10-24"}
+                  = staff&.address
+            / / .row
+          .list-group-item
+            .row.align-items-center
+              .col
+                / Title
+                %small Remarks
+              .col-auto
+                / Text
+                %small.text-muted
+                  = staff&.remarks
+            / / .row
         
           .list-group-item
             .row.align-items-center
