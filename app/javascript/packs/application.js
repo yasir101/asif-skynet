@@ -14,7 +14,8 @@ require("jquery");
 require("bootstrap");
 // window.Noty = require('noty');
 import $ from "jquery";
-window.$ = jQuery;
+window.jQuery = $;
+window.$ = $;
 
 // Add custom files here
 require("../packs/theme.min.js");
