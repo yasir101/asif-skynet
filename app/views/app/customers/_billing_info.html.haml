@@ -1,0 +1,29 @@
+= form_with(model: customer) do |form|
+  - if customer.errors.any?
+    #error_explanation  
+      - customer.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .card
+    .card-header
+      %h1.header-title
+        Billing Info
+    .card-body
+      = form.fields_for :customer_billing_info do |customer_billing|
+        .row
+          .col-12                
+            .form-group
+              = customer_billing.label "Billing Type"
+              = customer_billing.select :billing_type, [["Fix", "Fix"], ["Package Expiry Date", "Package Expiry Date"]], {prompt: "Select Billing Type"}, { class: 'form-control'}
+          
+        .row
+          .col-12              
+            .form-group
+              = customer_billing.label "Billing Date"
+              = customer_billing.date_field :billing_date, class: "form-control"
+              = form.hidden_field :expiry, value: customer.customer_package.expiry, id: "package_expiry"
+        
+    .card-footer
+      .actions
+        = form.submit "Submit Billing Info", class: "btn btn-primary"       

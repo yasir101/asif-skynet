@@ -11,7 +11,7 @@
   </head>
 
   <body class="<%= current_admin && controller_name != 'home' ? '' : 'd-flex align-items-center bg-auth border-top border-top-2 border-primary' %>">
-    <%= render "shared/flash_messages" %>
+    <%= render "shared/flash_messages" ,class: "float-right"%>
     
     <% if current_admin && controller_name != 'home' %>
     <%= render "shared/sidebar" %>

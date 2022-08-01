@@ -1,0 +1,83 @@
+.card
+  .card-body
+    .list-group.list-group-flush
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Country
+          .col-auto
+            / Link
+            %a.small.text-muted
+              = customer&.customer_area&.country&.name
+      / / .row
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small City
+          .col-auto
+            / Link
+            %a.small.text-muted
+              = customer&.customer_area&.city&.name
+              
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Area
+          .col-auto
+            / Text
+            %small.text-muted
+              = customer&.customer_area&.area&.name
+        / / .row
+        
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Sub Area
+          .col-auto
+            / Text
+            %small.text-muted
+              = customer&.customer_area&.country&.name
+        / / .row
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small House No
+          .col-auto
+            / Link
+            %a.small.text-muted
+              = customer&.customer_area&.house_no
+      
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Street
+          .col-auto
+            / Link
+            %a.small.text-muted
+              = customer&.customer_area&.street
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Address
+          .col-auto
+            / Time
+            %time.small.text-muted{:datetime => "1988-10-24"}
+              = customer&.customer_area&.street
+        / / .row
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Remarks
+          .col-auto
+            / Text
+            %small.text-muted
+              = customer&.customer_area&.remarks
+        

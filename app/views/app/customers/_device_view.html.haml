@@ -1,0 +1,48 @@
+.card
+  .card-body
+    / List group
+    .list-group.list-group-flush.my-n3
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %h5.mb-0
+              Device Name
+          .col-auto
+            / Time
+            %time.small.text-muted
+              = customer&.customer_device_info&.device_name
+        / / .row
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %h5.mb-0
+              Serial No
+          .col-auto
+            / Time
+            %time.small.text-muted
+              = customer&.customer_device_info&.serial_no
+        / / .row
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %h5.mb-0
+              Model
+          .col-auto
+            / Link
+            %a.small.text_muted
+              = customer&.customer_device_info&.model
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %h5.mb-0
+              Mac Address
+          .col-auto
+            / Text
+            %small.text-muted
+              = customer&.customer_device_info&.mac_address
+        / / .row
+        / / .row

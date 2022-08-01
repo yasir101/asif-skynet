@@ -43,4 +43,14 @@ $(document).on("turbolinks:load", function () {
     // let prev = $("#customer_address").val();
     // prev + $(this).val();
   });
+
+  $("#customer_customer_billing_info_attributes_billing_type").on("change", function () {
+    let type = $(this).val();
+    if (type == "Package Expiry Date") {
+      let expiry = $("#package_expiry").val();
+      $("#customer_customer_billing_info_attributes_billing_date").val(expiry).prop("readonly", true);
+    } else {
+      $("#customer_customer_billing_info_attributes_billing_date").val("").prop("readonly", false);
+    }
+  });
 });

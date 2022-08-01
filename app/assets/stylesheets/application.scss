@@ -46,3 +46,11 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 .dashboard-style {
   border: 1px solid #87ceeb;
 }
+
+#noty_layout__topCenter {
+  top: 10%;
+  left: 88%;
+  width: 325px;
+  -webkit-transform: translate(-webkit-calc(-50% - 0.5px)) translateZ(0) scale(1, 1);
+  transform: translate(calc(-50% - 0.5px)) translateZ(0) scale(1, 1);
+}

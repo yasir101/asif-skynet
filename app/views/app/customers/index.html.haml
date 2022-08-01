@@ -11,10 +11,10 @@
                 Overview
               / Title
               %h1.header-title
-                Areas
+                Customers
             .col-auto
               / Button
-              = link_to 'New Area', new_area_path, class: "btn btn-outline-primary lift"    
+              = link_to 'New Customer', "#{new_customer_path}?step=profile", class: "btn btn-outline-primary lift"    
           / / .row
           -# .row.align-items-center
           -#   .col
@@ -52,24 +52,29 @@
           -#     %a.dropdown-item{:href => "#!"} Something else here
         .table-responsive
           %table.table.table-sm.table-nowrap.card-table
-            - if @areas.any?
+            - if @customers.any?
               %thead
                 %tr
                   %th #
-                  %th Country
-                  %th City
+                  %th Old Reference No
                   %th Name
+                  %th Mobile No
+                  %th Area
+                  %th Sub Area
                   %th Action
               %tbody.list
-                - @areas.each.with_index(1) do |area, index|
+                - @customers.each.with_index(1) do |customer, index|
                   %tr
                     %td= index
-                    %td= area.city.country.name
-                    %td= area.city.name
-                    %td= area.name
+                    %td= customer.old_ref_no
+                    %td= customer.name
+                    %td= customer.mobile_primary
+                    %td= customer&.customer_area&.area&.name
+                    %td= customer&.customer_area&.sub_area&.name
                     %td.text-right
-                      = link_to 'Edit', edit_area_path(area), class: "btn btn-outline-info btn-sm"
+                      = link_to 'View', customer_path(customer), class: "btn btn-outline-success btn-sm"
+                      = link_to 'Edit', "#{edit_customer_path(customer)}?step=profile", class: "btn btn-outline-info btn-sm"
             - else
               = render 'shared/no_data'
   .row        
-    = paginate @areas     
+    = paginate @customers     

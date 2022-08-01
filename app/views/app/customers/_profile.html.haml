@@ -1,0 +1,46 @@
+= form_with(model: customer) do |form|
+  - if customer.errors.any?
+    #error_explanation  
+      - customer.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .card
+    .card-header
+      %h1.header-title
+        Profile
+    .card-body
+      .row
+        .col-12    
+          .form-group
+            = form.label "Old Referance No"
+            = form.number_field :old_ref_no, class: "form-control", placeholder: "Enter Old Ref No"
+      .row  
+        .col-12
+          .form-group
+            = form.label :name
+            = form.text_field :name, class: "form-control", placeholder: "Enter Name"
+      
+      .row
+        .col-12
+          .form-group
+            = form.label :father_name
+            = form.text_field :father_name, class: "form-control", placeholder: "Enter Father Name"
+      .row  
+        .col-12            
+          .form-group
+            = form.label :cnic
+            = form.text_field :cnic, class: "form-control", placeholder: "Enter Father Name"
+      .row
+        .col-12 
+          .form-group
+            = form.label :mobile_primary
+            = form.text_field :mobile_primary, class: "form-control", placeholder: "Enter Mobile (Primary)"
+      .row
+        .col-12   
+          .form-group
+            = form.label :mobile_secondary
+            = form.text_field :mobile_secondary, class: "form-control", placeholder: "Enter Mobile (Secondary)"
+    .card-footer
+      .actions
+        = form.submit "Submit Profile", class: "btn btn-primary"        

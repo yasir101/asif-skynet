@@ -1,0 +1,40 @@
+= form_with(model: customer) do |form|
+  - if customer.errors.any?
+    #error_explanation  
+      - customer.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .card
+    .card-header
+      %h1.header-title
+        Device Info
+    .card-body
+      = form.fields_for :customer_device_info do |customer_device|
+        .row
+          .col-12
+            .form-group
+              = customer_device.label "Device Name"
+              = customer_device.text_field :device_name, class: "form-control", placeholder: "Enter Device Name"
+          
+        .row
+          .col-12
+            .form-group
+              = customer_device.label "Serial No"
+              = customer_device.text_field :serial_no, class: "form-control", placeholder: "Enter Serial No"
+       
+        .row
+          .col-12
+            .form-group
+              = customer_device.label "Model"
+              = customer_device.text_field :model, class: "form-control", placeholder: "Enter Model"
+          
+        .row
+          .col-12
+            .form-group
+              = customer_device.label "Mac Address"
+              = customer_device.text_field :mac_address, class: "form-control", placeholder: "Enter Mac Address"       
+        
+    .card-footer
+      .actions
+        = form.submit "Submit Device Info", class: "btn btn-primary"       

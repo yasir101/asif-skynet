@@ -1,0 +1,63 @@
+.card
+  .card-body
+    %img.staff-img.rounded-circle.border.border-4.border-card{:alt => "...", :src => "/img/icons/employee.png"}/
+    / Heading
+    %h2.card-title.text-center
+      = customer&.name
+    / Badges
+    %p.text-center.mb-4
+      %span.badge.bg-danger-soft
+        Created:
+        = customer&.created_at&.strftime("%d-%B-%Y")
+
+    / List group
+    .list-group.list-group-flush
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Father Name
+          .col-auto
+            / Time
+            %time.small.text-muted
+              = customer&.father_name
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Old Reference No
+          .col-auto
+            / Time
+            %time.small.text-muted{:datetime => "1988-10-24"}
+              = customer&.old_ref_no
+        / / .row
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small CNIC
+          .col-auto
+            / Text
+            %small.text-muted
+              = customer&.cnic
+        / / .row
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Mobile (Primary)
+          .col-auto
+            / Text
+            %small.text-muted
+              = customer&.mobile_primary
+      
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Mobile (Secondary)
+          .col-auto
+            / Text
+            %small.text-muted
+              = customer&.mobile_secondary        
+        / / .row

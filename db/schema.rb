@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_16_184434) do
+ActiveRecord::Schema.define(version: 2022_07_27_174320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,26 @@ ActiveRecord::Schema.define(version: 2022_07_16_184434) do
     t.index ["country_id"], name: "index_customer_areas_on_country_id"
     t.index ["customer_id"], name: "index_customer_areas_on_customer_id"
     t.index ["sub_area_id"], name: "index_customer_areas_on_sub_area_id"
+  end
+
+  create_table "customer_billing_infos", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.string "billing_type"
+    t.date "billing_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_customer_billing_infos_on_customer_id"
+  end
+
+  create_table "customer_device_infos", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.string "device_name"
+    t.string "serial_no"
+    t.string "model"
+    t.string "mac_address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_customer_device_infos_on_customer_id"
   end
 
   create_table "customer_packages", force: :cascade do |t|
