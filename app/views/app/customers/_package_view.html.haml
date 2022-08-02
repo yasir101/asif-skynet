@@ -1,19 +1,20 @@
 .card.card-fill
   .card-body
-    / Title
-    %h6.text-uppercase.text-center.text-muted.my-4
-      = customer&.customer_package&.package&.name
-    / Price
-    .row.g-0.align-items-center.justify-content-center
-      .col-auto
-        .display-2.mb-0= customer&.customer_package&.package&.price
-    / / .row
-    / Period
-    .h6.text-uppercase.text-center.text-muted.mb-5
-      \/ month
+    .list-group.list-group-flush
+      .list-group-item
+        .row.align-items-center
+          .col
+            %h1.header-title
+              Package
     / Features
     .mb-3
       %ul.list-group.list-group-flush
+        %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
+          %small Package Name
+          %small.fw-bold.text-uppercase= customer&.customer_package&.package&.name
+        %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
+          %small Package Price
+          %small.fw-bold.text-uppercase= customer&.customer_package&.package&.price
         %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
           %small Company
           %small= customer&.customer_package&.package&.company_package&.company&.name
@@ -25,7 +26,7 @@
           %small= customer&.customer_package&.package&.company_package&.price
         %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
           %small Expiry Date
-          %small= customer&.customer_package&.expiry.strftime("%d-%B- %Y")    
+          %small= customer&.customer_package&.expiry&.strftime("%d-%B- %Y")    
         %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
           %small Username
           %small= customer&.customer_package&.username

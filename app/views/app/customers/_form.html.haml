@@ -20,7 +20,9 @@
             
             %li.list-group-item{class: ('active' if params['step'] == 'device_info')} 
               = link_to 'Device Info', '?step=device_info', class: "#{params['step'] == 'device_info' ? 'text-white' : 'text-dark'}"
-                  
+            
+            %li.list-group-item{class: ('active' if params['step'] == 'assign_to_staff')} 
+              = link_to 'Assign To Staff', '?step=assign_to_staff', class: "#{params['step'] == 'assign_to_staff' ? 'text-white' : 'text-dark'}"      
     
   .col-sm-9
     - if params['step'] == 'profile'
@@ -34,4 +36,6 @@
     - elsif params['step'] == 'billing_info'
       = render "billing_info", customer: customer
     - elsif params['step'] == 'device_info'
-      = render "device_info", customer: customer         
+      = render "device_info", customer: customer
+    - elsif params['step'] == 'assign_to_staff'
+      = render "staff", customer: customer           

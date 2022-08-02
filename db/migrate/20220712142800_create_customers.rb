@@ -8,6 +8,7 @@ class CreateCustomers < ActiveRecord::Migration[6.1]
       t.string :mobile_primary 
       t.string :mobile_secondary 
       t.references :service
+      t.references :staff
       t.timestamps
     end
   end

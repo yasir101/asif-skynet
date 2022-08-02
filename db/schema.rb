@@ -147,9 +147,11 @@ ActiveRecord::Schema.define(version: 2022_07_27_174320) do
     t.string "mobile_primary"
     t.string "mobile_secondary"
     t.bigint "service_id"
+    t.bigint "staff_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["service_id"], name: "index_customers_on_service_id"
+    t.index ["staff_id"], name: "index_customers_on_staff_id"
   end
 
   create_table "message_templates", force: :cascade do |t|

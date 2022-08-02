@@ -1,0 +1,20 @@
+= form_with(model: customer) do |form|
+  - if customer.errors.any?
+    #error_explanation  
+      - customer.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .card
+    .card-header
+      %h1.header-title
+        Assign To Staff
+    .card-body
+      .row
+        .col-12                
+          .form-group
+            = form.label "Staff"
+            = form.collection_select :staff_id, Staff.all, :id, :full_name, {prompt: true}, class: "form-control"
+    .card-footer
+      .actions
+        = form.submit "Submit", class: "btn btn-primary"                 

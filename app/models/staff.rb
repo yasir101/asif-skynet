@@ -11,4 +11,6 @@ class Staff < ApplicationRecord
   
   has_many :payments
   has_many :receipt_books
+  
+  has_many :customers
 end

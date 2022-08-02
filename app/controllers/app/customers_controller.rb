@@ -9,16 +9,14 @@ module App
     
     def new
       get_current_params('new')
-      @customer = Customer.new
-      @customer.build_customer_area
-      @customer.build_customer_package
+      @customer = Customer.new      
     end
     
     def create
       @customer = Customer.new(customer_params)
       if @customer.save!
-        sms_service = SMSService.new(@customer.id, @customer.name, @customer.mobile_primary)
-        sms_service.send_message
+        # sms_service = SMSService.new(@customer.id, @customer.name, @customer.mobile_primary)
+        # sms_service.send_message
         
         redirect_to "#{edit_customer_path(@customer.id)}?step=profile", notice: 'Customer Profile was Successfully created'
       else
@@ -32,11 +30,11 @@ module App
       session[:step] = nil
       session[:step] = params['step']
       get_current_params('edit', @customer.id)
-      
+      # @customer.staff.build
     end
      
     def update
-      if @customer.update(customer_params)
+      if @customer.update!(customer_params)
         redirect_to "#{edit_customer_path(@customer.id)}?step=#{session[:step]}", notice: "Customer #{session[:step].capitalize} was Successfully updated"
       else
         render 'edit', notice: 'Something went wrong';
@@ -46,11 +44,11 @@ module App
     private
     
     def customer_params
-      params.require(:customer).permit(:old_ref_no, :name, :father_name, :cnic, :mobile_primary, :mobile_secondary, :service_id,
+      params.require(:customer).permit(:old_ref_no, :name, :father_name, :cnic, :mobile_primary, :mobile_secondary, :service_id, :staff_id,
                                         customer_area_attributes: %i[id country_id city_id area_id sub_area_id house_no street address remarks],
                                         customer_package_attributes: %i[id package_id username password expiry],
                                         customer_billing_info_attributes: %i[id billing_type billing_date],
-                                        customer_device_info_attributes: %i[id device_name serial_no model mac_address]  
+                                        customer_device_info_attributes: %i[id device_name serial_no model mac_address],
                                       )
     end
     
