@@ -15,8 +15,8 @@ module App
     def create
       @customer = Customer.new(customer_params)
       if @customer.save!
-        sms_service = SMSService.new(@customer.id, @customer.name, @customer.mobile_primary)
-        sms_service.send_message
+        # sms_service = SMSService.new(@customer.id, @customer.name, @customer.mobile_primary)
+        # sms_service.send_message
         
         redirect_to "#{edit_customer_path(@customer.id)}?step=profile", notice: 'Customer Profile was Successfully created'
       else
