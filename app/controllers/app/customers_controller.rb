@@ -47,7 +47,7 @@ module App
       params.require(:customer).permit(:old_ref_no, :name, :father_name, :cnic, :mobile_primary, :mobile_secondary, :service_id, :staff_id,
                                         customer_area_attributes: %i[id country_id city_id area_id sub_area_id house_no street address remarks],
                                         customer_package_attributes: %i[id package_id username password expiry],
-                                        customer_billing_info_attributes: %i[id billing_type billing_date],
+                                        customer_billing_info_attributes: %i[id billing_type billing_date days],
                                         customer_device_info_attributes: %i[id device_name serial_no model mac_address],
                                       )
     end

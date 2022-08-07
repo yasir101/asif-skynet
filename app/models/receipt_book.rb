@@ -8,4 +8,6 @@ class ReceiptBook < ApplicationRecord
   accepts_nested_attributes_for :receipt_book_pages
   
   belongs_to :staff
+  
+  has_many :receivings
 end

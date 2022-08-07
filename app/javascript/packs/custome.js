@@ -53,4 +53,37 @@ $(document).on("turbolinks:load", function () {
       $("#customer_customer_billing_info_attributes_billing_date").val("").prop("readonly", false);
     }
   });
+
+  // Receiving
+
+  $("#receiving_customer_id").on("change", function () {
+    let customer_id = $(this).val();
+    window.location.href = "?customer_id=" + customer_id;
+  });
+
+  $("#receiving_staff_id").on("change", function () {
+    let staff_id = $(this).val();
+
+    let url = new URL(window.location.href);
+    if (url.searchParams.has("staff_id") == false) {
+      window.location.href = window.location.href + "&staff_id=" + staff_id;
+    } else if (url.searchParams.has("staff_id") == true) {
+      var searchParams = new URLSearchParams(window.location.search);
+      searchParams.set("staff_id", staff_id);
+      window.location.search = searchParams.toString();
+    }
+  });
+
+  $("#receiving_receipt_book_id").on("change", function () {
+    let receipt_book_id = $(this).val();
+
+    let url = new URL(window.location.href);
+    if (url.searchParams.has("receipt_book_id") == false) {
+      window.location.href = window.location.href + "&receipt_book_id=" + receipt_book_id;
+    } else if (url.searchParams.has("receipt_book_id") == true) {
+      var searchParams = new URLSearchParams(window.location.search);
+      searchParams.set("receipt_book_id", receipt_book_id);
+      window.location.search = searchParams.toString();
+    }
+  });
 });

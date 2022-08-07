@@ -89,6 +89,15 @@
           = active_link_to customers_path, class: "nav-link" do
             Customers                                  
    
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarReceiving", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarReceiving", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/receiving.png"}
+      &nbsp&nbspReceiving 
+    #sidebarReceiving.collapse{class: ("show" if request.fullpath.include?('app/receivings') )}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to receivings_path, class: "nav-link" do
+            Receivings
    
   %li.nav-item
     %a.nav-link{"aria-controls" => "sidebarSMS", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarSMS", role: "button"}

@@ -13,4 +13,5 @@ class Staff < ApplicationRecord
   has_many :receipt_books
   
   has_many :customers
+  has_many :receivings
 end

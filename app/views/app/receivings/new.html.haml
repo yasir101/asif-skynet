@@ -1,0 +1,16 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h6.header-pretitle
+            Overview
+          %h1.header-title
+            New Receiving
+
+.container-fluid   
+  .row
+    .col-sm-12
+      = render 'form', receiving: @receiving, customer: @customer, staff: @staff, receipt_book_pages: @receipt_book_pages
+             

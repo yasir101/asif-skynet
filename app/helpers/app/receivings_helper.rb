@@ -1,0 +1,2 @@
+module App::ReceivingsHelper
+end

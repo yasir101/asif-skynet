@@ -15,6 +15,8 @@ class Customer < ApplicationRecord
   
   belongs_to :staff, optional: true
   
+  has_many :receivings
+  
   after_create :initialize_related?
   
   def initialize_related?

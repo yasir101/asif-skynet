@@ -11,10 +11,10 @@
                 Overview
               / Title
               %h1.header-title
-                Receipt Books
+                Receivings
             .col-auto
               / Button
-              = link_to 'New Book', new_receipt_book_path, class: "btn btn-outline-primary lift"          
+              = link_to 'New Rececing', new_receiving_path, class: "btn btn-outline-primary lift"        
           / / .row
           -# .row.align-items-center
           -#   .col
@@ -52,35 +52,35 @@
           -#     %a.dropdown-item{:href => "#!"} Something else here
         .table-responsive
           %table.table.table-sm.table-nowrap.card-table
-            - if @receipt_books.any?
+            - if @receivings.any?
               %thead
                 %tr
+                  %th #
+                  %th Staff
+                  %th Customer
+                  %th Amount
+                  %th Balance
+                  %th Receiving Date
                   %th Book Number
-                  %th Staff Name
-                  %th Issue Date
-                  %th From
-                  %th To
-                  %th Total Pages
-                  %th Blank Pages
-                  %th Collection
-                  %th Status
+                  %th Book's Page Number
+                  %th Service
                   %th Action
               %tbody.list
-                - @receipt_books.each.with_index(1) do |book, index|
+                - @receivings.each.with_index(1) do |receiving, index|
                   %tr
-                    %td= book.book_number
-                    %td= book.staff.full_name
-                    %td= book.issue_date
-                    %td= book.from
-                    %td= book.to
-                    %td= book.receipt_book_pages.count
-                    %td= book.receipt_book_pages.map {|c| c.amount.zero?}.count(true)
-                    %td= book.receipt_book_pages.sum(:amount)
-                    %td= book.status
+                    %td= index
+                    %td= receiving.staff.full_name
+                    %td= receiving.customer.name
+                    %td= receiving.amount
+                    %td= receiving.balance
+                    %td= receiving.receiving_date
+                    %td= receiving.receipt_book.book_number
+                    %td= receiving.receipt_book_page.page_no
+                    %td= receiving.service
                     %td.text-right
-                      = link_to 'View', receipt_book_path(book), class: "btn btn-outline-success btn-sm"
+                      -# = link_to 'Edit', edit_company_path(company), class: "btn btn-outline-info btn-sm"
             - else
               = render 'shared/no_data'
   .row        
-    = paginate @receipt_books     
+    = paginate @receivings     
      

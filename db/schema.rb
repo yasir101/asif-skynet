@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_27_174320) do
+ActiveRecord::Schema.define(version: 2022_08_03_145738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,8 @@ ActiveRecord::Schema.define(version: 2022_07_27_174320) do
     t.date "billing_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "days"
+    t.date "promise_date"
     t.index ["customer_id"], name: "index_customer_billing_infos_on_customer_id"
   end
 
@@ -150,6 +152,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_174320) do
     t.bigint "staff_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "promise_break_count", default: 0
     t.index ["service_id"], name: "index_customers_on_service_id"
     t.index ["staff_id"], name: "index_customers_on_staff_id"
   end
@@ -254,6 +257,39 @@ ActiveRecord::Schema.define(version: 2022_07_27_174320) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["staff_id"], name: "index_receipt_books_on_staff_id"
+  end
+
+  create_table "receivings", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "staff_id"
+    t.integer "amount"
+    t.string "service"
+    t.bigint "receipt_book_id"
+    t.bigint "receipt_book_page_id"
+    t.date "receiving_date"
+    t.integer "balance", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_receivings_on_customer_id"
+    t.index ["receipt_book_id"], name: "index_receivings_on_receipt_book_id"
+    t.index ["receipt_book_page_id"], name: "index_receivings_on_receipt_book_page_id"
+    t.index ["staff_id"], name: "index_receivings_on_staff_id"
+  end
+
+  create_table "recevings", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.bigint "staff_id"
+    t.integer "amount"
+    t.string "service"
+    t.bigint "receipt_book_id"
+    t.bigint "receipt_book_page_id"
+    t.integer "balance"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_recevings_on_customer_id"
+    t.index ["receipt_book_id"], name: "index_recevings_on_receipt_book_id"
+    t.index ["receipt_book_page_id"], name: "index_recevings_on_receipt_book_page_id"
+    t.index ["staff_id"], name: "index_recevings_on_staff_id"
   end
 
   create_table "roles", force: :cascade do |t|

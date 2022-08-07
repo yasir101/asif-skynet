@@ -24,6 +24,12 @@
               = customer_billing.date_field :billing_date, class: "form-control"
               = form.hidden_field :expiry, value: customer.customer_package.expiry, id: "package_expiry"
         
+        .row
+          .col-12              
+            .form-group
+              = customer_billing.label "Promise Days"
+              = customer_billing.select :days, [["3 Days", "3 Days"], ["4 Days", "4 Days"], ["5 Days", "5 Days"]], {prompt: "Select Billing Type"}, { class: 'form-control'}
+        
     .card-footer
       .actions
         = form.submit "Submit Billing Info", class: "btn btn-primary"       
