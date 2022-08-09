@@ -20,8 +20,8 @@ gem 'ransack'
 gem 'kaminari'
 gem "paranoia", "~> 2.2"
 gem 'jquery_mask_rails', '~> 0.1.0'
-gem 'chartkick', '~> 4.2'
 gem 'groupdate'
+gem 'chartkick'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 # Use postgresql as the database for Active Record

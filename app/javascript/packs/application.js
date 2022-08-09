@@ -12,6 +12,8 @@ import "chartkick/chart.js";
 
 require("jquery");
 require("bootstrap");
+require("chartkick");
+require("chart.js");
 // window.Noty = require('noty');
 import $ from "jquery";
 window.jQuery = $;

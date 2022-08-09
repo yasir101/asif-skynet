@@ -330,7 +330,7 @@ DEPENDENCIES
   bulk_insert
   byebug
   capybara (>= 3.26)
-  chartkick (~> 4.2)
+  chartkick
   devise
   doorkeeper (~> 5.4.0)
   doorkeeper-grants_assertion (~> 0.3.1)

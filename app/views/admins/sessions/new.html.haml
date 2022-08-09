@@ -11,8 +11,8 @@
       = render "admins/shared/error_messages", resource: resource
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .form-group
-          %label Email Address
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+          %label Username / Email
+          = f.text_field :login, autofocus: true, autocomplete: "email", class: "form-control"
         .form-group
           .row
             .col

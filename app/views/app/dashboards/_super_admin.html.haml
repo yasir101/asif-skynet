@@ -58,3 +58,10 @@
                 = Package.count             
             .col-auto
               %img.icon-size{:alt => "...", :src => "/img/icons/package.png"}                              
+
+  .row
+    .col-sm-6
+      .card.dashboard-style
+        .card-body
+          = pie_chart Area.group(:name).count
+  
