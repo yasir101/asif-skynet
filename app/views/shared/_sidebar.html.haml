@@ -25,5 +25,7 @@
       / Navigation
       - if current_admin.has_role? :super_admin
         = render "shared/super_admin_nav"
+      - elsif current_admin.has_role? :admin
+        = render "shared/admin_nav"
       .mt-auto
     / / .navbar-collapse

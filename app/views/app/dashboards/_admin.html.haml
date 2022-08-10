@@ -1,0 +1,67 @@
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h6.header-pretitle
+            Overview
+          %h1.header-title
+            Dashboard
+        .col-auto
+
+.container-fluid
+  .row
+    .col-sm-3.col-md-3
+      .card.dashboard-style
+        .card-body
+          .row.align-items-center
+            .col
+              %h6.card-title.text-uppercase.text-muted.mb-2
+                Staffs
+              %span.h2.mb-0
+                = Staff.count             
+            .col-auto
+              %img.icon-size{:alt => "...", :src => "/img/icons/staff.png"}
+    
+    .col-sm-3.col-md-3
+      .card.dashboard-style
+        .card-body
+          .row.align-items-center
+            .col
+              %h6.card-title.text-uppercase.text-muted.mb-2
+                Recipt Books
+              %span.h2.mb-0
+                = ReceiptBook.count             
+            .col-auto
+              %img.icon-size{:alt => "...", :src => "/img/icons/contract.png"}
+    
+    .col-sm-3.col-md-3
+      .card.dashboard-style
+        .card-body
+          .row.align-items-center
+            .col
+              %h6.card-title.text-uppercase.text-muted.mb-2
+                Companies
+              %span.h2.mb-0
+                = Company.count             
+            .col-auto
+              %img.icon-size{:alt => "...", :src => "/img/icons/company.png"}
+    
+    .col-sm-3.col-md-3
+      .card.dashboard-style
+        .card-body
+          .row.align-items-center
+            .col
+              %h6.card-title.text-uppercase.text-muted.mb-2
+                Internal Packages
+              %span.h2.mb-0
+                = Package.count             
+            .col-auto
+              %img.icon-size{:alt => "...", :src => "/img/icons/package.png"}                              
+
+  .row
+    .col-sm-6
+      .card.dashboard-style
+        .card-body
+          = pie_chart Area.group(:name).count
+  

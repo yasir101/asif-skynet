@@ -13,7 +13,7 @@ module App
     
     def create
       @staff = Staff.new(staff_params)
-      if @staff.save
+      if @staff.save!
         redirect_to staffs_path, notice: 'Staff was successfully created'
       else
         render 'new', alert: 'Something went wrong'
