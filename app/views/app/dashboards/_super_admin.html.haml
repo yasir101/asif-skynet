@@ -55,10 +55,21 @@
               %h6.card-title.text-uppercase.text-muted.mb-2
                 Internal Packages
               %span.h2.mb-0
-                = Package.count             
+                = Package.count
             .col-auto
               %img.icon-size{:alt => "...", :src => "/img/icons/package.png"}                              
-
+  .row
+    .col-sm-3.col-md-3
+      .card.dashboard-style
+        .card-body
+          .row.align-items-center
+            .col
+              %h6.card-title.text-uppercase.text-muted.mb-2
+                Outrange Balance
+              %span.h2.mb-0
+                = @balance             
+            .col-auto
+              %img.icon-size{:alt => "...", :src => "/img/icons/balance.png"}
   .row
     .col-sm-6
       .card.dashboard-style

@@ -1,11 +1,18 @@
 require 'net/http'
 require 'uri'
+require 'nokogiri'
+require 'open-uri'
 
 class SMSService
   def initialize(id, name, mobile)
     @id = id
     @name = name 
     @mobile = mobile
+  end
+  
+  def get_balance
+    doc = Nokogiri::HTML(URI.open('http://outreach.pk/api/sendsms.php/balance/status?id=rchskynet&pass=Skynet@5599'))
+    doc.search('response').children.first.to_s  
   end
   
   def send_message
