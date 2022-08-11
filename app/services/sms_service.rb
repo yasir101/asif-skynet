@@ -12,7 +12,12 @@ class SMSService
   
   def get_balance
     doc = Nokogiri::HTML(URI.open('http://outreach.pk/api/sendsms.php/balance/status?id=rchskynet&pass=Skynet@5599'))
-    doc.search('response').children.first.to_s  
+    doc.search('response').children.first.to_s
+  end
+  
+  def get_expiry
+    doc = Nokogiri::HTML(URI.open('http://outreach.pk/api/sendsms.php/balance/status?id=rchskynet&pass=Skynet@5599'))
+    doc.search('expiry').children.first.to_s
   end
   
   def send_message
