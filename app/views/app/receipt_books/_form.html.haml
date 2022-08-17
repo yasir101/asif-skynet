@@ -9,7 +9,7 @@
     .col-sm-6
       .form-group
         = form.label :book_number
-        = form.number_field :book_number, class: "form-control readonly_field", readonly: "#{'true' if last_id.present?}", value: "#{last_id}"
+        = form.number_field :book_number, class: "form-control readonly_field", readonly: "#{'true' if last_id.present?}", value: "#{last_id + 1}"
     
     .col-sm-6
       .form-group
