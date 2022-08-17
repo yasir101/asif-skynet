@@ -3,8 +3,13 @@ module App
     before_action :set_company_package, only: %i[edit update]
     
     def index
-      @q = CompanyPackage.ransack(params[:q])
-      @company_packages = @q.result.page(params[:page]).per(10)
+      if params['company']
+        company = Company.find_by(name: params['company'])
+        @company_packages = company.company_packages.page(params[:page]).per(10)
+      else  
+        @q = CompanyPackage.ransack(params[:q])
+        @company_packages = @q.result.page(params[:page]).per(10)
+      end
     end
     
     def new

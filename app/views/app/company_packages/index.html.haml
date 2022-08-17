@@ -15,6 +15,16 @@
             .col-auto
               / Button
               = link_to 'New Company Package', new_company_package_path, class: "btn btn-outline-primary lift"    
+          .row
+            .col-sm-12
+              %ul.nav.nav-tabs.nav-overflow.header-tabs
+                %li.nav-item
+                  = link_to "All", company_packages_path, class: "nav-link #{'active' if !params['company']}"
+                - Company.all.each do |c| 
+                  %li.nav-item
+                    = link_to "#{c.name}", "#{company_packages_path}?company=#{c.name}", class: "nav-link #{'active' if params['company'] == c.name}" 
+                  
+                
           / / .row
           -# .row.align-items-center
           -#   .col
@@ -40,7 +50,8 @@
       .card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
         .card-header
           / Search
-          = render "search", q: @q
+          - if !params['company']
+            = render "search", q: @q
           
           / Dropdown
           -# .dropdown
