@@ -54,3 +54,7 @@ $fa-font-path: "@fortawesome/fontawesome-free/webfonts";
   -webkit-transform: translate(-webkit-calc(-50% - 0.5px)) translateZ(0) scale(1, 1);
   transform: translate(calc(-50% - 0.5px)) translateZ(0) scale(1, 1);
 }
+
+.readonly_field {
+  background-color: aliceblue !important;
+}

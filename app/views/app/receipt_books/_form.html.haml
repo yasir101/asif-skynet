@@ -8,18 +8,20 @@
   .row
     .col-sm-6
       .form-group
-        = form.label "Staff"
-        = form.collection_select :staff_id, Staff.all, :id, :full_name, {prompt: true}, class: "form-control", required: true
+        = form.label :book_number
+        = form.number_field :book_number, class: "form-control readonly_field", readonly: "#{'true' if last_id.present?}", value: "#{last_id}"
+    
     .col-sm-6
       .form-group
-        = form.label :issue_date
-        = form.date_field :issue_date, class: "form-control"
+        = form.label "Staff"
+        = form.collection_select :staff_id, Staff.all, :id, :full_name, {prompt: true}, class: "form-control", required: true
+    
   
   .row
     .col-sm-6
       .form-group
-        = form.label :book_number
-        = form.number_field :book_number, class: "form-control"
+        = form.label :issue_date
+        = form.date_field :issue_date, class: "form-control", value: Date.today
     .col-sm-6
       .form-group
         = form.label :from
@@ -33,7 +35,7 @@
     .col-sm-6
       .form-group
         = form.label :to
-        = form.number_field :to, class: "form-control", readonly: true
+        = form.number_field :to, class: "form-control readonly_field", readonly: true
   .row
     .col-sm-6
       .form-group

@@ -9,6 +9,7 @@ module App
     
     def new
       @receipt_book = ReceiptBook.new
+      @last_id = ReceiptBook.last.book_number
     end
     
     def create
