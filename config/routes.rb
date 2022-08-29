@@ -71,8 +71,16 @@ Rails.application.routes.draw do
         get :package_list
       end
     end
-    resources :packages
-    resources :customers
+    resources :packages do
+      collection do
+        get :customer_package_list
+      end
+    end
+    resources :customers do 
+      collection do
+        get :check_username
+      end
+    end
     resources :receivings
   end
 

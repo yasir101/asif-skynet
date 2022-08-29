@@ -13,6 +13,12 @@
       .row
         .col-12    
           .form-group
+            = form.label "Customer ID"
+            = form.text_field :id, class: "form-control readonly_field", value: "#{Customer.last.id + 1}", readonly: true
+            
+      .row
+        .col-12    
+          .form-group
             = form.label "Old Referance No"
             = form.number_field :old_ref_no, class: "form-control", placeholder: "Enter Old Ref No"
       .row  

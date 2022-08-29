@@ -22,7 +22,7 @@
             .form-group
               = customer_billing.label "Billing Date"
               = customer_billing.date_field :billing_date, class: "form-control"
-              = form.hidden_field :expiry, value: customer.customer_package.expiry, id: "package_expiry"
+              -# = form.hidden_field :expiry, value: customer.customer_package.expiry, id: "package_expiry"
         
         .row
           .col-12              

@@ -7,9 +7,6 @@ class Customer < ApplicationRecord
   has_one :customer_package
   accepts_nested_attributes_for :customer_package
   
-  has_one :customer_billing_info
-  accepts_nested_attributes_for :customer_billing_info
-  
   has_one :customer_device_info
   accepts_nested_attributes_for :customer_device_info
   
@@ -17,12 +14,15 @@ class Customer < ApplicationRecord
   
   has_many :receivings
   
+  has_one :customer_subscription
+  accepts_nested_attributes_for :customer_subscription
+  
   after_create :initialize_related?
   
   def initialize_related?
     create_customer_area
     create_customer_package
-    create_customer_billing_info
+    create_customer_subscription
     create_customer_device_info
   end
 end

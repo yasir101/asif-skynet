@@ -9,14 +9,14 @@
             %li.list-group-item{class: ('active' if params['step'] == 'area')} 
               = link_to 'Area', '?step=area', class: "#{params['step'] == 'area' ? 'text-white' : 'text-dark'}"
               
+            %li.list-group-item{class: ('active' if params['step'] == 'service')} 
+              = link_to 'Service', '?step=service', class: "#{params['step'] == 'service' ? 'text-white' : 'text-dark'}"
+              
             %li.list-group-item{class: ('active' if params['step'] == 'package')} 
               = link_to 'Package', '?step=package', class: "#{params['step'] == 'package' ? 'text-white' : 'text-dark'}"
             
-            %li.list-group-item{class: ('active' if params['step'] == 'service')} 
-              = link_to 'Service', '?step=service', class: "#{params['step'] == 'service' ? 'text-white' : 'text-dark'}"
-            
-            %li.list-group-item{class: ('active' if params['step'] == 'billing_info')} 
-              = link_to 'Billing Info', '?step=billing_info', class: "#{params['step'] == 'billing_info' ? 'text-white' : 'text-dark'}"
+            %li.list-group-item{class: ('active' if params['step'] == 'subscription')} 
+              = link_to 'Subscription', '?step=subscription', class: "#{params['step'] == 'subscription' ? 'text-white' : 'text-dark'}"  
             
             %li.list-group-item{class: ('active' if params['step'] == 'device_info')} 
               = link_to 'Device Info', '?step=device_info', class: "#{params['step'] == 'device_info' ? 'text-white' : 'text-dark'}"
@@ -29,12 +29,12 @@
       = render "profile", customer: customer
     - elsif params['step'] == 'area'
       = render "area", customer: customer
-    - elsif params['step'] == 'package'
-      = render "package", customer: customer
     - elsif params['step'] == 'service'
       = render "service", customer: customer
-    - elsif params['step'] == 'billing_info'
-      = render "billing_info", customer: customer
+    - elsif params['step'] == 'package'
+      = render "package", customer: customer
+    - elsif params['step'] == 'subscription'
+      = render "subscription", customer: customer
     - elsif params['step'] == 'device_info'
       = render "device_info", customer: customer
     - elsif params['step'] == 'assign_to_staff'

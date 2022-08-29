@@ -41,13 +41,19 @@ module App
       end
     end
     
+    def check_username
+      username = CustomerPackage.where(company_id: params['company_id'],
+        username: params['username']).any?
+      render json: { data: username }
+    end
+    
     private
     
     def customer_params
       params.require(:customer).permit(:old_ref_no, :name, :father_name, :cnic, :mobile_primary, :mobile_secondary, :service_id, :staff_id,
-                                        customer_area_attributes: %i[id country_id city_id area_id sub_area_id house_no street address remarks],
-                                        customer_package_attributes: %i[id package_id username password expiry],
-                                        customer_billing_info_attributes: %i[id billing_type billing_date days],
+                                        customer_area_attributes: %i[id country_id city_id area_id sub_area_id house_no pon_no address remarks],
+                                        customer_package_attributes: %i[id package_id username password company_id company_package_id],
+                                        customer_subscription_attributes: %i[id customer_package_id start_date expiry_date status renew],
                                         customer_device_info_attributes: %i[id device_name serial_no model mac_address],
                                       )
     end

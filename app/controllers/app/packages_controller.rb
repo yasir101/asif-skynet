@@ -30,6 +30,16 @@ module App
       end
     end
     
+    def customer_package_list
+      @company_package = CompanyPackage.find_by(id: params[:company_package_id])
+      @company_packages = @company_package.package
+      if @company_packages
+        render json: { data: @company_packages }
+      else
+        render json: { data: {} }
+      end   
+    end
+    
     private
     
     def package_params
