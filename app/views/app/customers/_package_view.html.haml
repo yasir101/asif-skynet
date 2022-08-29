@@ -1,4 +1,4 @@
-.card.card-fill
+.card
   .card-body
     .list-group.list-group-flush
       .list-group-item
@@ -6,30 +6,86 @@
           .col
             %h1.header-title
               Package
-    / Features
-    .mb-3
-      %ul.list-group.list-group-flush
-        %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
-          %small Package Name
-          %small.fw-bold.text-uppercase= customer&.customer_package&.package&.name
-        %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
-          %small Package Price
-          %small.fw-bold.text-uppercase= customer&.customer_package&.package&.price
-        %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
-          %small Company
-          %small= customer&.customer_package&.package&.company_package&.company&.name
-        %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
-          %small Company Package Name
-          %small= customer&.customer_package&.package&.company_package&.name
-        %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
-          %small Company Package Price
-          %small= customer&.customer_package&.package&.company_package&.price
-        %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
-          %small Expiry Date
-          %small= customer&.customer_package&.expiry&.strftime("%d-%B- %Y")    
-        %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
-          %small Username
-          %small= customer&.customer_package&.username
-        %li.list-group-item.d-flex.align-items-center.justify-content-between.px-0
-          %small Passsword
-          %small= customer&.customer_package&.password
+          
+    .list-group.list-group-flush
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Company
+          .col-auto
+            / Text
+            %small.text-muted
+              = customer&.customer_package&.package&.company_package&.company&.name
+              
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Username
+          .col-auto
+            / Link
+            %a.small.text-muted
+              = customer&.customer_package&.username
+      
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Passsword
+          .col-auto
+            / Link
+            %a.small.text-muted
+              = customer&.customer_package&.password
+      
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Company Package Name
+          .col-auto
+            / Link
+            %a.small.text-muted
+              = customer&.customer_package&.package&.company_package&.name
+      
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Company Package Price
+          .col-auto
+            / Link
+            %a.small.text-muted
+              = customer&.customer_package&.package&.company_package&.price
+                              
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Customer Package Name
+          .col-auto
+            / Link
+            %a.small.text-muted
+              = customer&.customer_package&.package&.name        
+      / / .row
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Customer Package Price
+          .col-auto
+            / Link
+            %a.small.text-muted
+              = customer&.customer_area&.city&.name
+      
+      .list-group-item
+        .row.align-items-center
+          .col
+            / Title
+            %small Subscription Status
+          .col-auto
+            / Link
+            %a.small.text-muted
+              - if customer&.customer_subscription&.status
+                .text-success Subscribed        
+              
