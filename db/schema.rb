@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_28_105924) do
+ActiveRecord::Schema.define(version: 2022_09_03_101915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -289,6 +289,7 @@ ActiveRecord::Schema.define(version: 2022_08_28_105924) do
     t.integer "balance", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount_received", default: 0
     t.index ["customer_id"], name: "index_receivings_on_customer_id"
     t.index ["receipt_book_id"], name: "index_receivings_on_receipt_book_id"
     t.index ["receipt_book_page_id"], name: "index_receivings_on_receipt_book_page_id"

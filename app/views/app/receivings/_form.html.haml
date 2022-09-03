@@ -5,55 +5,89 @@
         .col
           .alert.alert-danger.text-white
             = message
-  .card
-    .card-body
-      .row
-        .col-sm-12
-          .form-group
-            = form.label "Customer"
-            = form.collection_select :customer_id, Customer.all, :id, :name, {prompt: true, selected: params['customer_id'] }, class: "form-control", required: true
-
-      - if params['customer_id'].present?
-        .row
-          .col-sm-12
-            .form-group
-              = form.label "Staff"
-              - if customer.staff_id?
-                = form.select :staff_id, [["#{customer.staff.full_name}", "#{customer.staff_id}"]], {prompt: "Select Staff",  selected: params['staff_id']}, { class: 'form-control'}
-              - else
-                = form.collection_select :staff_id, Staff.all, :id, :full_name, {prompt: true,  selected: params['staff_id']}, class: "form-control", required: true
-        
-        - if params['staff_id'].present?
-          .row.mb-3
-            .col-sm-6
-              = form.label "Amount"
-              = form.text_field :amount, class: "form-control", value: "#{customer&.customer_package&.package&.price}"
-            .col-sm-6
-              = form.label "Service"
-              = form.text_field :service, class: "form-control", value: "#{customer&.service&.name}"
-          
-          .row.mb-3
-            .col-sm-6
-              = form.label "Receipt Books"
-              = form.collection_select :receipt_book_id, staff&.receipt_books, :id, :book_number, {prompt: true, selected: params['receipt_book_id']}, class: "form-control", required: true
-
-            - if params['receipt_book_id'].present?
-              .col-sm-6
-                = form.label "Receipt Book Pages"   
-                = form.collection_select :receipt_book_page_id, receipt_book_pages, :id, :page_no, {prompt: true}, class: "form-control", required: true     
-              
-          .row.mt-3
-            .col-sm-6
-              = form.label "Receiving Date"
-              = form.date_field :receiving_date, class: 'form-control', required: true
-            .col-sm-6
-              = form.label "Balance"
-              = form.number_field :balance, class: 'form-control', required: true, value: "#{ 0 unless customer&.receivings&.last&.balance}"
+  = render "customer_search", form: form
   
-  .actions
-    = form.submit class: "btn btn-primary"
+  - if customer
     
+    .card
+      .card-body
+        .row
+          .col-sm-4
+            .form-group
+              = form.label "Customer Name"
+              = form.text_field :name, class: "form-control readonly_field", readonly: true, value: "#{customer&.name}"
+              = form.hidden_field :customer_id, value: customer.id
+          .col-sm-4
+            .form-group
+              = form.label "House Number"
+              = form.text_field :house_no, class: "form-control readonly_field", readonly: true, value: "#{customer&.customer_area&.house_no}"
+          
+          .col-sm-4
+            .form-group
+              = form.label "Mobile"
+              = form.text_field :mobile_primary, class: "form-control readonly_field", readonly: true, value: "#{customer&.mobile_primary}"
+        
+        .row               
+          .col-sm-6
+            .form-group
+              = form.label "Area"
+              = form.text_field :area, class: "form-control readonly_field", readonly: true, value: "#{customer&.customer_area&.area&.name}"
+              
+          .col-sm-6
+            .form-group
+              = form.label "Address"
+              = form.text_field :address, class: "form-control readonly_field", readonly: true, value: "#{customer&.customer_area&.address}"  
+  
+        - if customer.staff.present?
+          .row
+            .col-sm-6
+              .form-group
+                = form.label "Staff Name"
+                = form.text_field :full_name, class: "form-control readonly_field", readonly: true, value: "#{customer&.staff&.full_name}"
+                = form.hidden_field :staff_id, value: customer.staff.id
+            .col-sm-6
+              .form-group
+                = form.label "Staff Official No"
+                = form.text_field :official_mobile_no, class: "form-control readonly_field", readonly: true, value: "#{customer&.staff&.official_mobile_no}"
+                    
+        .row
+          .col-sm-6
+            = form.label "Billable Amount"
+            = form.text_field :amount, class: "form-control readonly_field", readonly: true, value: "#{customer&.customer_package&.package&.price}"
+          .col-sm-6
+            = form.label "Amount Received"
+            = form.number_field :amount_received, class: "form-control", placeholder: "Enter Received Amount"
+                   
+        .row.mt-4
+          .col-sm-6
+            = form.label "Balance"
+            = form.text_field :balance, class: "form-control readonly_field", readonly: true, value: "#{customer&.receivings&.last&.balance}" 
+            = form.hidden_field :prev_balanace, id: "prev_balance", value: "#{customer&.receivings&.last&.balance}"
+          .col-sm-6
+            = form.label "Service"
+            = form.text_field :service, class: "form-control readonly_field", readonly: true, value: "#{customer&.service&.name}"
+        
+        .row.mt-4
+
+          .col-sm-6
+            = form.label "Receiving Date"
+            = form.date_field :receiving_date, class: "form-control", required: true
+          .col-sm-6
+            = form.label "Receipt Book"
+            = form.collection_select :receipt_book_id, customer&.staff&.receipt_books&.where(status: "Assigned"), :id, :book_number, {prompt: true}, class: "form-control"    
+        
+        
+        .row.mt-4
+          .col-sm-6
+            = form.label "Receipt Book Pages"
+            = form.collection_select :receipt_book_page_id, ReceiptBookPage.all, :id, :page_no, {prompt: true}, class: "form-control"
+        
+     
+  
+    .actions
+      = form.submit class: "btn btn-primary"
+      
     
-  - if params['customer_id'].present?
+  - if customer&.receivings&.present?
     = render 'customer_billing', customer: customer
   

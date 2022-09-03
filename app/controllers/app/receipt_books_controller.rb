@@ -24,6 +24,16 @@ module App
     
     def show; end
     
+    def book_pages
+      book = ReceiptBook.find_by(id: params['receipt_book_id'])
+      @pages = book.receipt_book_pages
+      if @pages
+        render json: { data: @pages }
+      else
+        render json: { data: {} }
+      end
+    end
+    
     private
     
     def set_receipt_book

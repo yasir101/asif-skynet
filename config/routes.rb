@@ -62,7 +62,11 @@ Rails.application.routes.draw do
       end
     end
     resources :payments
-    resources :receipt_books
+    resources :receipt_books do
+      collection do
+        get :book_pages
+      end
+    end
     resources :message_templates
     resources :messages
     resources :companies

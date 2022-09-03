@@ -91,7 +91,7 @@ $(document).on("turbolinks:load", function () {
 
   // area
 
-  $("#customer_country_id").on("change", function () {
+  $("#customer_country_id").on("keyup", function () {
     console.log(this.text);
     // let prev = $("#customer_address").val();
     // prev + $(this).val();
@@ -109,9 +109,19 @@ $(document).on("turbolinks:load", function () {
 
   // Receiving
 
-  $("#receiving_customer_id").on("change", function () {
-    let customer_id = $(this).val();
-    window.location.href = "?customer_id=" + customer_id;
+  $("#receiving_amount_received").on("keyup", function () {
+    let received_amount = $(this).val();
+    let actual_amount = $("#receiving_amount").val();
+
+    const prev_balance = $("#prev_balance").val();
+
+    let balance = parseInt(actual_amount) - parseInt(received_amount) + parseInt(prev_balance);
+
+    // console.log(prev_balance);
+    if (!isNaN(balance)) {
+      $("#receiving_balance").val(balance);
+    }
+    // window.location.href = "?customer_id=" + customer_id;
   });
 
   $("#receiving_staff_id").on("change", function () {
@@ -127,16 +137,54 @@ $(document).on("turbolinks:load", function () {
     }
   });
 
-  $("#receiving_receipt_book_id").on("change", function () {
-    let receipt_book_id = $(this).val();
+  // $("#receiving_receipt_book_id").on("change", function () {
+  //   let receipt_book_id = $(this).val();
 
-    let url = new URL(window.location.href);
-    if (url.searchParams.has("receipt_book_id") == false) {
-      window.location.href = window.location.href + "&receipt_book_id=" + receipt_book_id;
-    } else if (url.searchParams.has("receipt_book_id") == true) {
-      var searchParams = new URLSearchParams(window.location.search);
-      searchParams.set("receipt_book_id", receipt_book_id);
-      window.location.search = searchParams.toString();
+  //   let url = new URL(window.location.href);
+  //   if (url.searchParams.has("receipt_book_id") == false) {
+  //     window.location.href = window.location.href + "&receipt_book_id=" + receipt_book_id;
+  //   } else if (url.searchParams.has("receipt_book_id") == true) {
+  //     var searchParams = new URLSearchParams(window.location.search);
+  //     searchParams.set("receipt_book_id", receipt_book_id);
+  //     window.location.search = searchParams.toString();
+  //   }
+  // });
+
+  // search for receiving
+
+  $("#search_button").on("click", function () {
+    let customer_id = $("#search_customer_id").val();
+    if (customer_id) {
+      window.location.href = "?customer_id=" + customer_id;
+    } else {
+      alert("Provide customer ID");
     }
+  });
+
+  // To get all pages of perticular book
+
+  $(document).on("change keyup paste", "#receiving_receipt_book_id", function () {
+    let receipt_book_id = $(this).val();
+    console.log(receipt_book_id);
+    $.ajax({
+      url: `/app/receipt_books/book_pages?receipt_book_id=${receipt_book_id}`,
+      type: "get",
+      success: function (result) {
+        console.log(result);
+        if (result.data.length == 0) {
+          $("#receiving_receipt_book_page_id").empty();
+          var options = $("#receiving_receipt_book_page_id").get(0).options;
+          options[options.length] = new Option("No Page Found");
+        } else {
+          $("#receiving_receipt_book_page_id").empty();
+          var options = $("#receiving_receipt_book_page_id").get(0).options;
+          options[options.length] = new Option("Select Receipt Book Package", "");
+          $.each(result.data, function (key, value) {
+            options[options.length] = new Option(value.page_no, value.id);
+          });
+        }
+      },
+      error: function (data) {},
+    });
   });
 });
