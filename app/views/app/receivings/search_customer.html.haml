@@ -1,0 +1,87 @@
+-# .row
+-#   .col-sm-4
+-#     .form-group
+-#       = number_field_tag 'customer_id', "#{params['customer_id'].present? ? params['customer_id'] : nil}", class: "form-control", id: 'search_customer_id', placeholder: "Enter Customer ID"
+-#   .col-sm-2
+-#     .form-group
+-#       = button_tag 'Search', type: "button", class: "btn btn-primary", id: "search_button" 
+
+.container-fluid
+  .row.justify-content-center
+    .col-12
+      / Header
+      .header
+        .header-body
+          .row.align-items-center
+            .col
+              / Pretitle
+              %h6.header-pretitle
+                Overview
+              / Title
+              %h1.header-title
+                Search Customer
+                  
+      .card
+        .card-body
+          = search_form_for @q, url: search_customer_receivings_path do |f|
+            .row
+              .col-sm-2
+                = f.label "Customer ID"
+                = f.search_field :id_eq, placeholder: "Enter Customer ID", class: "form-control"
+                 
+              .col-sm-2
+                = f.label "House No"
+                = f.search_field :customer_area_house_no_cont, class: "form-control", placeholder: "Enter House No"
+              
+              .col-sm-2
+                = f.label "Area"
+                = f.select :customer_area_area_id_eq, Area.all.map { |area| [area.name, area.id] }, { include_blank: "Select Area" }, { class: 'form-control' } 
+              
+              .col-sm-2
+                = f.label "Username"
+                = f.search_field :customer_package_username_cont, class: "form-control", placeholder: "Enter Username"
+              
+              .col-sm-2
+                = f.label "All Search"
+                = f.search_field :id_or_old_ref_no_or_name_or_father_name_or_cnic_or_mobile_primary_or_mobile_secondary_or_service_name, class: "form-control", placeholder: "Enter Search Keyword"
+              
+              .col-sm-2
+                = submit_tag "Search", class: "btn w-100 btn-outline-primary mt-4"
+        
+      
+      .card
+        .card-body
+          .table-responsive
+            %table.table.table-sm.table-nowrap.card-table
+              - if @customers.any?
+                %thead
+                  %tr
+                    %th ID
+                    %th Name
+                    %th House No#
+                    %th Area
+                    %th Username
+                    %th Mobile
+                    %th Pon No#
+                    %th Monthly Fee
+                    %th Balance Month
+                    %th Amnount
+                    %th Action
+                %tbody.list
+                  - @customers.each.with_index(1) do |customer|
+                    %tr
+                      %td= customer&.id
+                      %td= customer&.name
+                      %td= customer&.customer_area&.house_no
+                      %td= customer&.customer_area&.area&.name
+                      %td= customer&.customer_package&.username
+                      %td= customer&.mobile_primary
+                      %td= customer&.customer_area&.pon_no
+                      %td= customer&.customer_package&.package&.price
+                      %td= customer&.receivings&.last&.balance
+                      %td= customer&.customer_package&.package&.price.to_i + customer&.receivings&.last&.balance.to_i 
+                      %td.text-right
+                        = link_to 'Proceed', "#{new_receiving_path}?customer_id=#{customer.id}", class: "btn btn-outline-info btn-sm"
+              - else
+                = render 'shared/no_data'
+  

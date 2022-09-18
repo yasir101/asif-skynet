@@ -85,7 +85,11 @@ Rails.application.routes.draw do
         get :check_username
       end
     end
-    resources :receivings
+    resources :receivings do
+      collection do
+        get :search_customer
+      end
+    end
   end
 
   # root to: 'home#index'

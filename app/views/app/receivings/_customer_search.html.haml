@@ -1,7 +1,0 @@
-.row
-  .col-sm-4
-    .form-group
-      = number_field_tag 'customer_id', "#{params['customer_id'].present? ? params['customer_id'] : nil}", class: "form-control", id: 'search_customer_id', placeholder: "Enter Customer ID"
-  .col-sm-2
-    .form-group
-      = button_tag 'Search', type: "button", class: "btn btn-primary", id: "search_button"      

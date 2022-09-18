@@ -14,30 +14,9 @@
                 Receivings
             .col-auto
               / Button
-              = link_to 'New Rececing', new_receiving_path, class: "btn btn-outline-primary lift"        
-          / / .row
-          -# .row.align-items-center
-          -#   .col
-          -#     / Nav
-          -#     %ul.nav.nav-tabs.nav-overflow.header-tabs
-          -#       %li.nav-item
-          -#         %a.nav-link.active{:href => "#!"}
-          -#           All
-          -#           %span.badge.rounded-pill.bg-secondary-soft 823
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Pending
-          -#           %span.badge.rounded-pill.bg-secondary-soft 24
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Processing
-          -#           %span.badge.rounded-pill.bg-secondary-soft 3
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Refunded
-          -#           %span.badge.rounded-pill.bg-secondary-soft 71
-      / Card
-      .card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
+              = link_to 'New Receiving', search_customer_receivings_path, class: "btn btn-outline-primary lift"        
+          
+      .card
         .card-header
           / Search
           = render "search", q: @q

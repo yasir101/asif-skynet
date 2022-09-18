@@ -5,6 +5,11 @@ module App
       @receivings = @q.result.page(params[:page]).per(10)
     end
     
+    def search_customer
+      @q = Customer.ransack(params[:q])
+      @customers = @q.result.includes(:customer_area, :customer_package)
+    end
+    
     def new
       @receiving = Receiving.new
       if params['customer_id'].present?
