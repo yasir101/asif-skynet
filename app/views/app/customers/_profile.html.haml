@@ -47,6 +47,19 @@
           .form-group
             = form.label :mobile_secondary
             = form.text_field :mobile_secondary, class: "form-control", placeholder: "Enter Mobile (Secondary)"
+            
+      .row
+        .col-12               
+          .form-group
+            = form.label "Select Service"
+            = form.collection_select :service_id, Service.all, :id, :name, {prompt: true}, class: "form-control", required: true
+      
+      .row
+        .col-12
+          .form-group
+            = form.label "Residance"
+            = form.select :residance, [['Owner', 'owner'], ['Rental', 'rental']], {prompt: "Select Residance"}, {class: "form-control", required: true}      
+            
     .card-footer
       .actions
         = form.submit "Submit Profile", class: "btn btn-primary"        

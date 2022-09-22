@@ -30,6 +30,16 @@ module App
       end
     end
     
+    def get_sub_areas
+      area = Area.find_by(id: params['area_id'])
+      @sub_areas = area.sub_areas
+      if @sub_areas
+        render json: { data: @sub_areas }
+      else
+        render json: { data: {} }
+      end
+    end
+    
     private
     
     def sub_area_params

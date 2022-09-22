@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_03_101915) do
+ActiveRecord::Schema.define(version: 2022_09_22_182044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,9 @@ ActiveRecord::Schema.define(version: 2022_09_03_101915) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "promise_break_count", default: 0
+    t.string "residance"
+    t.boolean "welcome_message", default: false
+    t.boolean "first_receiving", default: false
     t.index ["service_id"], name: "index_customers_on_service_id"
     t.index ["staff_id"], name: "index_customers_on_staff_id"
   end

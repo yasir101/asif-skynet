@@ -11,10 +11,7 @@
         Service
     .card-body 
       .row
-        .col-12               
-          .form-group
-            = form.label "Select Service"
-            = form.collection_select :service_id, Service.all, :id, :name, {prompt: true}, class: "form-control", required: true
-    .card-footer
-      .actions
-        = form.submit "Submit Service", class: "btn btn-primary"         
+        
+    -# .card-footer
+    -#   .actions
+    -#     = form.submit "Select Service", class: "btn btn-primary"         

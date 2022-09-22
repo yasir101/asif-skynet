@@ -137,19 +137,6 @@ $(document).on("turbolinks:load", function () {
     }
   });
 
-  // $("#receiving_receipt_book_id").on("change", function () {
-  //   let receipt_book_id = $(this).val();
-
-  //   let url = new URL(window.location.href);
-  //   if (url.searchParams.has("receipt_book_id") == false) {
-  //     window.location.href = window.location.href + "&receipt_book_id=" + receipt_book_id;
-  //   } else if (url.searchParams.has("receipt_book_id") == true) {
-  //     var searchParams = new URLSearchParams(window.location.search);
-  //     searchParams.set("receipt_book_id", receipt_book_id);
-  //     window.location.search = searchParams.toString();
-  //   }
-  // });
-
   // search for receiving
 
   $("#search_button").on("click", function () {
@@ -181,6 +168,33 @@ $(document).on("turbolinks:load", function () {
           options[options.length] = new Option("Select Receipt Book Package", "");
           $.each(result.data, function (key, value) {
             options[options.length] = new Option(value.page_no, value.id);
+          });
+        }
+      },
+      error: function (data) {},
+    });
+  });
+
+  // Get Sub_areas according to area
+
+  $(document).on("change", "#customer_customer_area_attributes_area_id", function () {
+    let area_id = $(this).val();
+    console.log(area_id);
+    $.ajax({
+      url: `/app/sub_areas/get_sub_areas?area_id=${area_id}`,
+      type: "get",
+      success: function (result) {
+        console.log(result);
+        if (result.data.length == 0) {
+          $("#customer_customer_area_attributes_sub_area_id").empty();
+          var options = $("#customer_customer_area_attributes_sub_area_id").get(0).options;
+          options[options.length] = new Option("No Page Found");
+        } else {
+          $("#customer_customer_area_attributes_sub_area_id").empty();
+          var options = $("#customer_customer_area_attributes_sub_area_id").get(0).options;
+          options[options.length] = new Option("Select Sub Area", "");
+          $.each(result.data, function (key, value) {
+            options[options.length] = new Option(value.name, value.id);
           });
         }
       },

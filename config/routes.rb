@@ -52,7 +52,11 @@ Rails.application.routes.draw do
     resources :countries
     resources :cities
     resources :areas
-    resources :sub_areas
+    resources :sub_areas do
+      collection do
+        get :get_sub_areas
+      end
+    end
     resources :staffs do
       collection do
         get :archived

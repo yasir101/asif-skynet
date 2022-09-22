@@ -2,15 +2,13 @@
   .col-sm-3
     .card
       .card-body.p-0
-        %ul.list-group
+        %ul.list-group     
           %li.list-group-item{class: ('active' if params['step'] == 'profile')}
-            = link_to 'Profile', '?step=profile', class: "#{params['step'] == 'profile' ? 'text-white' : 'text-dark'}"  
+            = link_to 'Profile', "?step=profile", class: "#{params['step'] == 'profile' ? 'text-white' : 'text-dark'}"  
+          
           - if request.fullpath.include?('edit')
             %li.list-group-item{class: ('active' if params['step'] == 'area')} 
               = link_to 'Area', '?step=area', class: "#{params['step'] == 'area' ? 'text-white' : 'text-dark'}"
-              
-            %li.list-group-item{class: ('active' if params['step'] == 'service')} 
-              = link_to 'Service', '?step=service', class: "#{params['step'] == 'service' ? 'text-white' : 'text-dark'}"
               
             %li.list-group-item{class: ('active' if params['step'] == 'package')} 
               = link_to 'Package', '?step=package', class: "#{params['step'] == 'package' ? 'text-white' : 'text-dark'}"
@@ -29,8 +27,6 @@
       = render "profile", customer: customer
     - elsif params['step'] == 'area'
       = render "area", customer: customer
-    - elsif params['step'] == 'service'
-      = render "service", customer: customer
     - elsif params['step'] == 'package'
       = render "package", customer: customer
     - elsif params['step'] == 'subscription'

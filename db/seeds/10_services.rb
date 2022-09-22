@@ -1,7 +1,7 @@
 services = [
   {name: 'Internet'},
-  {name: 'Cable'},
-  {name: 'Both'}
+  {name: 'FTTH'},
+  {name: 'Cable'}
 ]
 
 Service.bulk_insert(values: services) if Service.count.zero?
