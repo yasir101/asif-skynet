@@ -15,41 +15,13 @@
             .col-auto
               / Button
               = link_to 'New Company', new_company_path, class: "btn btn-outline-primary lift"        
-          / / .row
-          -# .row.align-items-center
-          -#   .col
-          -#     / Nav
-          -#     %ul.nav.nav-tabs.nav-overflow.header-tabs
-          -#       %li.nav-item
-          -#         %a.nav-link.active{:href => "#!"}
-          -#           All
-          -#           %span.badge.rounded-pill.bg-secondary-soft 823
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Pending
-          -#           %span.badge.rounded-pill.bg-secondary-soft 24
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Processing
-          -#           %span.badge.rounded-pill.bg-secondary-soft 3
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Refunded
-          -#           %span.badge.rounded-pill.bg-secondary-soft 71
-      / Card
+          
       .card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
         .card-header
           / Search
           = render "search", q: @q
           
-          / Dropdown
-          -# .dropdown
-          -#   %button#bulkActionDropdown.btn.btn-sm.btn-white.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :type => "button"}
-          -#     Bulk action
-          -#   .dropdown-menu.dropdown-menu-end{"aria-labelledby" => "bulkActionDropdown"}
-          -#     %a.dropdown-item{:href => "#!"} Action
-          -#     %a.dropdown-item{:href => "#!"} Another action
-          -#     %a.dropdown-item{:href => "#!"} Something else here
+          
         .table-responsive
           %table.table.table-sm.table-nowrap.card-table
             - if @companies.any?
@@ -57,12 +29,14 @@
                 %tr
                   %th #
                   %th Name
+                  %th Qty Customers
                   %th Action
               %tbody.list
                 - @companies.each.with_index(1) do |company, index|
                   %tr
                     %td= index
                     %td= company.name
+                    %td= company.customers.count
                     %td.text-right
                       = link_to 'Edit', edit_company_path(company), class: "btn btn-outline-info btn-sm"
             - else
