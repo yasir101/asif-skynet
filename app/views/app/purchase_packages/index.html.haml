@@ -79,7 +79,7 @@
                     %td= package.company.name
                     %td= package.package_name
                     %td= package.purchase_price
-                    %td
+                    %td= package.customers.count
                     %td.text-right
                       = link_to 'Edit', edit_purchase_package_path(package), class: "btn btn-outline-info btn-sm"
             - else
