@@ -1,0 +1,18 @@
+= form_with(model: purchase_package) do |form|
+  - if purchase_package&.errors&.any?
+    #error_explanation  
+      - purchase_package.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .form-group
+    = form.label "Company"
+    = form.collection_select :company_id, Company.all, :id, :name, {prompt: true}, class: "form-control", required: true
+  .form-group
+    = form.label :package_name
+    = form.text_field :package_name, class: "form-control"
+  .form-group
+    = form.label :purchase_price
+    = form.number_field :purchase_price, class: "form-control"  
+  .actions
+    = form.submit class: "btn btn-primary"

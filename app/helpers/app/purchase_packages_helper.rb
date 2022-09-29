@@ -1,0 +1,2 @@
+module App::PurchasePackagesHelper
+end

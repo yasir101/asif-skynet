@@ -74,11 +74,12 @@ Rails.application.routes.draw do
     resources :message_templates
     resources :messages
     resources :companies
-    resources :company_packages do
-      collection do
-        get :package_list
-      end
-    end
+    # resources :company_packages do
+    #   collection do
+    #     get :package_list
+    #   end
+    # end
+    resources :purchase_packages
     resources :packages do
       collection do
         get :customer_package_list
