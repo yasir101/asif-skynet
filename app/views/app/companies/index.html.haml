@@ -28,7 +28,7 @@
               %thead
                 %tr
                   %th #
-                  %th Name
+                  %th= sort_link(@q, :name, "Name", default_order: :asc)
                   %th Qty Customers
                   %th Action
               %tbody.list

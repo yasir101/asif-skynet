@@ -50,8 +50,8 @@
       .card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
         .card-header
           / Search
-          - if !params['company']
-            = render "search", q: @q
+          
+          = render "search", q: @q
           
           / Dropdown
           -# .dropdown
@@ -67,9 +67,9 @@
               %thead
                 %tr
                   %th #
-                  %th Company
-                  %th Package Name
-                  %th Purchase Price
+                  %th= sort_link(@q, :company, "Company", default_order: :asc)
+                  %th= sort_link(@q, :package_name, "Package Name", default_order: :asc)
+                  %th= sort_link(@q, :purchase_price, "Purchase Price", default_order: :asc)
                   %th Qty Customers
                   %th Action
               %tbody.list

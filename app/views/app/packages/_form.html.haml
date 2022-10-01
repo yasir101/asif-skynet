@@ -7,16 +7,10 @@
             = message
   
   .form-group
-    = form.label "Company"
-    = form.collection_select :company_id, Company.all, :id, :name, {prompt: true}, class: "form-control", id: "company"
-  .form-group
-    = form.label "Company Packages"
-    = form.collection_select :company_package_id, CompanyPackage.all, :id, :name, {prompt: true}, class: "pakage_selection form-control", required: true
-  .form-group
-    = form.label :name
+    = form.label "Sell Package Name"
     = form.text_field :name, class: "form-control"
   .form-group
-    = form.label :price
+    = form.label "Sell Price"
     = form.number_field :price, class: "form-control"  
   .actions
     = form.submit class: "btn btn-primary"

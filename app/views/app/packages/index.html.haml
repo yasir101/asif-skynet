@@ -11,64 +11,34 @@
                 Overview
               / Title
               %h1.header-title
-                Packages
+                Customer Packages
             .col-auto
               / Button
-              = link_to 'New Package', new_package_path, class: "btn btn-outline-primary lift"         
-          / / .row
-          -# .row.align-items-center
-          -#   .col
-          -#     / Nav
-          -#     %ul.nav.nav-tabs.nav-overflow.header-tabs
-          -#       %li.nav-item
-          -#         %a.nav-link.active{:href => "#!"}
-          -#           All
-          -#           %span.badge.rounded-pill.bg-secondary-soft 823
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Pending
-          -#           %span.badge.rounded-pill.bg-secondary-soft 24
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Processing
-          -#           %span.badge.rounded-pill.bg-secondary-soft 3
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Refunded
-          -#           %span.badge.rounded-pill.bg-secondary-soft 71
-      / Card
+              = link_to 'New Customer Package', new_package_path, class: "btn btn-outline-primary lift"         
+         
       .card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
         .card-header
           / Search
           = render "search", q: @q
           
-          / Dropdown
-          -# .dropdown
-          -#   %button#bulkActionDropdown.btn.btn-sm.btn-white.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :type => "button"}
-          -#     Bulk action
-          -#   .dropdown-menu.dropdown-menu-end{"aria-labelledby" => "bulkActionDropdown"}
-          -#     %a.dropdown-item{:href => "#!"} Action
-          -#     %a.dropdown-item{:href => "#!"} Another action
-          -#     %a.dropdown-item{:href => "#!"} Something else here
+          
         .table-responsive
           %table.table.table-sm.table-nowrap.card-table
             - if @packages.any?
               %thead
                 %tr
                   %th #
-                  %th Company
-                  %th Company Package
-                  %th Internal Package Name 
-                  %th Internal Package Price
+                  %th= sort_link(@q, :name, "Sell Package Name", default_order: :asc)  
+                  %th= sort_link(@q, :price, "Sell Package Price", default_order: :asc)
+                  %th Qty Customers
                   %th Action
               %tbody.list
                 - @packages.each.with_index(1) do |package, index|
                   %tr
                     %td= index
-                    %td= package&.company_package&.company&.name
-                    %td= package&.company_package&.name
                     %td= package.name
                     %td= package.price
+                    %th= package.customers.count
                     %td.text-right
                       = link_to 'Edit', edit_package_path(package), class: "btn btn-outline-info btn-sm"
             - else

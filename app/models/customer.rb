@@ -3,6 +3,7 @@ class Customer < ApplicationRecord
   
   belongs_to :company, optional: true
   belongs_to :purchase_package, optional: true
+  belongs_to :package, optional: true
   
   has_one :customer_area
   accepts_nested_attributes_for :customer_area

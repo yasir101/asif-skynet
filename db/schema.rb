@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_29_131531) do
+ActiveRecord::Schema.define(version: 2022_10_01_180831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,7 +177,9 @@ ActiveRecord::Schema.define(version: 2022_09_29_131531) do
     t.boolean "first_receiving", default: false
     t.bigint "company_id"
     t.bigint "purchase_package_id"
+    t.bigint "package_id"
     t.index ["company_id"], name: "index_customers_on_company_id"
+    t.index ["package_id"], name: "index_customers_on_package_id"
     t.index ["purchase_package_id"], name: "index_customers_on_purchase_package_id"
     t.index ["service_id"], name: "index_customers_on_service_id"
     t.index ["staff_id"], name: "index_customers_on_staff_id"
@@ -242,13 +244,10 @@ ActiveRecord::Schema.define(version: 2022_09_29_131531) do
   end
 
   create_table "packages", force: :cascade do |t|
-    t.integer "company_id"
-    t.bigint "company_package_id"
     t.string "name"
     t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_package_id"], name: "index_packages_on_company_package_id"
   end
 
   create_table "payments", force: :cascade do |t|

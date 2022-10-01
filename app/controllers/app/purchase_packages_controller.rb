@@ -3,8 +3,14 @@ module App
     before_action :set_purchase_package, only: %i[edit update]
     
     def index
-      @q = PurchasePackage.ransack(params[:q])
-      @purchase_packages = @q.result.page(params[:page]).per(10)
+      if params['company']
+        company = Company.find_by(name: params['company'])
+        @q = company.purchase_packages.ransack(params[:q])
+        @purchase_packages = @q.result.page(params[:page]).per(10)
+      else
+        @q = PurchasePackage.ransack(params[:q])
+        @purchase_packages = @q.result.page(params[:page]).per(10)
+      end
     end
     
     def new
