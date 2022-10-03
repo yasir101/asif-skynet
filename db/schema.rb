@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_01_180831) do
+ActiveRecord::Schema.define(version: 2022_10_03_133935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,6 +178,9 @@ ActiveRecord::Schema.define(version: 2022_10_01_180831) do
     t.bigint "company_id"
     t.bigint "purchase_package_id"
     t.bigint "package_id"
+    t.string "username"
+    t.string "password_text"
+    t.integer "package_discounted_price"
     t.index ["company_id"], name: "index_customers_on_company_id"
     t.index ["package_id"], name: "index_customers_on_package_id"
     t.index ["purchase_package_id"], name: "index_customers_on_purchase_package_id"
@@ -381,6 +384,19 @@ ActiveRecord::Schema.define(version: 2022_10_01_180831) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["area_id"], name: "index_sub_areas_on_area_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.date "start_date"
+    t.date "expiry_date"
+    t.integer "no_of_days", default: 0
+    t.boolean "status", default: false
+    t.boolean "renew", default: false
+    t.integer "profit"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_subscriptions_on_customer_id"
   end
 
   create_table "users", force: :cascade do |t|

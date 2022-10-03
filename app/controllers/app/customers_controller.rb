@@ -50,10 +50,9 @@ module App
     private
     
     def customer_params
-      params.require(:customer).permit(:old_ref_no, :name, :father_name, :cnic, :mobile_primary, :mobile_secondary, :service_id, :staff_id, :residance, :welcome_message, :first_receiving,
+      params.require(:customer).permit(:old_ref_no, :name, :father_name, :cnic, :mobile_primary, :mobile_secondary, :service_id, :staff_id, :residance, :welcome_message, :first_receiving, :company_id, :purchase_package_id, :username, :password_text, :package_id, :package_discounted_price,
                                         customer_area_attributes: %i[id country_id city_id area_id sub_area_id house_no pon_no address remarks],
-                                        customer_package_attributes: %i[id package_id username password company_id company_package_id],
-                                        customer_subscription_attributes: %i[id customer_package_id start_date expiry_date status renew],
+                                        subscription_attributes: %i[id customer_id start_date expiry_date status renew profit no_of_days],
                                         customer_device_info_attributes: %i[id device_name serial_no model mac_address],
                                       )
     end

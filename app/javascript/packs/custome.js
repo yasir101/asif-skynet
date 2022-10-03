@@ -10,11 +10,11 @@ $(document).on("turbolinks:load", function () {
     }
   });
 
-  // On Company select - Get Company packages
+  // On Company select - Get Purchase packages
 
   $("#company").on("change", function () {
     $.ajax({
-      url: "/app/company_packages/package_list?company_id=" + $(this).val(),
+      url: "/app/purchase_packages/purchase_packages_list?company_id=" + $(this).val(),
       type: "get",
       success: function (result) {
         console.log(result.data);
@@ -27,7 +27,7 @@ $(document).on("turbolinks:load", function () {
           var options = $(".pakage_selection").get(0).options;
           options[options.length] = new Option("Select Company Package", "");
           $.each(result.data, function (key, value) {
-            options[options.length] = new Option(value.name, value.id);
+            options[options.length] = new Option(value.package_name, value.id);
           });
         }
       },
@@ -37,6 +37,33 @@ $(document).on("turbolinks:load", function () {
     });
   });
 
+  // get purchase package price
+
+  $("#customer_purchase_package_id").on("change", function () {
+    $.ajax({
+      url: "/app/purchase_packages/" + $(this).val(),
+      type: "get",
+      success: function (result) {
+        if (result.data) {
+          $("#customer_purchase_price").val(result.data.purchase_price);
+        }
+      },
+    });
+  });
+
+  // get customer package price
+
+  $("#customer_package_id").on("change", function () {
+    $.ajax({
+      url: "/app/packages/" + $(this).val(),
+      type: "get",
+      success: function (result) {
+        if (result.data) {
+          $("#customer_package_price").val(result.data.price);
+        }
+      },
+    });
+  });
   // On Company package select - Get Customer Packages ( Packages )
 
   $(document).on("change keyup paste", "#customer_customer_package_attributes_company_package_id", function () {
@@ -67,8 +94,8 @@ $(document).on("turbolinks:load", function () {
 
   // check username is unique
 
-  $(document).on("change keyup paste", "#customer_customer_package_attributes_username", function () {
-    let username = $("#customer_customer_package_attributes_username").val();
+  $(document).on("change keyup paste", "#customer_username", function () {
+    let username = $("#customer_username").val();
     let company_id = $("#company").val();
     console.log(company_id + "------" + username);
     $.ajax({
@@ -76,11 +103,11 @@ $(document).on("turbolinks:load", function () {
       type: "get",
       success: function (result) {
         if (result.data == false) {
-          $("#customer_customer_package_attributes_username").css("border", "2px solid #29ed29");
+          $("#customer_username").css("border", "2px solid #29ed29");
           $("#username_error").html("");
           $("#submit_button").attr("disabled", false);
         } else {
-          $("#customer_customer_package_attributes_username").css("border", "2px solid red").prop("required", true);
+          $("#customer_username").css("border", "2px solid red").prop("required", true);
           $("#username_error").html("Username is already taken");
           $("#submit_button").attr("disabled", true);
         }

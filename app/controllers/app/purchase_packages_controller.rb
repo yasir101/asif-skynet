@@ -26,7 +26,14 @@ module App
       end
     end
     
-    def show; end
+    def show
+      @purchase_package = PurchasePackage.find_by(id: params[:id])
+      if @purchase_package
+        render json: { data: @purchase_package }
+      else
+        render json: { data: {} }
+      end  
+    end
     
     def edit; end
     
@@ -36,6 +43,16 @@ module App
       else
         render 'edit', notice: 'Something went wrong';
       end
+    end
+    
+    def purchase_packages_list
+      @company = Company.find_by(id: params[:company_id])
+      @purchase_packages = @company.purchase_packages
+      if @purchase_packages
+        render json: { data: @purchase_packages }
+      else
+        render json: { data: {} }
+      end   
     end
     
     private

@@ -1,4 +1,4 @@
-- if !customer.customer_package.username.nil?
+- if !customer.username.nil?
   = form_with(model: customer) do |form|
     - if customer.errors.any?
       #error_explanation  
@@ -11,7 +11,7 @@
         %h1.header-title
           Subscription
       .card-body
-        = form.fields_for :customer_subscription do |customer_subscription|
+        = form.fields_for :subscription do |subscription|
           .row
             .col-12                
               .form-group

@@ -20,6 +20,15 @@ module App
       end
     end
     
+    def show
+      @package = Package.find_by(id: params[:id])
+      if @package
+        render json: { data: @package }
+      else
+        render json: { data: {} }
+      end  
+    end
+    
     def edit; end
     
     def update

@@ -9,9 +9,6 @@
           - if request.fullpath.include?('edit')
             %li.list-group-item{class: ('active' if params['step'] == 'area')} 
               = link_to 'Area', '?step=area', class: "#{params['step'] == 'area' ? 'text-white' : 'text-dark'}"
-              
-            %li.list-group-item{class: ('active' if params['step'] == 'package')} 
-              = link_to 'Package', '?step=package', class: "#{params['step'] == 'package' ? 'text-white' : 'text-dark'}"
             
             %li.list-group-item{class: ('active' if params['step'] == 'subscription')} 
               = link_to 'Subscription', '?step=subscription', class: "#{params['step'] == 'subscription' ? 'text-white' : 'text-dark'}"  
@@ -27,8 +24,6 @@
       = render "profile", customer: customer
     - elsif params['step'] == 'area'
       = render "area", customer: customer
-    - elsif params['step'] == 'package'
-      = render "package", customer: customer
     - elsif params['step'] == 'subscription'
       = render "subscription", customer: customer
     - elsif params['step'] == 'device_info'

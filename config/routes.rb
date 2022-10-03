@@ -79,7 +79,12 @@ Rails.application.routes.draw do
     #     get :package_list
     #   end
     # end
-    resources :purchase_packages
+    resources :purchase_packages do
+      collection do
+        get :purchase_packages_list
+      end
+    end
+    
     resources :packages do
       collection do
         get :customer_package_list
