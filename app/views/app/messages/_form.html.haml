@@ -7,9 +7,9 @@
             = message
   .form-group
     = form.label "Number"
-    = form.text_field :number, class: "form-control"
+    = form.text_field :number, class: "form-control", value: "#{ params['number'].present? ? params['number'] : '' }"
   .form-group
     = form.label :message_text
     = form.text_area :message_text, class: "form-control", rows: 5
-  .actions
-    = form.submit "Send Message", class: "btn btn-primary"
+  -# .actions
+  -#   = form.submit "Send Message", class: "btn btn-primary"

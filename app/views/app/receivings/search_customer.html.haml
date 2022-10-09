@@ -31,15 +31,15 @@
                  
               .col-sm-2
                 = f.label "House No"
-                = f.search_field :customer_area_house_no_cont, class: "form-control", placeholder: "Enter House No"
+                = f.search_field :house_no_cont, class: "form-control", placeholder: "Enter House No"
               
               .col-sm-2
                 = f.label "Area"
-                = f.select :customer_area_area_id_eq, Area.all.map { |area| [area.name, area.id] }, { include_blank: "Select Area" }, { class: 'form-control' } 
+                = f.select :area_id_eq, Area.all.map { |area| [area.name, area.id] }, { include_blank: "Select Area" }, { class: 'form-control' } 
               
               .col-sm-2
                 = f.label "Username"
-                = f.search_field :customer_package_username_cont, class: "form-control", placeholder: "Enter Username"
+                = f.search_field :username_cont, class: "form-control", placeholder: "Enter Username"
               
               .col-sm-2
                 = f.label "All Search"
@@ -72,14 +72,14 @@
                     %tr
                       %td= customer&.id
                       %td= customer&.name
-                      %td= customer&.customer_area&.house_no
-                      %td= customer&.customer_area&.area&.name
-                      %td= customer&.customer_package&.username
+                      %td= customer&.house_no
+                      %td= customer&.area&.name
+                      %td= customer&.username
                       %td= customer&.mobile_primary
-                      %td= customer&.customer_area&.pon_no
-                      %td= customer&.customer_package&.package&.price
-                      %td= customer&.receivings&.last&.balance
-                      %td= customer&.customer_package&.package&.price.to_i + customer&.receivings&.last&.balance.to_i 
+                      %td= customer&.pon_no
+                      %td= customer&.package&.price
+                      -# %td= customer&.receivings&.last&.balance
+                      -# %td= customer&.package&.price.to_i + customer&.receivings&.last&.balance.to_i 
                       %td.text-right
                         = link_to 'Proceed', "#{new_receiving_path}?customer_id=#{customer.id}", class: "btn btn-outline-info btn-sm"
               - else

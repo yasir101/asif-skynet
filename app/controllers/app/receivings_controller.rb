@@ -7,7 +7,7 @@ module App
     
     def search_customer
       @q = Customer.ransack(params[:q])
-      @customers = @q.result.includes(:customer_area, :customer_package)
+      @customers = @q.result
     end
     
     def new
