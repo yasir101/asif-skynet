@@ -14,7 +14,7 @@
                 Customers
             .col-auto
               / Button
-              = link_to 'New Customer', "#{new_customer_path}?step=profile", class: "btn btn-outline-primary lift"    
+              = link_to 'New Customer', new_customer_path, class: "btn btn-outline-primary lift"    
           / / .row
           -# .row.align-items-center
           -#   .col
@@ -69,11 +69,11 @@
                     %td= customer.old_ref_no
                     %td= customer.name
                     %td= customer.mobile_primary
-                    %td= customer&.customer_area&.area&.name
-                    %td= customer&.customer_area&.sub_area&.name
+                    %td= customer&.area&.name
+                    %td= customer&.sub_area&.name
                     %td.text-right
                       = link_to 'View', customer_path(customer), class: "btn btn-outline-success btn-sm"
-                      = link_to 'Edit', "#{edit_customer_path(customer)}?step=profile", class: "btn btn-outline-info btn-sm"
+                      = link_to 'Edit', edit_customer_path(customer), class: "btn btn-outline-info btn-sm"
             - else
               = render 'shared/no_data'
   .row        

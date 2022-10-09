@@ -13,71 +13,64 @@
       .card-body
         = form.fields_for :subscription do |subscription|
           .row
-            .col-12                
+            .col-sm-6                
               .form-group
-                = label_tag "Company" 
-                = text_field_tag "company", "#{customer.customer_package.package.company.name}", class: "form-control readonly_field", readonly: true
-          
+                = label_tag "Customer Package" 
+                = text_field_tag "customer_package", "#{customer.package.name}", class: "form-control readonly_field", readonly: true
+            .col-sm-6                
+              .form-group
+                = label_tag "Customer Package Price" 
+                = text_field_tag "customer_package_price", "#{customer.get_package_price}", class: "form-control readonly_field", readonly: true
           .row
-            .col-6                
+            .col-sm-12                
               .form-group
-                = customer_subscription.label "Company Package" 
-                = text_field_tag "company", "#{customer.customer_package.package.company_package.name}", class: "form-control readonly_field", readonly: true     
+                = subscription.label "Subscription Type" 
+                = subscription.select :subscription_type, [["Daily", "daily"], ["Monthly", "monthly"]], {prompt: "Select Type"}, { class: 'form-control', required: true}
+          .according-to-type
+            .row  
+              .col-sm-12                
+                .form-group
+                  = subscription.label "Start Date" 
+                  = subscription.date_field :start_date, class: "form-control", required: true
             
-            .col-6                
-              .form-group
-                = customer_subscription.label "Company Package Price" 
-                = text_field_tag "company", "#{customer.customer_package.package.company_package.price}", class: "form-control readonly_field", readonly: true
-          
-          .row
-            .col-6                
-              .form-group
-                = customer_subscription.label "Customer Package" 
-                = text_field_tag "company", "#{customer.customer_package.package.name}", class: "form-control readonly_field", readonly: true
-                = customer_subscription.hidden_field :package_id, value: "#{customer.customer_package.package.id}"     
+            .row  
+              .col-sm-12                
+                .form-group
+                  = subscription.label "No of Days" 
+                  = subscription.number_field :no_of_days, class: "form-control"
             
-            .col-6                
-              .form-group
-                = customer_subscription.label "Customer Package Price" 
-                = text_field_tag "company", "#{customer.customer_package.package.price}", class: "form-control readonly_field", readonly: true
-                = customer_subscription.hidden_field :profit, value: "#{customer.customer_package.package.price - customer.customer_package.package.company_package.price}"
-          .row
-            .col-6                
-              .form-group
-                = customer_subscription.label "Subscription Start From" 
-                = customer_subscription.date_field "start_date", class: "form-control"
+            .row  
+              .col-sm-12                
+                .form-group
+                  = subscription.label "Expiry Date" 
+                  = subscription.date_field :expiry_date, class: "form-control", required: true
+
             
-            .col-6                
-              .form-group
-                = customer_subscription.label "Subscription Expire On" 
-                = customer_subscription.date_field "expiry_date", class: "form-control"
+            -# .row
+            -#   .col-12               
+            -#     .form-group
+            -#       .form-check.form-switch
+            -#         = subscription.check_box :renew, class: "form-check-input", id: "flexSwitchCheckDefault"
+            -#         %label.form-check-label{for: "flexSwitchCheckDefault"} Renew (This will auto renew subscription) 
           
-          .row
-            .col-12               
-              .form-group
-                .form-check.form-switch
-                  = customer_subscription.check_box :renew, class: "form-check-input", id: "flexSwitchCheckDefault"
-                  %label.form-check-label{for: "flexSwitchCheckDefault"} Renew (This will auto renew subscription at the end of month) 
-          
-          - if !customer.customer_subscription.status
-            = customer_subscription.hidden_field :status, value: true     
+
       .card-footer
         .actions
-          - if !customer.customer_subscription.status
+          - if !customer&.subscriptions&.last&.status
             = form.submit "Subscribe", class: "btn btn-primary"
           - else
             = link_to 'Un Subscribe', "#", class: "btn btn-danger btn-lg"
-- else
-  .row
-    .col-12
-      / Card
-      .card.card-inactive
-        .card-body.text-center
-          / Image
-          %img.img-fluid{:alt => "...", :src => "/img/scale.svg", :style => "max-width: 182px;"}/
-          / Title
-          %h1
-            Empty Package.
-          / Subtitle
-          %p.text-muted
-            Please fill all values of package to subscribe the package.                     
+-# - else
+-#   .row
+-#     .col-12
+-#       / Card
+-#       .card.card-inactive
+-#         .card-body.text-center
+-#           / Image
+-#           %img.img-fluid{:alt => "...", :src => "/img/scale.svg", :style => "max-width: 182px;"}/
+-#           / Title
+-#           %h1
+-#             Empty Package.
+-#           / Subtitle
+-#           %p.text-muted
+-#             Please fill all values of package to subscribe the package.                     

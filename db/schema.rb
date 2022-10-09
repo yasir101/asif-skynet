@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_03_133935) do
+ActiveRecord::Schema.define(version: 2022_10_08_191030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,11 +181,28 @@ ActiveRecord::Schema.define(version: 2022_10_03_133935) do
     t.string "username"
     t.string "password_text"
     t.integer "package_discounted_price"
+    t.bigint "country_id"
+    t.bigint "city_id"
+    t.bigint "area_id"
+    t.bigint "sub_area_id"
+    t.string "house_no"
+    t.string "street"
+    t.text "address"
+    t.text "remarks"
+    t.string "pon_no"
+    t.string "device_name"
+    t.string "serial_no"
+    t.string "model"
+    t.string "mac_address"
+    t.index ["area_id"], name: "index_customers_on_area_id"
+    t.index ["city_id"], name: "index_customers_on_city_id"
     t.index ["company_id"], name: "index_customers_on_company_id"
+    t.index ["country_id"], name: "index_customers_on_country_id"
     t.index ["package_id"], name: "index_customers_on_package_id"
     t.index ["purchase_package_id"], name: "index_customers_on_purchase_package_id"
     t.index ["service_id"], name: "index_customers_on_service_id"
     t.index ["staff_id"], name: "index_customers_on_staff_id"
+    t.index ["sub_area_id"], name: "index_customers_on_sub_area_id"
   end
 
   create_table "message_templates", force: :cascade do |t|
@@ -390,6 +407,7 @@ ActiveRecord::Schema.define(version: 2022_10_03_133935) do
     t.bigint "customer_id"
     t.date "start_date"
     t.date "expiry_date"
+    t.string "subscription_type"
     t.integer "no_of_days", default: 0
     t.boolean "status", default: false
     t.boolean "renew", default: false

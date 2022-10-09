@@ -16,7 +16,7 @@
           .col-auto
             / Text
             %small.text-muted
-              = customer&.customer_package&.package&.company_package&.company&.name
+              = customer&.company&.name
               
       .list-group-item
         .row.align-items-center
@@ -26,7 +26,7 @@
           .col-auto
             / Link
             %a.small.text-muted
-              = customer&.customer_package&.username
+              = customer&.username
       
       .list-group-item
         .row.align-items-center
@@ -36,56 +36,54 @@
           .col-auto
             / Link
             %a.small.text-muted
-              = customer&.customer_package&.password
+              = customer&.password_text
       
       .list-group-item
         .row.align-items-center
           .col
             / Title
-            %small Company Package Name
+            %small Purchase Package Name
           .col-auto
             / Link
             %a.small.text-muted
-              = customer&.customer_package&.package&.company_package&.name
+              = customer&.purchase_package&.package_name
       
       .list-group-item
         .row.align-items-center
           .col
             / Title
-            %small Company Package Price
+            %small Purchase Package Price
           .col-auto
             / Link
             %a.small.text-muted
-              = customer&.customer_package&.package&.company_package&.price
+              = customer&.purchase_package&.purchase_price
                               
       .list-group-item
         .row.align-items-center
           .col
             / Title
-            %small Customer Package Name
+            %small Selling Package Name
           .col-auto
             / Link
             %a.small.text-muted
-              = customer&.customer_package&.package&.name        
+              = customer&.package&.name        
       / / .row
       .list-group-item
         .row.align-items-center
           .col
             / Title
-            %small Customer Package Price
+            %small Selling Package Price
           .col-auto
             / Link
             %a.small.text-muted
-              = customer&.customer_area&.city&.name
+              = customer&.package&.price
       
       .list-group-item
         .row.align-items-center
           .col
             / Title
-            %small Subscription Status
+            %small Selling Dicounted Price
           .col-auto
-            / Link
-            %a.small.text-muted
-              - if customer&.customer_subscription&.status
-                .text-success Subscribed        
-              
+            / Text
+            %small.text-muted
+              = customer&.package_discounted_price || 0        

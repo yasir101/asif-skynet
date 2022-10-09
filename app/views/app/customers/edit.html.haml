@@ -8,7 +8,9 @@
             Overview
           %h1.header-title
             Edit Customer
-
+        .col-auto
+          = link_to 'Receive First Payment', "#", class: "btn btn-danger lift" unless @customer.first_receiving?
+          = link_to 'Sent Welcome Message', "#", class: "btn btn-success lift" unless @customer.welcome_message?
 .container-fluid   
   = render 'form', customer: @customer
              

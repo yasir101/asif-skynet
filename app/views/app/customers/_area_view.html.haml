@@ -16,7 +16,7 @@
           .col-auto
             / Link
             %a.small.text-muted
-              = customer&.customer_area&.country&.name
+              = customer&.country&.name
       / / .row
       .list-group-item
         .row.align-items-center
@@ -26,7 +26,7 @@
           .col-auto
             / Link
             %a.small.text-muted
-              = customer&.customer_area&.city&.name
+              = customer&.city&.name
               
       .list-group-item
         .row.align-items-center
@@ -36,7 +36,7 @@
           .col-auto
             / Text
             %small.text-muted
-              = customer&.customer_area&.area&.name
+              = customer&.area&.name
         / / .row
         
       .list-group-item
@@ -47,7 +47,7 @@
           .col-auto
             / Text
             %small.text-muted
-              = customer&.customer_area&.country&.name
+              = customer&.country&.name
         / / .row
       .list-group-item
         .row.align-items-center
@@ -57,7 +57,7 @@
           .col-auto
             / Link
             %a.small.text-muted
-              = customer&.customer_area&.house_no
+              = customer&.house_no
       
       .list-group-item
         .row.align-items-center
@@ -67,7 +67,7 @@
           .col-auto
             / Link
             %a.small.text-muted
-              = customer&.customer_area&.pon_no
+              = customer&.pon_no
       .list-group-item
         .row.align-items-center
           .col
@@ -76,7 +76,7 @@
           .col-auto
             / Time
             %time.small.text-muted{:datetime => "1988-10-24"}
-              = customer&.customer_area&.address
+              = customer&.address
         / / .row
       .list-group-item
         .row.align-items-center
@@ -86,5 +86,5 @@
           .col-auto
             / Text
             %small.text-muted
-              = customer&.customer_area&.remarks
+              = customer&.remarks
         

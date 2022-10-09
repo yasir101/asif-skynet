@@ -204,7 +204,7 @@ $(document).on("turbolinks:load", function () {
 
   // Get Sub_areas according to area
 
-  $(document).on("change", "#customer_customer_area_attributes_area_id", function () {
+  $(document).on("change", "#customer_area_id", function () {
     let area_id = $(this).val();
     console.log(area_id);
     $.ajax({
@@ -213,12 +213,12 @@ $(document).on("turbolinks:load", function () {
       success: function (result) {
         console.log(result);
         if (result.data.length == 0) {
-          $("#customer_customer_area_attributes_sub_area_id").empty();
-          var options = $("#customer_customer_area_attributes_sub_area_id").get(0).options;
+          $("#customer_sub_area_id").empty();
+          var options = $("#customer_sub_area_id").get(0).options;
           options[options.length] = new Option("No Page Found");
         } else {
-          $("#customer_customer_area_attributes_sub_area_id").empty();
-          var options = $("#customer_customer_area_attributes_sub_area_id").get(0).options;
+          $("#customer_sub_area_id").empty();
+          var options = $("#customer_sub_area_id").get(0).options;
           options[options.length] = new Option("Select Sub Area", "");
           $.each(result.data, function (key, value) {
             options[options.length] = new Option(value.name, value.id);
@@ -228,4 +228,23 @@ $(document).on("turbolinks:load", function () {
       error: function (data) {},
     });
   });
+  
+  // subscription fields
+  
+  $("#customer_subscription_type").on('change', function(){
+    $(".according-to-type").hide();
+    let value = $(this).val();
+    if(value == null || value == ''){
+      $(".according-to-type").hide();
+    }else{
+      $(".according-to-type").show();
+      if(value == 'monthly'){
+        $("#customer_no_of_days").attr('readonly', true).css("background-color", "aliceblue");
+      }else {
+        $("#customer_no_of_days").attr('readonly', false).css("background-color", "transparent");
+      }
+    }
+     
+  });
 });
+

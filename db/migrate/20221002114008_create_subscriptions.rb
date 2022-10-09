@@ -4,6 +4,7 @@ class CreateSubscriptions < ActiveRecord::Migration[6.1]
       t.references :customer
       t.date :start_date
       t.date :expiry_date
+      t.string :subscription_type
       t.integer :no_of_days, default: 0
       t.boolean :status, default: false
       t.boolean :renew, default: false

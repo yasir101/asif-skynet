@@ -17,7 +17,7 @@
           .col-auto
             / Time
             %time.small.text-muted
-              = customer&.customer_device_info&.device_name
+              = customer&.device_name
         / / .row
       .list-group-item
         .row.align-items-center
@@ -28,7 +28,7 @@
           .col-auto
             / Time
             %time.small.text-muted
-              = customer&.customer_device_info&.serial_no
+              = customer&.serial_no
         / / .row
       .list-group-item
         .row.align-items-center
@@ -39,7 +39,7 @@
           .col-auto
             / Link
             %a.small.text_muted
-              = customer&.customer_device_info&.model
+              = customer&.model
       .list-group-item
         .row.align-items-center
           .col
@@ -49,6 +49,6 @@
           .col-auto
             / Text
             %small.text-muted
-              = customer&.customer_device_info&.mac_address
+              = customer&.mac_address
         / / .row
         / / .row

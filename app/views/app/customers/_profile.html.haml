@@ -24,23 +24,23 @@
         .col-sm-6    
           .form-group
             = form.label :name
-            = form.text_field :name, class: "form-control", placeholder: "Enter Name"
+            = form.text_field :name, class: "form-control", placeholder: "Enter Name", required: true
         .col-sm-6    
           .form-group
             = form.label :father_name
-            = form.text_field :father_name, class: "form-control", placeholder: "Enter Father Name"
+            = form.text_field :father_name, class: "form-control", placeholder: "Enter Father Name", required: true
       
       .row  
         .col-sm-12            
           .form-group
             = form.label :cnic
-            = form.text_field :cnic, class: "form-control", placeholder: "Enter Father Name"
+            = form.text_field :cnic, class: "form-control", placeholder: "Enter Father Name", required: true
       
       .row
         .col-sm-6 
           .form-group
             = form.label :mobile_primary
-            = form.text_field :mobile_primary, class: "form-control", placeholder: "Enter Mobile (Primary)"
+            = form.text_field :mobile_primary, class: "form-control", placeholder: "Enter Mobile (Primary)", required: true
         .col-sm-6 
           .form-group
             = form.label :mobile_secondary
@@ -55,12 +55,16 @@
           .form-group
             = form.label "Residance"
             = form.select :residance, [['Owner', 'owner'], ['Rental', 'rental']], {prompt: "Select Residance"}, {class: "form-control", required: true}      
-      
+    
+    .card-header
+      %h1.header-title
+        Company | Packages
+    .card-body      
       .row
         .col-sm-12
           .form-group
             = form.label "Company"
-            = form.collection_select :company_id, Company.all, :id, :name, {prompt: true}, class: "form-control", id: "company"
+            = form.collection_select :company_id, Company.all, :id, :name, {prompt: true}, class: "form-control", id: "company", required: true
       
       .row
         .col-sm-6   
@@ -98,7 +102,93 @@
         .col-sm-6
           .form-group
             = form.label "Customer Package Discounted Price"
-            = form.number_field :package_discounted_price, class: "form-control"                
+            = form.number_field :package_discounted_price, class: "form-control"
+    
+    .card-header
+      %h1.header-title
+        Area
+    .card-body
+      .row
+        .col-6                
+          .form-group
+            = form.label "Country"
+            = form.collection_select :country_id, Country.all, :id, :name, {prompt: true, selected: "Pakistan"}, class: "form-control", required: true
+        .col-6
+          .form-group
+            = form.label "City"
+            = form.collection_select :city_id, City.all, :id, :name, {prompt: true, selected: "Lahore"}, class: "form-control", required: true
+      
+      .row
+        .col-6                
+          .form-group
+            = form.label "Area"
+            = form.collection_select :area_id, Area.all, :id, :name, {prompt: true}, class: "form-control", required: true
+        .col-6                  
+          .form-group
+            = form.label "Sub Area"
+            = form.collection_select :sub_area_id, SubArea.all, :id, :name, {prompt: true}, class: "form-control", required: true
+      
+      .row
+        .col-6
+          .form-group
+            = form.label "House No"
+            = form.text_field :house_no, class: "form-control", placeholder: "Enter House No"
+          
+        .col-6
+          .form-group
+            = form.label "PON No"
+            = form.text_field :pon_no, class: "form-control", placeholder: "Enter Pon No"
+          
+      
+      .row
+        .col-12 
+          .form-group
+            = form.label "Address"
+            = form.text_area :address, class: "form-control", placeholder: "Enter Adress"
+          
+      .row 
+        .col-12   
+          .form-group
+            = form.label "Remarks"
+            = form.text_area :remarks, class: "form-control", placeholder: "Add Remarks"
+    
+    .card-header
+      %h1.header-title
+        Device Info
+    .card-body
+      .row
+        .col-12
+          .form-group
+            = form.label "Device Name"
+            = form.text_field :device_name, class: "form-control", placeholder: "Enter Device Name"
+        
+      .row
+        .col-12
+          .form-group
+            = form.label "Serial No"
+            = form.text_field :serial_no, class: "form-control", placeholder: "Enter Serial No"
+      
+      .row
+        .col-12
+          .form-group
+            = form.label "Model"
+            = form.text_field :model, class: "form-control", placeholder: "Enter Model"
+        
+      .row
+        .col-12
+          .form-group
+            = form.label "Mac Address"
+            = form.text_field :mac_address, class: "form-control", placeholder: "Enter Mac Address"                          
+    
+    .card-header
+      %h1.header-title
+        Assign to Staff
+    .card-body
+      .row
+        .col-sm-12
+          .form-group
+            = form.label "Staff"
+            = form.collection_select :staff_id, Staff.all, :id, :full_name, {prompt: true}, class: "form-control"
     .card-footer
       .actions
         = form.submit "Submit Profile", class: "btn btn-primary"        

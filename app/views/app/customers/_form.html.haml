@@ -1,32 +1,34 @@
 .row
-  .col-sm-3
-    .card
-      .card-body.p-0
-        %ul.list-group     
-          %li.list-group-item{class: ('active' if params['step'] == 'profile')}
-            = link_to 'Profile', "?step=profile", class: "#{params['step'] == 'profile' ? 'text-white' : 'text-dark'}"  
+  .col
+  = render "profile", customer: customer  
+  -# .col-sm-3
+  -#   .card
+  -#     .card-body.p-0
+  -#       %ul.list-group     
+  -#         %li.list-group-item{class: ('active' if params['step'] == 'profile')}
+  -#           = link_to 'Profile', "?step=profile", class: "#{params['step'] == 'profile' ? 'text-white' : 'text-dark'}"  
           
-          - if request.fullpath.include?('edit')
-            %li.list-group-item{class: ('active' if params['step'] == 'area')} 
-              = link_to 'Area', '?step=area', class: "#{params['step'] == 'area' ? 'text-white' : 'text-dark'}"
+  -#         - if request.fullpath.include?('edit')
+  -#           %li.list-group-item{class: ('active' if params['step'] == 'area')} 
+  -#             = link_to 'Area', '?step=area', class: "#{params['step'] == 'area' ? 'text-white' : 'text-dark'}"
             
-            %li.list-group-item{class: ('active' if params['step'] == 'subscription')} 
-              = link_to 'Subscription', '?step=subscription', class: "#{params['step'] == 'subscription' ? 'text-white' : 'text-dark'}"  
+  -#           %li.list-group-item{class: ('active' if params['step'] == 'subscription')} 
+  -#             = link_to 'Subscription', '?step=subscription', class: "#{params['step'] == 'subscription' ? 'text-white' : 'text-dark'}"  
             
-            %li.list-group-item{class: ('active' if params['step'] == 'device_info')} 
-              = link_to 'Device Info', '?step=device_info', class: "#{params['step'] == 'device_info' ? 'text-white' : 'text-dark'}"
+  -#           %li.list-group-item{class: ('active' if params['step'] == 'device_info')} 
+  -#             = link_to 'Device Info', '?step=device_info', class: "#{params['step'] == 'device_info' ? 'text-white' : 'text-dark'}"
             
-            %li.list-group-item{class: ('active' if params['step'] == 'assign_to_staff')} 
-              = link_to 'Assign To Staff', '?step=assign_to_staff', class: "#{params['step'] == 'assign_to_staff' ? 'text-white' : 'text-dark'}"      
+  -#           %li.list-group-item{class: ('active' if params['step'] == 'assign_to_staff')} 
+  -#             = link_to 'Assign To Staff', '?step=assign_to_staff', class: "#{params['step'] == 'assign_to_staff' ? 'text-white' : 'text-dark'}"      
     
-  .col-sm-9
-    - if params['step'] == 'profile'
-      = render "profile", customer: customer
-    - elsif params['step'] == 'area'
-      = render "area", customer: customer
-    - elsif params['step'] == 'subscription'
-      = render "subscription", customer: customer
-    - elsif params['step'] == 'device_info'
-      = render "device_info", customer: customer
-    - elsif params['step'] == 'assign_to_staff'
-      = render "staff", customer: customer           
+  -# .col-sm-9
+  -#   - if params['step'] == 'profile'
+  -#     = render "profile", customer: customer
+  -#   - elsif params['step'] == 'area'
+  -#     = render "area", customer: customer
+  -#   - elsif params['step'] == 'subscription'
+  -#     = render "subscription", customer: customer
+  -#   - elsif params['step'] == 'device_info'
+  -#     = render "device_info", customer: customer
+  -#   - elsif params['step'] == 'assign_to_staff'
+  -#     = render "staff", customer: customer           
