@@ -14,7 +14,7 @@
         .col-sm-6    
           .form-group
             = form.label "Customer ID"
-            = form.text_field :id, class: "form-control readonly_field", value: "#{Customer.last.id + 1}", readonly: true
+            = form.text_field :id, class: "form-control readonly_field", value: "#{request.fullpath.include?('edit') ? customer&.id : Customer.last.id + 1}", readonly: true
         .col-sm-6
           .form-group
             = form.label "Old Referance No"
@@ -40,17 +40,23 @@
         .col-sm-6 
           .form-group
             = form.label :mobile_primary
-            = form.text_field :mobile_primary, class: "form-control", placeholder: "Enter Mobile (Primary)", required: true
+            = form.text_field :mobile_primary, class: "form-control", placeholder: "Enter Mobile (Primary)"
         .col-sm-6 
           .form-group
             = form.label :mobile_secondary
             = form.text_field :mobile_secondary, class: "form-control", placeholder: "Enter Mobile (Secondary)"
               
       .row
-        .col-sm-6               
+        .col-sm-12               
           .form-group
             = form.label "Select Service"
             = form.collection_select :service_id, Service.all, :id, :name, {prompt: true}, class: "form-control", required: true
+      .row.internet-type
+        .col-sm-12
+          .form-group
+            = form.label "Select Internet Type"
+            = form.collection_select :internet_type_id, InternetType.all, :id, :name, { prompt: true }, class: "form-control"
+      .row  
         .col-sm-6               
           .form-group
             = form.label "Residance"
@@ -126,7 +132,7 @@
         .col-6                  
           .form-group
             = form.label "Sub Area"
-            = form.collection_select :sub_area_id, SubArea.all, :id, :name, {prompt: true}, class: "form-control", required: true
+            = form.collection_select :sub_area_id, SubArea.all, :id, :name, {prompt: true}, class: "form-control"
       
       .row
         .col-6

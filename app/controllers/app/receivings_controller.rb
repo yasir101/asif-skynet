@@ -35,7 +35,7 @@ module App
     private
     
     def receiving_params
-      params.require(:receiving).permit(:customer_id, :staff_id, :amount, :service, :receipt_book_id, :receipt_book_page_id, :receiving_date, :balance, :amount_received)
+      params.require(:receiving).permit(:customer_id, :staff_id, :amount, :service, :receipt_book_id, :receipt_book_page_id, :receiving_date, :balance, :amount_received, :discount)
     end
   end
 end

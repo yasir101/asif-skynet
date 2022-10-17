@@ -12,7 +12,8 @@ class SMSService
   
   def get_balance
     doc = Nokogiri::HTML(URI.open('http://outreach.pk/api/sendsms.php/balance/status?id=rchskynet&pass=Skynet@5599'))
-    doc.search('response').children.first.to_s
+    doc.search('response').children.first.to_s if doc
+    
   end
   
   def get_expiry
@@ -26,7 +27,8 @@ class SMSService
     mask = 'SKY NET'
     number = get_number(@mobile)
     lang = 'English'
-    msg = "#{@name} - Welcome To Sky Net"
+    msg = "Dear [#{@name}] , Thank you for choosing SKY NET. Your A/c Code is: [#{@id}]. For Complains 0325-5145599"
+    # Your next Bill Last Date is [07-Nov-2022]
     uri = URI.parse("http://outreach.pk/api/sendsms.php/sendsms/url?id=#{id}&pass=#{pass}&mask=#{mask}&to=#{number}&lang=#{lang}&msg=#{msg}&type=xml")
     request = Net::HTTP::Post.new(uri)
     response = Net::HTTP.start(uri.hostname, uri.port) do |http|

@@ -1,6 +1,5 @@
 services = [
   {name: 'Internet'},
-  {name: 'FTTH'},
   {name: 'Cable'}
 ]
 

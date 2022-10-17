@@ -8,149 +8,216 @@
   -# = render "customer_search", form: form
   
   - if customer
-    .card
-      .card-body
-        .row.mb-4
-          .col-sm-6
-            .h5.fs-3
-              Customer ID:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm= customer&.id
-              
-          .col-sm-6
-            .h5.fs-3
-              Customer Name:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm= customer&.name
+    .row
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                %h3.mb-0.text-muted
+                  Customer ID:
+              .col-auto
+                %h4= customer&.id
+      
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                .h3.mb-0.text-muted
+                  Customer Old ID:
+              .col-auto
+                %h4= customer&.old_ref_no || 'N/A'
+    
         
-        .row.mb-4
-          .col-sm-6
-            .h5.fs-3
-              Customer Old ID:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm= 'N/A' unless customer&.old_ref_no 
-              
-          .col-sm-6
-            .h5.fs-3
-              Area:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm= customer&.area&.name
-        
-        .row.mb-4
-          .col-sm-6
-            .h5.fs-3
-              Sub Area:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm= customer&.sub_area&.name
-              
-          .col-sm-6
-            .h5.fs-3
-              House #:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm= customer&.house_no
-        
-        .row.mb-4
-          .col-sm-6
-            .h5.fs-3
-              Address:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm.text-room= customer&.address
-              
-          .col-sm-6
-            .h5.fs-3
-              Connection Date:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm
-        
-        .row.mb-4
-          .col-sm-6
-            .h5.fs-3
-              Pon No:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm.text-room= customer&.pon_no
-              
-          .col-sm-6
-            .h5.fs-3
-              Mobile:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm= customer&.mobile_primary
-        
-        .row.mb-4
-          .col-sm-6
-            .h5.fs-3
-              Company:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm.text-room= customer&.company&.name
-              
-          .col-sm-6
-            .h5.fs-3
-              Customer Package:
-              %span.ms-1.mt-n1.h3.fs-2.shadow-sm= customer&.package&.name
-                          
-        
-  -#   .card
-  -#     .card-body
-  -#       .row    
-  -#         .col-sm-4
-  -#           .form-group
-  -#             = form.label "House Number"
-  -#             = form.text_field :house_no, class: "form-control readonly_field", readonly: true, value: "#{customer&.customer_area&.house_no}"
+    .row
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                %h3.mb-0.text-muted
+                  Customer Name:
+              .col-auto
+                %h4= customer&.name                      
+      
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                .h3.mb-0.text-muted
+                  Area:
+              .col-auto
+                %h4= customer&.area&.name
           
-  -#         .col-sm-4
-  -#           .form-group
-  -#             = form.label "Mobile"
-  -#             = form.text_field :mobile_primary, class: "form-control readonly_field", readonly: true, value: "#{customer&.mobile_primary}"
+    .row
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                .h3.mb-0.text-muted
+                  Sub Area:
+              .col-auto
+                %h4= customer&.sub_area&.name
+      
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                .h3.mb-0.text-muted
+                  House #:
+              .col-auto
+                %h4= customer&.house_no  
         
-  -#       .row               
-  -#         .col-sm-6
-  -#           .form-group
-  -#             = form.label "Area"
-  -#             = form.text_field :area, class: "form-control readonly_field", readonly: true, value: "#{customer&.customer_area&.area&.name}"
+    .row
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                .h3.mb-0.text-muted
+                  Address:
+              .col-auto
+                %h4= customer&.address
+      
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                .h3.mb-0.text-muted
+                  Pon No:
+              .col-auto
+                %h4= customer&.pon_no
               
-  -#         .col-sm-6
-  -#           .form-group
-  -#             = form.label "Address"
-  -#             = form.text_field :address, class: "form-control readonly_field", readonly: true, value: "#{customer&.customer_area&.address}"  
-  
-  -#       - if customer.staff.present?
-  -#         .row
-  -#           .col-sm-6
-  -#             .form-group
-  -#               = form.label "Staff Name"
-  -#               = form.text_field :full_name, class: "form-control readonly_field", readonly: true, value: "#{customer&.staff&.full_name}"
-  -#               = form.hidden_field :staff_id, value: customer.staff.id
-  -#           .col-sm-6
-  -#             .form-group
-  -#               = form.label "Staff Official No"
-  -#               = form.text_field :official_mobile_no, class: "form-control readonly_field", readonly: true, value: "#{customer&.staff&.official_mobile_no}"
-                    
-  -#       .row
-  -#         .col-sm-6
-  -#           = form.label "Billable Amount"
-  -#           = form.text_field :amount, class: "form-control readonly_field", readonly: true, value: "#{customer&.customer_package&.package&.price}"
-  -#         .col-sm-6
-  -#           = form.label "Amount Received"
-  -#           = form.number_field :amount_received, class: "form-control", placeholder: "Enter Received Amount"
-                   
-  -#       .row.mt-4
-  -#         .col-sm-6
-  -#           = form.label "Balance"
-  -#           = form.text_field :balance, class: "form-control readonly_field", readonly: true, value: "#{0 unless customer&.receivings&.last&.balance}" 
-  -#           = form.hidden_field :prev_balanace, id: "prev_balance", value: "#{customer&.receivings&.last&.balance}"
-  -#         .col-sm-6
-  -#           = form.label "Service"
-  -#           = form.text_field :service, class: "form-control readonly_field", readonly: true, value: "#{customer&.service&.name}"
         
-  -#       .row.mt-4
+    .row 
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                .h3.mb-0.text-muted
+                  Mobile:
+              .col-auto
+                %h4= customer&.mobile_primary
 
-  -#         .col-sm-6
-  -#           = form.label "Receiving Date"
-  -#           = form.date_field :receiving_date, class: "form-control", required: true
-  -#         .col-sm-6
-  -#           = form.label "Receipt Book"
-  -#           = form.collection_select :receipt_book_id, customer&.staff&.receipt_books&.where(status: "Assigned"), :id, :book_number, {prompt: true}, class: "form-control"    
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                .h3.mb-0.text-muted
+                  Company:
+              .col-auto
+                %h4= customer&.company&.name
+    
+    
+    .row
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                .h3.mb-0.text-muted
+                  Customer Package:
+              .col-auto
+                %h4= customer&.package&.name                              
+      
+      .col-sm-6
+        .card.card-sm
+          .card-body
+            .row.pt-3
+              .col-sm-8
+                .h3.mb-0.text-muted
+                  Purchase Package:
+              .col-auto
+                %h4= customer&.purchase_package&.package_name
+    
+      .row
+        .col-sm-6
+          .card.card-sm
+            .card-body
+              .row.pt-3
+                .col-sm-8
+                  .h3.mb-0.text-muted
+                    Username:
+                .col-auto
+                  %h4= customer&.username
+                  
+        - if @customer&.service&.name == 'Internet'
+          .col-sm-6
+            .card.card-sm
+              .card-body
+                .row.pt-3
+                  .col-sm-8
+                    .h3.mb-0.text-muted
+                      Customer Type:
+                  .col-auto
+                    %h4= customer&.internet_type&.name                      
+      
+    .row
+      .col-sm-6
+        .card.card-sm.bg-success-soft
+          .card-body
+            .row.pt-3
+              .col-sm-12.text-center
+                .mb-0.display-1
+                  = customer.get_package_price
+                  
+                    
         
+    .card
+      .card-header
+        .h2.mt-4
+          Receivng 
+      .card-body
+        .row    
+          .col-sm-12
+            .form-group
+              = form.label "Date"
+              = form.date_field :receiving_date, class: "form-control"
+        .row  
+          .col-sm-6
+            .form-group
+              = form.label "Receipt Book"
+              = form.collection_select :receipt_book_id, customer&.staff&.receipt_books&.where(status: "Assigned"), :id, :book_number, {prompt: true}, class: "form-control"
         
-  -#       .row.mt-4
-  -#         .col-sm-6
-  -#           = form.label "Receipt Book Pages"
-  -#           = form.collection_select :receipt_book_page_id, ReceiptBookPage.all, :id, :page_no, {prompt: true}, class: "form-control"
+          .col-sm-6
+            .form-group
+              = form.label "Receipt Book Pages"
+              = form.collection_select :receipt_book_page_id, ReceiptBookPage.all, :id, :page_no, {prompt: true}, class: "form-control"
         
-     
-  
-  -#   .actions
-  -#     = form.submit class: "btn btn-primary"
+        .row
+          .col-sm-6
+            .form-group
+              = form.label "Amount Received"
+              = form.number_field :amount_received, class: "form-control", placeholder: "Enter Received Amount"
+              = form.hidden_field :price, value: customer.get_package_price
+          .col-sm-6
+            .form-group
+              = form.label "Discount"
+              = form.number_field :discount, class: "form-control", placeholder: "Enter Discounted Amount"
+        .row
+          .col-sm-6
+            .form-group
+              = form.label "Staff Name"
+              = form.text_field :full_name, class: "form-control readonly_field", readonly: true, value: "#{customer&.staff&.full_name if customer&.staff&.present?}"
+              = form.hidden_field :staff_id, value: customer&.staff&.id           
+              = form.hidden_field :customer_id, value: customer&.id           
+          .col-sm-6
+            .form-group
+              = form.label "Remaining Due"
+              = form.text_field :balance, class: "form-control readonly_field", readonly: true, value: "" 
+      
+      .card-footer  
+        .actions
+          = form.submit class: "btn btn-primary"
       
     
-  -# - if customer&.receivings&.present?
-  -#   = render 'customer_billing', customer: customer
+  - if customer&.receivings&.present?
+    = render 'customer_billing', customer: customer
   

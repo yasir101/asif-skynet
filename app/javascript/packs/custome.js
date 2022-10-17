@@ -1,4 +1,29 @@
-$(document).on("turbolinks:load", function () {
+$(document).on("turbolinks:load", function () {  
+  $(".internet-type").hide();
+  
+  
+  let url = window.location.pathname.split('/');
+  let isEdit = url[url.length -1]
+  if(isEdit === 'edit'){
+    service = $("#customer_service_id option:selected").text();
+    if(service === 'Internet'){
+      $(".internet-type").show(); 
+    }
+  }
+  
+  $("#customer_service_id").on('change', function(){
+    
+    let service = $("#customer_service_id option:selected").text();
+    
+    
+    if(service === 'Internet'){
+      $(".internet-type").show();
+    }else{
+      $(".internet-type").hide();
+    }   
+  }); 
+  
+  
   // Receipt Book page number Calculation
   $(document).on("change", "#receipt_book_total_pages", function () {
     let from = $("#receipt_book_from").val();
@@ -138,19 +163,25 @@ $(document).on("turbolinks:load", function () {
 
   $("#receiving_amount_received").on("keyup", function () {
     let received_amount = $(this).val();
-    let actual_amount = $("#receiving_amount").val();
-
-    const prev_balance = $("#prev_balance").val();
-
-    let balance = parseInt(actual_amount) - parseInt(received_amount) + parseInt(prev_balance);
-
-    // console.log(prev_balance);
-    if (!isNaN(balance)) {
+    let package_price = $("#receiving_price").val();
+    
+    let balance = parseInt(package_price) - parseInt(received_amount);
+    if(!isNaN(balance)){
+      $("#receiving_discount").val(balance);
       $("#receiving_balance").val(balance);
     }
+    // const prev_balance = $("#prev_balance").val();
+
+    // let balance = parseInt(actual_amount) - parseInt(received_amount) + parseInt(prev_balance);
+
+    // // console.log(prev_balance);
+    // if (!isNaN(balance)) {
+    //   $("#receiving_balance").val(balance);
+    // }
     // window.location.href = "?customer_id=" + customer_id;
   });
 
+  
   $("#receiving_staff_id").on("change", function () {
     let staff_id = $(this).val();
 

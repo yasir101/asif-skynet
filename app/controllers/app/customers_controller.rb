@@ -4,7 +4,7 @@ module App
     
     def index
       @q = Customer.ransack(params[:q])
-      @customers = @q.result.page(params[:page]).per(10)  
+      @customers = @q.result.page(params[:page]).per(25)  
     end
     
     def new
@@ -33,7 +33,7 @@ module App
     end
     
     def check_username
-      username = CustomerPackage.where(company_id: params['company_id'],
+      username = Customer.where(company_id: params['company_id'],
         username: params['username']).any?
       render json: { data: username }
     end
@@ -41,7 +41,7 @@ module App
     private
     
     def customer_params
-      params.require(:customer).permit(:old_ref_no, :name, :father_name, :cnic, :mobile_primary, :mobile_secondary, :service_id, :staff_id, :residance, :welcome_message, :first_receiving, :company_id, :purchase_package_id, :username, :password_text, :package_id, :package_discounted_price,:country_id, :city_id, :area_id, :sub_area_id, :house_no, :pon_no, :address, :remarks,:device_name, :serial_no, :model, :mac_address)
+      params.require(:customer).permit(:old_ref_no, :name, :father_name, :cnic, :mobile_primary, :mobile_secondary, :service_id, :staff_id, :residance, :welcome_message, :first_receiving, :company_id, :purchase_package_id, :username, :password_text, :package_id, :package_discounted_price,:country_id, :city_id, :area_id, :sub_area_id, :house_no, :pon_no, :address, :remarks,:device_name, :serial_no, :model, :mac_address, :internet_type_id)
     end
     
     def set_customer

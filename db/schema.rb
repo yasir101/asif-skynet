@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_08_191030) do
+ActiveRecord::Schema.define(version: 2022_10_16_133530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -194,15 +194,23 @@ ActiveRecord::Schema.define(version: 2022_10_08_191030) do
     t.string "serial_no"
     t.string "model"
     t.string "mac_address"
+    t.bigint "internet_type_id"
     t.index ["area_id"], name: "index_customers_on_area_id"
     t.index ["city_id"], name: "index_customers_on_city_id"
     t.index ["company_id"], name: "index_customers_on_company_id"
     t.index ["country_id"], name: "index_customers_on_country_id"
+    t.index ["internet_type_id"], name: "index_customers_on_internet_type_id"
     t.index ["package_id"], name: "index_customers_on_package_id"
     t.index ["purchase_package_id"], name: "index_customers_on_purchase_package_id"
     t.index ["service_id"], name: "index_customers_on_service_id"
     t.index ["staff_id"], name: "index_customers_on_staff_id"
     t.index ["sub_area_id"], name: "index_customers_on_sub_area_id"
+  end
+
+  create_table "internet_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "message_templates", force: :cascade do |t|
@@ -325,6 +333,7 @@ ActiveRecord::Schema.define(version: 2022_10_08_191030) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "amount_received", default: 0
+    t.integer "discount", default: 0
     t.index ["customer_id"], name: "index_receivings_on_customer_id"
     t.index ["receipt_book_id"], name: "index_receivings_on_receipt_book_id"
     t.index ["receipt_book_page_id"], name: "index_receivings_on_receipt_book_page_id"
