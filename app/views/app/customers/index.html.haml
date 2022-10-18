@@ -15,65 +15,48 @@
             .col-auto
               / Button
               = link_to 'New Customer', new_customer_path, class: "btn btn-outline-primary lift"    
-          / / .row
-          -# .row.align-items-center
-          -#   .col
-          -#     / Nav
-          -#     %ul.nav.nav-tabs.nav-overflow.header-tabs
-          -#       %li.nav-item
-          -#         %a.nav-link.active{:href => "#!"}
-          -#           All
-          -#           %span.badge.rounded-pill.bg-secondary-soft 823
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Pending
-          -#           %span.badge.rounded-pill.bg-secondary-soft 24
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Processing
-          -#           %span.badge.rounded-pill.bg-secondary-soft 3
-          -#       %li.nav-item
-          -#         %a.nav-link{:href => "#!"}
-          -#           Refunded
-          -#           %span.badge.rounded-pill.bg-secondary-soft 71
+          
       / Card
       .card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
         .card-header
           / Search
           = render "search", q: @q
           
-          / Dropdown
-          -# .dropdown
-          -#   %button#bulkActionDropdown.btn.btn-sm.btn-white.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", :type => "button"}
-          -#     Bulk action
-          -#   .dropdown-menu.dropdown-menu-end{"aria-labelledby" => "bulkActionDropdown"}
-          -#     %a.dropdown-item{:href => "#!"} Action
-          -#     %a.dropdown-item{:href => "#!"} Another action
-          -#     %a.dropdown-item{:href => "#!"} Something else here
+
         .table-responsive
-          %table.table.table-sm.table-nowrap.card-table
+          %table.table.table-sm.card-table
             - if @customers.any?
               %thead
                 %tr
                   %th #
-                  %th Old Reference No
+                  %th Old Ref No
                   %th Name
+                  %th Username
                   %th Mobile No
                   %th Area
                   %th Sub Area
+                  %th Comapny
+                  %th Package
+                  %th Service
+                  %th Staff
                   %th Action
               %tbody.list
                 - @customers.each.with_index(1) do |customer, index|
                   %tr
                     %td= index
-                    %td= customer.old_ref_no
-                    %td= customer.name
-                    %td= customer.mobile_primary
+                    %td= customer&.old_ref_no
+                    %td= customer&.name
+                    %td= customer&.username
+                    %td= customer&.mobile_primary
                     %td= customer&.area&.name
                     %td= customer&.sub_area&.name
+                    %td= customer&.company&.name
+                    %td= customer&.package&.name
+                    %td= get_service(customer)
+                    %td= customer&.staff&.full_name
                     %td.text-right
-                      = link_to 'View', customer_path(customer), class: "btn btn-outline-success btn-sm"
-                      = link_to 'Edit', edit_customer_path(customer), class: "btn btn-outline-info btn-sm"
+                      = link_to '<i class="fa fa-eye" title="View"></i>'.html_safe, customer_path(customer), class: "btn btn-outline-success btn-sm"
+                      = link_to '<i class="fa fa-edit" title="Edit"></i>'.html_safe, edit_customer_path(customer), class: "btn btn-outline-info btn-sm"
             - else
               = render 'shared/no_data'
   .row        
