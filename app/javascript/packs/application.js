@@ -10,6 +10,7 @@ import "channels";
 import "@fortawesome/fontawesome-free/js/all";
 import "chartkick/chart.js";
 
+
 require("jquery");
 require("bootstrap");
 require("chartkick");
@@ -23,6 +24,7 @@ window.$ = $;
 require("../packs/theme.min.js");
 require("../packs/jquery.mask.min.js");
 require("../packs/custome.js");
+require("../packs/customer.js");
 window.Noty = require("../packs/noty.js");
 
 $(document).on("turbolinks:load", function () {

@@ -11,6 +11,8 @@ $(document).on("turbolinks:load", function () {
     }
   }
   
+  
+
   $("#customer_service_id").on('change', function(){
     
     let service = $("#customer_service_id option:selected").text();
@@ -278,4 +280,3 @@ $(document).on("turbolinks:load", function () {
      
   });
 });
-
