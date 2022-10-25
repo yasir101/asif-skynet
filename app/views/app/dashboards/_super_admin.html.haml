@@ -17,6 +17,41 @@
           .row.align-items-center
             .col
               %h6.card-title.text-uppercase.text-muted.mb-2
+                Customers
+              %span.h2.mb-0
+                = Customer.count             
+            .col-auto
+              %img.icon-size{:alt => "...", :src => "/img/icons/customers.png"}
+    
+    .col-sm-3.col-md-3
+      .card.dashboard-style
+        .card-body
+          .row.align-items-center
+            .col
+              %h6.card-title.text-uppercase.text-muted.mb-2
+                Internet Customers
+              %span.h2.mb-0
+                = Service&.first&.customers&.count             
+            .col-auto
+              %img.icon-size{:alt => "...", :src => "/img/icons/internet.png"}      
+    
+    .col-sm-3.col-md-3
+      .card.dashboard-style
+        .card-body
+          .row.align-items-center
+            .col
+              %h6.card-title.text-uppercase.text-muted.mb-2
+                Cable Customers
+              %span.h2.mb-0
+                = Service&.second&.customers&.count             
+            .col-auto
+              %img.icon-size{:alt => "...", :src => "/img/icons/cable.png"}              
+    .col-sm-3.col-md-3
+      .card.dashboard-style
+        .card-body
+          .row.align-items-center
+            .col
+              %h6.card-title.text-uppercase.text-muted.mb-2
                 Staffs
               %span.h2.mb-0
                 = Staff.count             

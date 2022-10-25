@@ -15,6 +15,7 @@
           .form-group
             = form.label "Select Service"
             = form.collection_select :service_id, Service.all, :id, :name, {prompt: true, data: {action: "change->customer#handleChange"}}, class: "form-control", required: true    
+    
     %div.profile_fields
       .card-header
         %h1.header-title

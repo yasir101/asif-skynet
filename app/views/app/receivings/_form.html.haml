@@ -7,217 +7,220 @@
             = message
   -# = render "customer_search", form: form
   
-  - if customer
-    .row
-      .col-sm-6
-        .card.card-sm
+  .row
+    .col-sm-3
+      - if customer
+        / List group
+        .card
           .card-body
-            .row.pt-3
-              .col-sm-8
-                %h3.mb-0.text-muted
-                  Customer ID:
-              .col-auto
-                %h4= customer&.id
-      
-      .col-sm-6
-        .card.card-sm
-          .card-body
-            .row.pt-3
-              .col-sm-8
-                .h3.mb-0.text-muted
-                  Customer Old ID:
-              .col-auto
-                %h4= customer&.old_ref_no || 'N/A'
-    
-        
-    .row
-      .col-sm-6
-        .card.card-sm
-          .card-body
-            .row.pt-3
-              .col-sm-8
-                %h3.mb-0.text-muted
-                  Customer Name:
-              .col-auto
-                %h4= customer&.name                      
-      
-      .col-sm-6
-        .card.card-sm
-          .card-body
-            .row.pt-3
-              .col-sm-8
-                .h3.mb-0.text-muted
-                  Area:
-              .col-auto
-                %h4= customer&.area&.name
-          
-    .row
-      .col-sm-6
-        .card.card-sm
-          .card-body
-            .row.pt-3
-              .col-sm-8
-                .h3.mb-0.text-muted
-                  Sub Area:
-              .col-auto
-                %h4= customer&.sub_area&.name
-      
-      .col-sm-6
-        .card.card-sm
-          .card-body
-            .row.pt-3
-              .col-sm-8
-                .h3.mb-0.text-muted
-                  House #:
-              .col-auto
-                %h4= customer&.house_no  
-        
-    .row
-      .col-sm-6
-        .card.card-sm
-          .card-body
-            .row.pt-3
-              .col-sm-8
-                .h3.mb-0.text-muted
-                  Address:
-              .col-auto
-                %h4= customer&.address
-      
-      .col-sm-6
-        .card.card-sm
-          .card-body
-            .row.pt-3
-              .col-sm-8
-                .h3.mb-0.text-muted
-                  Pon No:
-              .col-auto
-                %h4= customer&.pon_no
-              
-        
-    .row 
-      .col-sm-6
-        .card.card-sm
-          .card-body
-            .row.pt-3
-              .col-sm-8
-                .h3.mb-0.text-muted
-                  Mobile:
-              .col-auto
-                %h4= customer&.mobile_primary
-
-      .col-sm-6
-        .card.card-sm
-          .card-body
-            .row.pt-3
-              .col-sm-8
-                .h3.mb-0.text-muted
-                  Company:
-              .col-auto
-                %h4= customer&.company&.name
-    
-    
-    .row
-      .col-sm-6
-        .card.card-sm
-          .card-body
-            .row.pt-3
-              .col-sm-8
-                .h3.mb-0.text-muted
-                  Customer Package:
-              .col-auto
-                %h4= customer&.package&.name                              
-      
-      .col-sm-6
-        .card.card-sm
-          .card-body
-            .row.pt-3
-              .col-sm-8
-                .h3.mb-0.text-muted
-                  Purchase Package:
-              .col-auto
-                %h4= customer&.purchase_package&.package_name
-    
-      .row
-        .col-sm-6
-          .card.card-sm
-            .card-body
-              .row.pt-3
-                .col-sm-8
-                  .h3.mb-0.text-muted
-                    Username:
-                .col-auto
-                  %h4= customer&.username
-                  
-        - if @customer&.service&.name == 'Internet'
-          .col-sm-6
-            .card.card-sm
-              .card-body
-                .row.pt-3
-                  .col-sm-8
-                    .h3.mb-0.text-muted
-                      Customer Type:
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Customer ID:
                   .col-auto
-                    %h4= customer&.internet_type&.name                      
-      
-    .row
-      .col-sm-6
-        .card.card-sm.bg-success-soft
-          .card-body
-            .row.pt-3
-              .col-sm-12.text-center
-                .mb-0.display-1
-                  = customer.get_package_price
-                  
-                    
+                    / Time
+                    %time.small.text-muted
+                      = customer&.id
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Customer Old ID:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.old_ref_no || 'N/A'
+            
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Customer Name:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.name
+            
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Area:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.area&.name
+            
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Sub Area:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.sub_area&.name
+            
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small House #:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.house_no  
+            
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Address:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.address
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Pon No:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.pon_no
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Mobile:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.mobile_primary
+            
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Company:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.company&.name
+            
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Customer Package:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.package&.name                              
+            
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Purchase Package:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.purchase_package&.package_name
+            
+            .list-group.list-group-flush
+              .list-group-item
+                .row.align-items-center
+                  .col
+                    / Title
+                    %small Username:
+                  .col-auto
+                    / Time
+                    %time.small.text-muted
+                      = customer&.username
+            - if @customer&.service&.name == 'Internet'
+              .list-group.list-group-flush
+                .list-group-item
+                  .row.align-items-center
+                    .col
+                      / Title
+                      %small Customer Type:
+                    .col-auto
+                      / Time
+                      %time.small.text-muted
+                        = customer&.internet_type&.name                      
+              
+            .list-group.list-group-flush
+              .list-group-item.bg-success-soft
+                .row.align-items-center
+                  .col.text-center
+                    .display-1
+                      = customer.get_package_price
+                      
+    .col-sm-9
         
-    .card
-      .card-header
-        .h2.mt-4
-          Receivng 
-      .card-body
-        .row    
-          .col-sm-12
-            .form-group
-              = form.label "Date"
-              = form.date_field :receiving_date, class: "form-control"
-        .row  
-          .col-sm-6
-            .form-group
-              = form.label "Receipt Book"
-              = form.collection_select :receipt_book_id, customer&.staff&.receipt_books&.where(status: "Assigned"), :id, :book_number, {prompt: true}, class: "form-control"
+      .card
+        .card-header
+          .h2.mt-4
+            Receivng 
+        .card-body
+          .row    
+            .col-sm-12
+              .form-group
+                = form.label "Date"
+                = form.date_field :receiving_date, class: "form-control"
+          .row  
+            .col-sm-6
+              .form-group
+                = form.label "Receipt Book"
+                = form.collection_select :receipt_book_id, customer&.staff&.receipt_books&.where(status: "Assigned"), :id, :book_number, {prompt: true}, class: "form-control"
+          
+            .col-sm-6
+              .form-group
+                = form.label "Receipt Book Pages"
+                = form.collection_select :receipt_book_page_id, ReceiptBookPage.all, :id, :page_no, {prompt: true}, class: "form-control"
+          
+          .row
+            .col-sm-6
+              .form-group
+                = form.label "Amount Received"
+                = form.number_field :amount_received, class: "form-control", placeholder: "Enter Received Amount"
+                = form.hidden_field :price, value: customer.get_package_price
+            .col-sm-6
+              .form-group
+                = form.label "Discount"
+                = form.number_field :discount, class: "form-control", placeholder: "Enter Discounted Amount"
+          .row
+            .col-sm-6
+              .form-group
+                = form.label "Staff Name"
+                = form.text_field :full_name, class: "form-control readonly_field", readonly: true, value: "#{customer&.staff&.full_name if customer&.staff&.present?}"
+                = form.hidden_field :staff_id, value: customer&.staff&.id           
+                = form.hidden_field :customer_id, value: customer&.id           
+            .col-sm-6
+              .form-group
+                = form.label "Remaining Due"
+                = form.text_field :balance, class: "form-control readonly_field", readonly: true, value: "" 
         
-          .col-sm-6
-            .form-group
-              = form.label "Receipt Book Pages"
-              = form.collection_select :receipt_book_page_id, ReceiptBookPage.all, :id, :page_no, {prompt: true}, class: "form-control"
-        
-        .row
-          .col-sm-6
-            .form-group
-              = form.label "Amount Received"
-              = form.number_field :amount_received, class: "form-control", placeholder: "Enter Received Amount"
-              = form.hidden_field :price, value: customer.get_package_price
-          .col-sm-6
-            .form-group
-              = form.label "Discount"
-              = form.number_field :discount, class: "form-control", placeholder: "Enter Discounted Amount"
-        .row
-          .col-sm-6
-            .form-group
-              = form.label "Staff Name"
-              = form.text_field :full_name, class: "form-control readonly_field", readonly: true, value: "#{customer&.staff&.full_name if customer&.staff&.present?}"
-              = form.hidden_field :staff_id, value: customer&.staff&.id           
-              = form.hidden_field :customer_id, value: customer&.id           
-          .col-sm-6
-            .form-group
-              = form.label "Remaining Due"
-              = form.text_field :balance, class: "form-control readonly_field", readonly: true, value: "" 
-      
-      .card-footer  
-        .actions
-          = form.submit class: "btn btn-primary"
+        .card-footer  
+          .actions
+            = form.submit class: "btn btn-primary"
       
     
-  - if customer&.receivings&.present?
-    = render 'customer_billing', customer: customer
+      - if customer&.receivings&.present?
+        = render 'customer_billing', customer: customer
   
