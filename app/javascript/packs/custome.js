@@ -4,11 +4,13 @@ $(document).on("turbolinks:load", function () {
   
   let url = window.location.pathname.split('/');
   let isEdit = url[url.length -1]
+  let id = url[url.length -2]
   if(isEdit === 'edit'){
     service = $("#customer_service_id option:selected").text();
     if(service === 'Internet'){
       $(".internet-type").show(); 
     }
+
   }
   
   

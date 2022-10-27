@@ -41,7 +41,7 @@ module App
     private
     
     def customer_params
-      params.require(:customer).permit(:old_ref_no, :name, :father_name, :cnic, :mobile_primary, :mobile_secondary, :service_id, :staff_id, :residance, :welcome_message, :first_receiving, :company_id, :purchase_package_id, :username, :password_text, :package_id, :package_discounted_price,:country_id, :city_id, :area_id, :sub_area_id, :house_no, :pon_no, :address, :remarks,:device_name, :serial_no, :model, :mac_address, :internet_type_id)
+      params.require(:customer).permit(:old_ref_no, :name, :father_name, :cnic, :mobile_primary, :mobile_secondary, :service_id, :staff_id, :residance, :welcome_message, :first_receiving, :company_id, :purchase_package_id, :username, :password_text, :package_id, :package_discounted_price,:country_id, :city_id, :area_id, :sub_area_id, :house_no, :pon_no, :address, :remarks,:device_name, :serial_no, :model, :mac_address, :internet_type_id, :joining_date, :username_expiry)
     end
     
     def set_customer

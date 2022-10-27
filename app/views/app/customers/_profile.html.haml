@@ -15,7 +15,13 @@
           .form-group
             = form.label "Select Service"
             = form.collection_select :service_id, Service.all, :id, :name, {prompt: true, data: {action: "change->customer#handleChange"}}, class: "form-control", required: true    
-    
+      
+      .row.internet-type
+        .col-sm-12
+          .form-group
+            = form.label "Select Internet Type"
+            = form.collection_select :internet_type_id, InternetType.all, :id, :name, { prompt: true }, class: "form-control"
+            
     %div.profile_fields
       .card-header
         %h1.header-title
@@ -42,28 +48,21 @@
               = form.text_field :father_name, class: "form-control", placeholder: "Enter Father Name", required: true
         
         .row  
-          .col-sm-12            
+          .col-sm-6            
             .form-group
               = form.label :cnic
               = form.text_field :cnic, class: "form-control", placeholder: "Enter Father Name", required: true
         
-        .row
           .col-sm-6 
             .form-group
               = form.label :mobile_primary
               = form.text_field :mobile_primary, class: "form-control", placeholder: "Enter Mobile (Primary)"
+        .row
           .col-sm-6 
             .form-group
               = form.label :mobile_secondary
               = form.text_field :mobile_secondary, class: "form-control", placeholder: "Enter Mobile (Secondary)"
                 
-        
-        .row.internet-type
-          .col-sm-12
-            .form-group
-              = form.label "Select Internet Type"
-              = form.collection_select :internet_type_id, InternetType.all, :id, :name, { prompt: true }, class: "form-control"
-        .row  
           .col-sm-6               
             .form-group
               = form.label "Residance"
@@ -90,7 +89,16 @@
             .form-group
               = form.label "Password"
               = form.text_field :password_text, class: "form-control", placeholder: "Enter Password", required: true      
-        
+          
+          .col-sm-6
+            .form-group
+              = form.label "Username Expiry"
+              = form.date_field :username_expiry, class: "form-control", required: "#{field_required(customer)}"
+          
+          .col-sm-6
+            .form-group
+              = form.label "Joined At"
+              = form.date_field :joining_date, class: "form-control", required: "#{field_required(customer)}"
         .row.purchase_package_field
           .col-sm-6
             .form-group
@@ -100,7 +108,7 @@
           .col-sm-6
             .form-group
               = form.label "Purchase Price"
-              = form.text_field :purchase_price, class: "form-control readonly_field", readonly: true
+              = form.text_field :purchase_price, class: "form-control readonly_field", readonly: true, value: "#{customer_purchase_package(customer)}"
         .row
           .col-sm-6                
             .form-group
@@ -110,7 +118,7 @@
           .col-sm-6                
             .form-group
               = form.label "Customer Package Price"
-              = form.text_field :package_price, class: "form-control readonly_field", readonly: true
+              = form.text_field :package_price, class: "form-control readonly_field", readonly: true, value: "#{customer_package(customer)}"
         
         .row
           .col-sm-6
