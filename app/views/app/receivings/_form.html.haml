@@ -8,171 +8,228 @@
   -# = render "customer_search", form: form
   
   .row
-    .col-sm-3
+    .col-sm-12
       - if customer
         / List group
-        .card
-          .card-body
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Customer ID:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.id
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Customer Old ID:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.old_ref_no || 'N/A'
-            
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Customer Name:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.name
-            
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Area:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.area&.name
-            
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Sub Area:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.sub_area&.name
-            
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small House #:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.house_no  
-            
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Address:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.address
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Pon No:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.pon_no
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Mobile:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.mobile_primary
-            
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Company:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.company&.name
-            
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Customer Package:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.package&.name                              
-            
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Purchase Package:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.purchase_package&.package_name
-            
-            .list-group.list-group-flush
-              .list-group-item
-                .row.align-items-center
-                  .col
-                    / Title
-                    %small Username:
-                  .col-auto
-                    / Time
-                    %time.small.text-muted
-                      = customer&.username
-            - if @customer&.service&.name == 'Internet'
-              .list-group.list-group-flush
-                .list-group-item
-                  .row.align-items-center
-                    .col
-                      / Title
-                      %small Customer Type:
-                    .col-auto
-                      / Time
-                      %time.small.text-muted
-                        = customer&.internet_type&.name                      
-              
-            .list-group.list-group-flush
-              .list-group-item.bg-success-soft
-                .row.align-items-center
-                  .col.text-center
-                    .display-1
-                      = customer.get_package_price
-                      
-    .col-sm-9
         
+        .row
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Customer ID:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.id
+              
+          .col-6            
+            .card.custom-card
+              .card-body.custom-card-body
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Customer Old ID:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.old_ref_no || 'N/A'
+          
+        .row
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body         
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Customer Name:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.name
+              
+          .col-6  
+            .card.custom-card
+              .card-body.custom-card-body
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Area:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.area&.name
+        
+        .row
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Sub Area:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.sub_area&.name
+                
+                      
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body      
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small House #:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.house_no  
+        
+        .row
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body      
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Address:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.address
+                      
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body                           
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Pon No:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.pon_no
+        .row
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body                           
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Mobile:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.mobile_primary
+                
+                                  
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body                           
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Company:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.company&.name
+                
+        .row
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body                           
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Customer Package:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.package&.name                              
+                    
+          .col-6      
+            .card.custom-card
+              .card-body.custom-card-body                           
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Purchase Package:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.purchase_package&.package_name
+                
+        .row
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body                           
+                .list-group.list-group-flush
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Username:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = customer&.username        
+          .col-6      
+            .card.custom-card
+              .card-body.custom-card-body
+                - if @customer&.service&.name == 'Internet'
+                  .list-group.list-group-flush
+                    .list-group-item
+                      .row.align-items-center
+                        .col
+                          / Title
+                          %small Customer Type:
+                        .col-auto
+                          / Time
+                          %time.small.text-muted
+                            = customer&.internet_type&.name                      
+            
+        .row
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body                           
+                .list-group.list-group-flush
+                  .list-group-item.bg-success-soft
+                    .row.align-items-center
+                      .col.text-center
+                        .display-1
+                          = customer.get_package_price
+                        
+                                              
+  .row.mt-5                    
+    .col-sm-12        
       .card
         .card-header
           .h2.mt-4
