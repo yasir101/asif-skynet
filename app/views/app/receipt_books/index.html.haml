@@ -74,7 +74,7 @@
                     %td= book.from
                     %td= book.to
                     %td= book.receipt_book_pages.count
-                    %td= book.receipt_book_pages.map {|c| c.amount.zero?}.count(true)
+                    %td= book.receipt_book_pages.map {|c| c&.amount&.zero?}.count(true)
                     %td= book.receipt_book_pages.sum(:amount)
                     %td= book.status
                     %td.text-right
