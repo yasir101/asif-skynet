@@ -42,7 +42,7 @@
                   %th Action
               %tbody.list
                 - @customers.each.with_index(1) do |customer, index|
-                  %tr{class: "#{customer&.subscriptions&.last&.status ? 'active_subscription' : 'expire_subscription'}"}
+                  %tr{class: "#{get_subscription_bg(customer)}"}
                     %td= index
                     %td= customer&.old_ref_no
                     %td= customer&.name
