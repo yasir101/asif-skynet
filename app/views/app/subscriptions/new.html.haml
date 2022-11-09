@@ -1,0 +1,20 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h6.header-pretitle
+            Overview
+          %h1.header-title
+            New Subscription
+              
+
+.container-fluid
+  .row
+    .col-sm-3
+      = render "/app/customers/profile_view", customer: @customer
+      = render "/app/customers/package_view", customer: @customer
+    .col-sm-9     
+      = render 'form', subscription: @subscription, customer: @customer
+  

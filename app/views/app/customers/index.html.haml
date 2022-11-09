@@ -28,21 +28,21 @@
             - if @customers.any?
               %thead
                 %tr
-                  %th #
-                  %th Old Ref No
-                  %th Name
-                  %th Username
-                  %th Mobile No
-                  %th Area
-                  %th Sub Area
-                  %th Comapny
-                  %th Package
+                  %th= sort_link(@q, :id, "#", default_order: :asc)
+                  %th= sort_link(@q, :old_ref_no, "Old Ref No", default_order: :asc)
+                  %th= sort_link(@q, :name, "Name", default_order: :asc)
+                  %th= sort_link(@q, :username, "Username", default_order: :asc)
+                  %th= sort_link(@q, :mobile_primary, "Mobile Primary", default_order: :asc)
+                  %th= sort_link(@q, :area.name, "Area", default_order: :asc)
+                  %th= sort_link(@q, :sub_area.name, "Sub Area", default_order: :asc)
+                  %th= sort_link(@q, :company.name, "Company", default_order: :asc)
+                  %th= sort_link(@q, :package.name, "Package", default_order: :asc)
                   %th Service
-                  %th Staff
+                  %th= sort_link(@q, :staff.name, "Staff", default_order: :asc)
                   %th Action
               %tbody.list
                 - @customers.each.with_index(1) do |customer, index|
-                  %tr
+                  %tr{class: "#{customer&.subscriptions&.last&.status ? 'active_subscription' : 'expire_subscription'}"}
                     %td= index
                     %td= customer&.old_ref_no
                     %td= customer&.name
@@ -55,8 +55,10 @@
                     %td= get_service(customer)
                     %td= customer&.staff&.full_name
                     %td.text-right
-                      = link_to '<i class="fa fa-eye" title="View"></i>'.html_safe, customer_path(customer), class: "btn btn-outline-success btn-sm"
-                      = link_to '<i class="fa fa-edit" title="Edit"></i>'.html_safe, edit_customer_path(customer), class: "btn btn-outline-info btn-sm"
+                      = link_to '<i class="fa fa-thin fa-rocket" title="Subscription"></i>'.html_safe, customer_subscriptions_path(customer), class: "btn btn-outline-success btn-sm lift"
+                      = link_to '<i class="fa fa-eye" title="View"></i>'.html_safe, customer_path(customer), class: "btn btn-outline-success btn-sm lift"
+                      = link_to '<i class="fa fa-edit" title="Edit"></i>'.html_safe, edit_customer_path(customer), class: "btn btn-outline-info btn-sm lift"
+                      = link_to '<i class="fa fa-cog" title="Settings"></i>'.html_safe, settings_customer_path(customer), class: "btn btn-outline-dark btn-sm lift"
             - else
               = render 'shared/no_data'
   .row        

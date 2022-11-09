@@ -109,17 +109,6 @@ ActiveRecord::Schema.define(version: 2022_10_25_190249) do
     t.index ["sub_area_id"], name: "index_customer_areas_on_sub_area_id"
   end
 
-  create_table "customer_billing_infos", force: :cascade do |t|
-    t.bigint "customer_id"
-    t.string "billing_type"
-    t.date "billing_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "days"
-    t.date "promise_date"
-    t.index ["customer_id"], name: "index_customer_billing_infos_on_customer_id"
-  end
-
   create_table "customer_device_infos", force: :cascade do |t|
     t.bigint "customer_id"
     t.string "device_name"
@@ -340,22 +329,6 @@ ActiveRecord::Schema.define(version: 2022_10_25_190249) do
     t.index ["receipt_book_id"], name: "index_receivings_on_receipt_book_id"
     t.index ["receipt_book_page_id"], name: "index_receivings_on_receipt_book_page_id"
     t.index ["staff_id"], name: "index_receivings_on_staff_id"
-  end
-
-  create_table "recevings", force: :cascade do |t|
-    t.bigint "customer_id"
-    t.bigint "staff_id"
-    t.integer "amount"
-    t.string "service"
-    t.bigint "receipt_book_id"
-    t.bigint "receipt_book_page_id"
-    t.integer "balance"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id"], name: "index_recevings_on_customer_id"
-    t.index ["receipt_book_id"], name: "index_recevings_on_receipt_book_id"
-    t.index ["receipt_book_page_id"], name: "index_recevings_on_receipt_book_page_id"
-    t.index ["staff_id"], name: "index_recevings_on_staff_id"
   end
 
   create_table "roles", force: :cascade do |t|

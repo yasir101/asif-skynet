@@ -1,0 +1,104 @@
+
+.header
+  .container-fluid
+    .header-body
+      .row.align-items-end
+        .col
+          %h6.header-pretitle
+            Overview
+          %h1.header-title
+            Customer Settings
+              
+
+.container-fluid   
+  .row.justify-content-center
+    .col-12.col-lg-10.col-xl-8
+      
+      .row
+        .col-sm-4 
+          = render "/app/customers/profile_view", customer: @customer
+        .col-sm-8
+          .card.customer-data-download
+            .card-header
+              %h1.header-title
+                Export Customer Data
+            .card-body
+              .row.align-items-center
+                .col
+                  %h2.mb-0
+                    Profile                  
+                .col-auto
+                  = link_to 'PDF', '#', class: "btn btn-outline-warning btn-sm lift"         
+                  = link_to 'Excel', '#', class: "btn btn-outline-success btn-sm lift"
+              
+              %hr
+              .row.align-items-center
+                .col
+                  %h2.mb-0
+                    Billings                  
+                .col-auto
+                  = link_to 'PDF', '#', class: "btn btn-outline-warning btn-sm lift"         
+                  = link_to 'Excel', '#', class: "btn btn-outline-success btn-sm lift"
+              
+              %hr                   
+              .row.align-items-center
+                .col
+                  %h2.mb-0
+                    Subscriptions                  
+                .col-auto
+                  = link_to 'PDF', '#', class: "btn btn-outline-warning btn-sm lift"         
+                  = link_to 'Excel', '#', class: "btn btn-outline-success btn-sm lift"
+              
+              %hr                   
+              .row.align-items-center
+                .col
+                  %h2.mb-0
+                    All                  
+                .col-auto
+                  = link_to 'PDF', '#', class: "btn btn-outline-warning btn-sm lift"         
+                  = link_to 'Excel', '#', class: "btn btn-outline-success btn-sm lift"
+                   
+      .card.danger-zone-border
+        .card-header
+          %h1.header-title
+            Danger Zone
+        .card-body
+          .row.align-items-center
+            .col
+              %h2.mb-0
+                Expire Subscrption
+              %span.text-muted
+                Forcefully Expire Subscription                  
+            .col-auto
+              = link_to 'Expire Subscription', '#', class: "btn btn-outline-danger btn-lg lift"
+          
+          %hr
+          
+          .row.align-items-center
+            .col
+              %h2.mb-0
+                Remove Username
+              %span.text-muted
+                Remove username of this Customer
+            .col-auto
+              = link_to 'Remove Username', '#', class: "btn btn-outline-danger btn-lg lift"
+         
+          %hr
+            
+            .row.align-items-center
+              .col
+                %h2.mb-0
+                  Deactivate Customer
+              .col-auto
+                = link_to 'Deactivate', '#', class: "btn btn-outline-danger btn-lg lift"
+         
+          %hr
+            
+            .row.align-items-center
+              .col
+                %h2.mb-0
+                  Delete Customer
+                %span.text-muted
+                  This will permanantly delete customer with all its data.  
+              .col-auto
+                = link_to 'Delete', '#', class: "btn btn-outline-danger btn-lg lift"                  

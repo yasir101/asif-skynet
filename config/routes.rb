@@ -74,11 +74,7 @@ Rails.application.routes.draw do
     resources :message_templates
     resources :messages
     resources :companies
-    # resources :company_packages do
-    #   collection do
-    #     get :package_list
-    #   end
-    # end
+
     resources :purchase_packages do
       collection do
         get :purchase_packages_list
@@ -94,7 +90,12 @@ Rails.application.routes.draw do
       collection do
         get :check_username
       end
+      member do
+        get :settings
+      end
+      resources :subscriptions
     end
+    
     resources :receivings do
       collection do
         get :search_customer

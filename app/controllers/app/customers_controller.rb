@@ -1,6 +1,6 @@
 module App
   class CustomersController < ApplicationController
-    before_action :set_customer, only: %i[edit update show]
+    before_action :set_customer, only: %i[edit update show settings]
     
     def index
       @q = Customer.ransack(params[:q])
@@ -37,6 +37,8 @@ module App
         username: params['username']).any?
       render json: { data: username }
     end
+    
+    def settings; end
     
     private
     

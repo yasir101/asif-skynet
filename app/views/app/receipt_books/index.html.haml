@@ -55,11 +55,11 @@
             - if @receipt_books.any?
               %thead
                 %tr
-                  %th Book Number
+                  %th=sort_link(@q, :book_number, "Book Number", default_order: :asc)
                   %th Staff Name
-                  %th Issue Date
-                  %th From
-                  %th To
+                  %th=sort_link(@q, :issue_date, "Issue Date", default_order: :asc)
+                  %th=sort_link(@q, :from, "From", default_order: :asc)
+                  %th=sort_link(@q, :to, "To", default_order: :asc)
                   %th Total Pages
                   %th Blank Pages
                   %th Collection

@@ -20,11 +20,22 @@ import $ from "jquery";
 window.jQuery = $;
 window.$ = $;
 
+let url = window.location.pathname.split('/');
+let urlParam = url[url.length -2]
+
 // Add custom files here
 require("../packs/theme.min.js");
 require("../packs/jquery.mask.min.js");
 require("../packs/custome.js");
 require("../packs/customer.js");
+
+if(urlParam === 'receipt_books'){
+  require("../packs/receipt_book.js");
+}
+
+if(urlParam === 'subscriptions'){
+  require("../packs/subscription.js");
+}
 window.Noty = require("../packs/noty.js");
 
 $(document).on("turbolinks:load", function () {

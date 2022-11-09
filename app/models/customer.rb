@@ -10,7 +10,9 @@ class Customer < ApplicationRecord
   belongs_to :staff, optional: true  
   belongs_to :internet_type, optional: true
   
+  has_many :subscriptions
   has_many :receivings
+  
   after_create :sent_welcome_message
 
   def sent_welcome_message

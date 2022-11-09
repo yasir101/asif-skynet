@@ -12,4 +12,8 @@ module ApplicationHelper
        "Cable"
     end
   end
+  
+  def subscription_status(val)
+    val == true ? 'Active' : 'Expired'
+  end
 end

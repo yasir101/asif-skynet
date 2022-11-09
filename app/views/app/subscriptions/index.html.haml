@@ -1,0 +1,58 @@
+.container-fluid
+  .row.justify-content-center
+    .col-12
+      / Header
+      .header
+        .header-body
+          .row.align-items-center
+            .col
+              / Pretitle
+              %h6.header-pretitle
+                Overview
+              / Title
+              %h1.header-title
+                = "#{@customer.name} Subscriptions" 
+            .col-auto
+              / Button
+              - if @customer&.subscriptions&.last&.status == false
+                = link_to 'New Subscription', new_customer_subscription_path(@customer), class: "btn btn-outline-primary lift"    
+          
+      / Card
+      .card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
+        .card-header
+          / Search
+          -# = render "search", q: @q
+          
+
+        .table-responsive
+          %table.table.table-sm.card-table
+            - if @subscriptions.any?
+              %thead
+                %tr
+                  %th= sort_link(@q, :id, "#", default_order: :asc)
+                  %th Month
+                  %th= sort_link(@q, :subscription_type, "Subscription Type", default_order: :asc)
+                  %th= sort_link(@q, :start_date, "Start Date", default_order: :asc)
+                  %th= sort_link(@q, :expiry_date, "Expiry Date", default_order: :asc)
+                  %th= sort_link(@q, :no_of_days, "No of Days", default_order: :asc)
+                  %th= sort_link(@q, :status, "Status", default_order: :asc)
+                  %th= sort_link(@q, :profit, "Profit", default_order: :asc)
+              %tbody.list
+                - @subscriptions.each.with_index(1) do |subscription, index|
+                  %tr
+                    %td= index
+                    %td= subscription&.created_at.strftime("%B")
+                    %td= subscription&.subscription_type
+                    %td= subscription&.start_date
+                    %td= subscription&.expiry_date
+                    %td= subscription&.no_of_days
+                    %td= subscription_status(subscription&.status)
+                    %td= subscription&.profit
+                    %td.text-right
+                      -# = link_to '<i class="fa fa-thin fa-rocket" title="Subscription"></i>'.html_safe, customer_subscriptions_path(customer), class: "btn btn-outline-success btn-sm"
+                      -# = link_to '<i class="fa fa-eye" title="View"></i>'.html_safe, customer_path(customer), class: "btn btn-outline-success btn-sm"
+                      -# = link_to '<i class="fa fa-edit" title="Edit"></i>'.html_safe, edit_customer_path(customer), class: "btn btn-outline-info btn-sm"
+            - else
+              = render 'shared/no_data'
+  .row        
+    -# = paginate @subscriptions     

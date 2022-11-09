@@ -1,0 +1,30 @@
+= form_with(model: [customer, subscription]) do |form|
+  - if subscription.errors.any?
+    #error_explanation  
+      - subscription.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .card
+    .card-body    
+      .form-group
+        = form.label 'Subscription Type'
+        = form.select :subscription_type, [["Day", "Day"], ["Month", "Month"]], {prompt: "Select Type"}, { class: 'form-control'}            
+      
+      .form-group.hide_start_date
+        = form.label :start_date
+        = form.date_field :start_date, class: "form-control"
+      
+      .form-group.hide_no_of_days
+        = form.label 'No of Days'
+        = form.number_field :no_of_days, class: "form-control"
+        
+      .form-group.hide_end_date
+        = form.label :expiry_date
+        = form.date_field :expiry_date, class: "form-control"
+      
+      .form-group
+        = form.hidden_field :status, value: true
+        = form.hidden_field :profit, value: get_profit(customer)  
+  .actions
+    = form.submit class: "btn btn-primary"
