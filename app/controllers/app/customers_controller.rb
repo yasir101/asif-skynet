@@ -4,7 +4,7 @@ module App
     
     def index
       @q = Customer.ransack(params[:q])
-      @customers = @q.result.page(params[:page]).per(25)  
+      filtered_customers(params['filter'], @q) if params['filter'].present?
     end
     
     def new
@@ -40,6 +40,18 @@ module App
     
     def settings; end
     
+    def export_profile
+      @customer = Customer.find_by(id: params['id'])
+      respond_to do |format|
+        format.xlsx {
+          response.headers[
+            'Content-Disposition'
+          ] = "attachment; filename=customer_profile.xlsx"
+        }
+        format.html { render :export_profile }
+      end
+    end
+    
     private
     
     def customer_params
@@ -48,6 +60,13 @@ module App
     
     def set_customer
       @customer = Customer.find_by(id: params['id'])
+    end
+    
+    def filtered_customers(filter, q)
+      @customers = q.result.page(params[:page]).per(25) if filter == 'a' 
+      @customers = q.result.new_customer.page(params[:page]).per(25) if filter == 'nc' 
+      @customers = q.result.subscribed_customer.page(params[:page]).per(25) if filter == 'sc' 
+      @customers = q.result.expired_subscriptioned_customer.page(params[:page]).per(25) if filter == 'exc' 
     end
   end
 end

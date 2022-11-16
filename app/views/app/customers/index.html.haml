@@ -12,10 +12,19 @@
               / Title
               %h1.header-title
                 Customers
+              %ul.nav.nav-tabs.nav-overflow.header-tabs
+                %li.nav-item
+                  = link_to 'All Customers', "#{customers_path}?filter=a", class: "nav-link text-nowrap #{'active' if (params['filter'] == 'a')}" 
+                %li.nav-item
+                  = link_to 'New Customers', "#{customers_path}?filter=nc", class: "nav-link text-nowrap #{'active' if (params['filter'] == 'nc')}"
+                %li.nav-item
+                  = link_to 'Subscribed', "#{customers_path}?filter=sc", class: "nav-link text-nowrap #{'active' if (params['filter'] == 'sc')}"  
+                %li.nav-item
+                  = link_to 'Expired', "#{customers_path}?filter=exc", class: "nav-link text-nowrap #{'active' if (params['filter'] == 'exc')}"
+                
             .col-auto
               / Button
               = link_to 'New Customer', new_customer_path, class: "btn btn-outline-primary lift"    
-          
       / Card
       .card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
         .card-header

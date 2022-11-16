@@ -89,6 +89,7 @@ Rails.application.routes.draw do
     resources :customers do 
       collection do
         get :check_username
+        get :export_profile
       end
       member do
         get :settings

@@ -11,7 +11,7 @@
     #sidebarCustomer.collapse{class: ("show" if request.fullpath.include?('app/customers') )}
       %ul.nav.nav-sm.flex-column
         %li.nav-item
-          = active_link_to customers_path, class: "nav-link" do
+          = active_link_to "#{customers_path}?filter=a", class: "nav-link" do
             Customers                                 
   %li.nav-item
     %a.nav-link{"aria-controls" => "sidebarReceiving", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarReceiving", role: "button"}
