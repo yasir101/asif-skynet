@@ -14,7 +14,7 @@
                 = "#{@customer.name} Subscriptions" 
             .col-auto
               / Button
-              - if @customer&.subscriptions&.count == 0 || @customer&.subscriptions&.last&.status == false
+              - if @customer&.subscriptions&.count == 0 || @customer&.subscriptions&.last&.expired!
                 = link_to 'New Subscription', new_customer_subscription_path(@customer), class: "btn btn-outline-primary lift"    
           
       / Card

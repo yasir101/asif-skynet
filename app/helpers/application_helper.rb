@@ -14,6 +14,7 @@ module ApplicationHelper
   end
   
   def subscription_status(val)
-    val == true ? 'Active' : 'Expired'
+    return 'Expired' if val == 'expired'
+    return 'Active' if val == 'subscribed'
   end
 end

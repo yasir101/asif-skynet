@@ -21,10 +21,12 @@
                   = link_to 'Subscribed', "#{customers_path}?filter=sc", class: "nav-link text-nowrap #{'active' if (params['filter'] == 'sc')}"  
                 %li.nav-item
                   = link_to 'Expired', "#{customers_path}?filter=exc", class: "nav-link text-nowrap #{'active' if (params['filter'] == 'exc')}"
-                
+                %li.nav-item
+                  = link_to 'Deactivated', "#{customers_path}?filter=d", class: "nav-link text-nowrap #{'active' if (params['filter'] == 'd')}"
             .col-auto
               / Button
               = link_to 'New Customer', new_customer_path, class: "btn btn-outline-primary lift"    
+        
       / Card
       .card{"data-list" => "{\"valueNames\": [\"orders-order\", \"orders-product\", \"orders-date\", \"orders-total\", \"orders-status\", \"orders-method\"]}"}
         .card-header

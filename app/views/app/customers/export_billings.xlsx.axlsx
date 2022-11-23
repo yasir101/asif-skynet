@@ -1,0 +1,21 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  heading = style.add_style(b: true)
+  
+  wb.add_worksheet(name: "Customer") do |sheet|
+    sheet.add_row ["Downloaded At", Time.now.strftime("%b %-d, %Y")]
+    sheet.add_row []
+    sheet.add_row ["ID","Old Ref No","Name","Father Name","CNIC","Mobile Primary","Mobile Secondary","Residance","Service","Internet Type","Company","Username","Password","Username Expiry","Join At","Purchase Package","Purchase Package Price","Customer Package","Customer Package Price","Customer Package Discounted Price","Area","Sub Area","House No","PON No","Address","Remarks","Device Name","Serial No","Model","Mac Address","Assign To Staff" ], style: heading
+    
+    sheet.add_row []
+    sheet.add_row [@customer.id,@customer.old_ref_no,@customer.name,@customer.father_name,@customer.cnic,@customer.mobile_primary,@customer.mobile_secondary,@customer.residance,@customer.service.name,@customer.internet_type.name,@customer.company.name,@customer.username,@customer.password_text,@customer.joining_date,@customer.username_expiry,@customer.purchase_package.package_name,@customer.purchase_package.purchase_price,@customer.package.name,@customer.package.price,@customer.package_discounted_price,@customer.area.name,@customer.sub_area.name,@customer.house_no,@customer.pon_no,@customer.address,@customer.remarks,@customer.device_name,@customer.serial_no,@customer.model,@customer.mac_address,@customer.staff.full_name]    
+    
+    sheet.add_row []
+    sheet.add_row []
+    sheet.add_row ["Billings"], style: heading
+    sheet.add_row []
+    sheet.add_row ["Month", "Receiving Date", "Amount", "Received Amount", "Balance", "Receipt Book No", "Receipt Book Page No"]
+    
+  end
+end

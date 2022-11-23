@@ -37,8 +37,7 @@
                   %h2.mb-0
                     Billings                  
                 .col-auto
-                  = link_to 'PDF', '#', class: "btn btn-outline-warning btn-sm lift"         
-                  = link_to 'Excel', '#', class: "btn btn-outline-success btn-sm lift"
+                  = link_to 'Excel', "#{export_billings_customers_path(format: :xlsx)}?id=#{@customer.id}", class: "btn btn-outline-success btn-sm lift"
               
               %hr                   
               .row.align-items-center
@@ -46,7 +45,6 @@
                   %h2.mb-0
                     Subscriptions                  
                 .col-auto
-                  = link_to 'PDF', '#', class: "btn btn-outline-warning btn-sm lift"         
                   = link_to 'Excel', '#', class: "btn btn-outline-success btn-sm lift"
               
               %hr                   
@@ -55,7 +53,6 @@
                   %h2.mb-0
                     All                  
                 .col-auto
-                  = link_to 'PDF', '#', class: "btn btn-outline-warning btn-sm lift"         
                   = link_to 'Excel', '#', class: "btn btn-outline-success btn-sm lift"
                    
       .card.danger-zone-border
@@ -70,8 +67,10 @@
               %span.text-muted
                 Forcefully Expire Subscription                  
             .col-auto
-              = link_to 'Expire Subscription', '#', class: "btn btn-outline-danger btn-lg lift"
-          
+              - if @customer.subscriptions.any? && @customer.subscriptions.last.status
+                = link_to 'Expire Subscription', expire_customer_subscriptions_path(@customer.id), class: "btn btn-outline-danger btn-lg lift",  data: {confirm: 'Are you sure to expire subscription?'}
+              - else
+                = link_to 'Expire Subscription', "#", class: "btn btn-outline-danger btn-lg lift", disabled: true
           %hr
           
           .row.align-items-center
@@ -90,8 +89,11 @@
                 %h2.mb-0
                   Deactivate Customer
               .col-auto
-                = link_to 'Deactivate', '#', class: "btn btn-outline-danger btn-lg lift"
-         
+                - if @customer.status
+                  = link_to 'Deactivate', deactivate_customer_path(@customer.id), class: "btn btn-outline-danger btn-lg lift",  data: {confirm: 'Are you sure to deactivate customer?'}
+                - else 
+                  = link_to 'Activate', activate_customer_path(@customer.id), class: "btn btn-success btn-lg lift",  data: {confirm: 'Are you sure to activate customer?'}
+                  
           %hr
             
             .row.align-items-center

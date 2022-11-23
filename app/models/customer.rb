@@ -13,9 +13,11 @@ class Customer < ApplicationRecord
   has_many :subscriptions
   has_many :receivings
   
-  scope :new_customer, -> { where("created_at >= ?", 1.week.ago.utc) }
-  scope :subscribed_customer, -> { joins(:subscriptions).where(subscriptions: {status: true}) }
-  scope :expired_subscriptioned_customer, -> { joins(:subscriptions).where(subscriptions: {status: false}) }
+  scope :status, -> { where(status: true) } 
+  scope :deactivated, -> { where(status: false) }
+  scope :new_customer, -> { where("created_at >= ?", 1.month.ago.utc) }
+  scope :subscribed_customer, -> { joins(:subscriptions).where(subscriptions: {status: :subscribed}) }
+  scope :expired_subscriptioned_customer, -> { joins(:subscriptions).where(subscriptions: {status: :expired}) }
   
   after_create :sent_welcome_message
 

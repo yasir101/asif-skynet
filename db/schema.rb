@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_25_190249) do
+ActiveRecord::Schema.define(version: 2022_11_21_161259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,6 +186,7 @@ ActiveRecord::Schema.define(version: 2022_10_25_190249) do
     t.bigint "internet_type_id"
     t.date "username_expiry"
     t.date "joining_date"
+    t.boolean "status", default: true
     t.index ["area_id"], name: "index_customers_on_area_id"
     t.index ["city_id"], name: "index_customers_on_city_id"
     t.index ["company_id"], name: "index_customers_on_company_id"
@@ -393,11 +394,11 @@ ActiveRecord::Schema.define(version: 2022_10_25_190249) do
     t.date "expiry_date"
     t.string "subscription_type"
     t.integer "no_of_days", default: 0
-    t.boolean "status", default: false
     t.boolean "renew", default: false
     t.integer "profit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0
     t.index ["customer_id"], name: "index_subscriptions_on_customer_id"
   end
 

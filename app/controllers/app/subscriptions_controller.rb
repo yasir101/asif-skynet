@@ -1,10 +1,10 @@
 module App
   class SubscriptionsController < ApplicationController
-    before_action :set_customer, only: %i[index new create]
+    before_action :set_customer, only: %i[index new create expire]
     
     def index
       @q = @customer.subscriptions.ransack(params[:q])
-      @subscriptions = @q.result.page(params[:page]).per(10)
+      @subscriptions = @q.result.order(created_at: :desc).page(params[:page]).per(10)
     end
     
     def new
@@ -14,7 +14,11 @@ module App
     def create
       @subscription = @customer.subscriptions.create(subscription_params)
       redirect_to customer_subscriptions_path(@customer.id), notice: 'Package was successfully Subscribed'
-      
+    end
+    
+    def expire
+      @customer.subscriptions.last.update(status: 'expired')
+      redirect_to settings_customer_path(@customer.id), notice: 'Subscription was expired successfully.'
     end
     
     private

@@ -90,11 +90,18 @@ Rails.application.routes.draw do
       collection do
         get :check_username
         get :export_profile
+        get :export_billings
       end
       member do
         get :settings
+        get :deactivate
+        get :activate
       end
-      resources :subscriptions
+      resources :subscriptions do
+        collection do
+          get :expire
+        end
+      end
     end
     
     resources :receivings do
