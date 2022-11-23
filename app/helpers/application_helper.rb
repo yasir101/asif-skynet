@@ -14,7 +14,7 @@ module ApplicationHelper
   end
   
   def subscription_status(val)
-    return 'Expired' if val == 'expired'
-    return 'Active' if val == 'subscribed'
+    return '<span class="text-danger">Expired</span>'.html_safe if val == 'expired'
+    return '<span class="text-success">Active</span>'.html_safe if val == 'subscribed'
   end
 end

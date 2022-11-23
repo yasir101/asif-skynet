@@ -14,9 +14,9 @@ module App::CustomersHelper
   def get_subscription_bg(customer)
     if customer&.subscriptions&.count&.zero?
       'transparent_subscription'
-    elsif customer&.subscriptions&.last&.subscribed!
+    elsif customer&.subscriptions&.last&.subscribed?
       'active_subscription'
-    elsif customer&.subscriptions&.last&.expired!
+    elsif customer&.subscriptions&.last&.expired?
       'expire_subscription'    
     end
   end

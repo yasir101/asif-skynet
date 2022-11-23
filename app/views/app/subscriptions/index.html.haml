@@ -14,7 +14,7 @@
                 = "#{@customer.name} Subscriptions" 
             .col-auto
               / Button
-              - if @customer&.subscriptions&.count == 0 || @customer&.subscriptions&.last&.expired!
+              - if @customer&.subscriptions&.count == 0 || @customer&.subscriptions&.last&.expired?
                 = link_to 'New Subscription', new_customer_subscription_path(@customer), class: "btn btn-outline-primary lift"    
           
       / Card
@@ -40,7 +40,7 @@
               %tbody.list
                 - @subscriptions.each.with_index(1) do |subscription, index|
                   %tr
-                    %td= index
+                    %td= subscription.id
                     %td= subscription&.created_at.strftime("%B")
                     %td= subscription&.subscription_type
                     %td= subscription&.start_date

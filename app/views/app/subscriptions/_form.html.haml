@@ -25,6 +25,6 @@
       
       .form-group
         = form.hidden_field :status, value: 'subscribed'
-        = form.hidden_field :profit, value: get_profit(customer)  
+        = form.hidden_field :profit, value: "#{get_profit(customer) < 0 ? 0 : get_profit(customer)}"
   .actions
     = form.submit class: "btn btn-primary"

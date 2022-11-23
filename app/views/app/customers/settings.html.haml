@@ -67,8 +67,8 @@
               %span.text-muted
                 Forcefully Expire Subscription                  
             .col-auto
-              - if @customer.subscriptions.any? && @customer.subscriptions.last.status
-                = link_to 'Expire Subscription', expire_customer_subscriptions_path(@customer.id), class: "btn btn-outline-danger btn-lg lift",  data: {confirm: 'Are you sure to expire subscription?'}
+              - if @customer.subscriptions.any? && @customer.subscriptions.last.subscribed?
+                = link_to 'Expire Subscription', expire_customer_subscriptions_path(@customer.id), class: "btn btn-danger btn-lg lift",  data: {confirm: 'Are you sure to expire subscription?'}
               - else
                 = link_to 'Expire Subscription', "#", class: "btn btn-outline-danger btn-lg lift", disabled: true
           %hr

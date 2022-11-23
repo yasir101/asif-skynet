@@ -17,7 +17,8 @@ module App
     end
     
     def expire
-      @customer.subscriptions.last.update(status: 'expired')
+      subscription = @customer.subscriptions.last
+      subscription.update_attribute(:status, 'expired')
       redirect_to settings_customer_path(@customer.id), notice: 'Subscription was expired successfully.'
     end
     

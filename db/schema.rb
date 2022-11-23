@@ -398,7 +398,7 @@ ActiveRecord::Schema.define(version: 2022_11_21_161259) do
     t.integer "profit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status", default: 0
+    t.integer "status"
     t.index ["customer_id"], name: "index_subscriptions_on_customer_id"
   end
 
