@@ -1,6 +1,4 @@
 $(document).on('turbolinks:load', function(){
-
-const moment = require("moment");
   
 let url = window.location.pathname.split('/');
 let urlParam = url[url.length -1]
