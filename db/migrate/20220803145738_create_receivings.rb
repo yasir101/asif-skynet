@@ -9,6 +9,8 @@ class CreateReceivings < ActiveRecord::Migration[6.1]
       t.references :receipt_book_page
       t.date :receiving_date
       t.integer :balance, default: 0
+      t.integer :discount, default: 0
+      t.integer :amount_received, default: 0
       t.timestamps
     end
   end

@@ -6,7 +6,7 @@ class CreateSubscriptions < ActiveRecord::Migration[6.1]
       t.date :expiry_date
       t.string :subscription_type
       t.integer :no_of_days, default: 0
-      t.boolean :status, default: false
+      t.integer :status
       t.boolean :renew, default: false
       t.integer :profit, dafault: 0                          
       t.timestamps

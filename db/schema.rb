@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_21_161259) do
+ActiveRecord::Schema.define(version: 2022_10_12_155925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
+    t.string "username", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -32,7 +33,6 @@ ActiveRecord::Schema.define(version: 2022_11_21_161259) do
     t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "username"
     t.index ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
@@ -90,51 +90,6 @@ ActiveRecord::Schema.define(version: 2022_11_21_161259) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "customer_areas", force: :cascade do |t|
-    t.bigint "customer_id"
-    t.bigint "country_id"
-    t.bigint "city_id"
-    t.bigint "area_id"
-    t.bigint "sub_area_id"
-    t.string "house_no"
-    t.string "pon_no"
-    t.text "address"
-    t.text "remarks"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["area_id"], name: "index_customer_areas_on_area_id"
-    t.index ["city_id"], name: "index_customer_areas_on_city_id"
-    t.index ["country_id"], name: "index_customer_areas_on_country_id"
-    t.index ["customer_id"], name: "index_customer_areas_on_customer_id"
-    t.index ["sub_area_id"], name: "index_customer_areas_on_sub_area_id"
-  end
-
-  create_table "customer_device_infos", force: :cascade do |t|
-    t.bigint "customer_id"
-    t.string "device_name"
-    t.string "serial_no"
-    t.string "model"
-    t.string "mac_address"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id"], name: "index_customer_device_infos_on_customer_id"
-  end
-
-  create_table "customer_packages", force: :cascade do |t|
-    t.bigint "customer_id"
-    t.bigint "package_id"
-    t.string "username"
-    t.string "password"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "company_id"
-    t.bigint "company_package_id"
-    t.index ["company_id"], name: "index_customer_packages_on_company_id"
-    t.index ["company_package_id"], name: "index_customer_packages_on_company_package_id"
-    t.index ["customer_id"], name: "index_customer_packages_on_customer_id"
-    t.index ["package_id"], name: "index_customer_packages_on_package_id"
-  end
-
   create_table "customer_subscriptions", force: :cascade do |t|
     t.bigint "customer_id"
     t.bigint "customer_package_id"
@@ -158,10 +113,8 @@ ActiveRecord::Schema.define(version: 2022_11_21_161259) do
     t.string "mobile_secondary"
     t.bigint "service_id"
     t.bigint "staff_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "promise_break_count", default: 0
     t.string "residance"
+    t.integer "promise_break_count", default: 0
     t.boolean "welcome_message", default: false
     t.boolean "first_receiving", default: false
     t.bigint "company_id"
@@ -171,8 +124,8 @@ ActiveRecord::Schema.define(version: 2022_11_21_161259) do
     t.string "password_text"
     t.integer "package_discounted_price"
     t.bigint "country_id"
-    t.bigint "city_id"
     t.bigint "area_id"
+    t.bigint "city_id"
     t.bigint "sub_area_id"
     t.string "house_no"
     t.string "street"
@@ -184,9 +137,11 @@ ActiveRecord::Schema.define(version: 2022_11_21_161259) do
     t.string "model"
     t.string "mac_address"
     t.bigint "internet_type_id"
-    t.date "username_expiry"
-    t.date "joining_date"
+    t.datetime "username_expiry"
+    t.datetime "joining_date"
     t.boolean "status", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["area_id"], name: "index_customers_on_area_id"
     t.index ["city_id"], name: "index_customers_on_city_id"
     t.index ["company_id"], name: "index_customers_on_company_id"
@@ -322,10 +277,10 @@ ActiveRecord::Schema.define(version: 2022_11_21_161259) do
     t.bigint "receipt_book_page_id"
     t.date "receiving_date"
     t.integer "balance", default: 0
+    t.integer "discount", default: 0
+    t.integer "amount_received", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "amount_received", default: 0
-    t.integer "discount", default: 0
     t.index ["customer_id"], name: "index_receivings_on_customer_id"
     t.index ["receipt_book_id"], name: "index_receivings_on_receipt_book_id"
     t.index ["receipt_book_page_id"], name: "index_receivings_on_receipt_book_page_id"
@@ -372,11 +327,10 @@ ActiveRecord::Schema.define(version: 2022_11_21_161259) do
     t.string "official_mobile_model"
     t.string "official_moterbike_no"
     t.text "others"
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "deleted_at"
     t.index ["blood_group_id"], name: "index_staffs_on_blood_group_id"
-    t.index ["deleted_at"], name: "index_staffs_on_deleted_at"
     t.index ["staff_type_id"], name: "index_staffs_on_staff_type_id"
   end
 
@@ -394,11 +348,11 @@ ActiveRecord::Schema.define(version: 2022_11_21_161259) do
     t.date "expiry_date"
     t.string "subscription_type"
     t.integer "no_of_days", default: 0
+    t.integer "status"
     t.boolean "renew", default: false
     t.integer "profit"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status"
     t.index ["customer_id"], name: "index_subscriptions_on_customer_id"
   end
 

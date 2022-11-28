@@ -18,6 +18,7 @@ class CreateStaffs < ActiveRecord::Migration[6.1]
       t.string :official_mobile_model
       t.string :official_moterbike_no
       t.text :others
+      t.datetime :deleted_at
       t.timestamps
     end
   end
