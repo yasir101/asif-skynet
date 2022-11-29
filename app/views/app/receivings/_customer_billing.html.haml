@@ -8,29 +8,27 @@
         %thead
           %tr
             %th #
+            %th Staff
+            %th Customer
             %th Fee Month
-            %th Fee
-            %th Renew Date
-            %th Expiry Date
             %th Amount
             %th Receiving Date
             %th Book No
             %th Receipt Page No 
-            %th Staff
-            %th Discount
             %th Received Amount
             %th Remaining
         %tbody.list
           - customer.receivings.last(6).each.with_index(1) do |receiving, index|
-            -# %tr
-            -#   %td= index
-            -#   %td= receiving.staff.full_name
-            -#   %td= receiving.customer.name
-            -#   %td= receiving.amount
-            -#   %td= receiving.balance
-            -#   %td= receiving.receiving_date
-            -#   %td= receiving.receipt_book.book_number
-            -#   %td= receiving.receipt_book_page.page_no
-            -#   %td= receiving.service
+            %tr
+              %td= index
+              %td= receiving.staff.full_name
+              %td= receiving.customer.name
+              %td= receiving.receiving_date.strftime("%B")
+              %td= receiving.amount
+              %td= receiving.receiving_date
+              %td= receiving.receipt_book.book_number
+              %td= receiving.receipt_book_page.page_no
+              %td= receiving.amount_received
+              %td= receiving.balance
       - else
         = render 'shared/no_data'

@@ -221,10 +221,23 @@
             .card.custom-card
               .card-body.custom-card-body                           
                 .list-group.list-group-flush
-                  .list-group-item.bg-success-soft
+                  .list-group-item
+                    .row.align-items-center
+                      .col
+                        / Title
+                        %small Billing Cycle:
+                      .col-auto
+                        / Time
+                        %time.small.text-muted
+                          = "( #{customer&.receivings&.where(status: false).count} / #{customer&.receivings&.where(status: true).count} )"        
+          .col-6
+            .card.custom-card
+              .card-body.custom-card-body.bg-success-soft                           
+                .list-group.list-group-flush
+                  .list-group-item
                     .row.align-items-center
                       .col.text-center
-                        .display-1
+                        .display-3
                           = customer.get_package_price
                         
                                               
@@ -256,7 +269,7 @@
               .form-group
                 = form.label "Amount Received"
                 = form.number_field :amount_received, class: "form-control", placeholder: "Enter Received Amount"
-                = form.hidden_field :price, value: customer.get_package_price
+                = form.hidden_field :amount, value: customer.get_package_price
             .col-sm-6
               .form-group
                 = form.label "Discount"
@@ -272,7 +285,7 @@
               .form-group
                 = form.label "Remaining Due"
                 = form.text_field :balance, class: "form-control readonly_field", readonly: true, value: "" 
-        
+                = form.hidden_field :status, value: true
         .card-footer  
           .actions
             = form.submit class: "btn btn-primary"

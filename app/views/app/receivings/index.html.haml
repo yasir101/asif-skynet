@@ -43,19 +43,18 @@
                   %th Book Number
                   %th Book's Page Number
                   %th Service
-                  %th Action
               %tbody.list
                 - @receivings.each.with_index(1) do |receiving, index|
                   %tr
                     %td= index
                     %td= receiving.staff.full_name
                     %td= receiving.customer.name
-                    %td= receiving.amount
+                    %td= receiving.amount_received
                     %td= receiving.balance
                     %td= receiving.receiving_date
                     %td= receiving.receipt_book.book_number
                     %td= receiving.receipt_book_page.page_no
-                    %td= receiving.service
+                    %td= receiving&.customer&.service&.name
                     %td.text-right
                       -# = link_to 'Edit', edit_company_path(company), class: "btn btn-outline-info btn-sm"
             - else

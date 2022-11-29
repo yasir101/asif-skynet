@@ -78,8 +78,8 @@
                       %td= customer&.mobile_primary
                       %td= customer&.pon_no
                       %td= customer&.package&.price
-                      -# %td= customer&.receivings&.last&.balance
-                      -# %td= customer&.package&.price.to_i + customer&.receivings&.last&.balance.to_i 
+                      %td= customer&.receivings&.last&.balance || 0
+                      %td= customer&.package&.price.to_i + customer&.receivings&.last&.balance.to_i 
                       %td.text-right
                         = link_to 'Proceed', "#{new_receiving_path}?customer_id=#{customer.id}", class: "btn btn-outline-info btn-sm"
               - else

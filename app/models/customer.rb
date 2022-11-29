@@ -33,6 +33,6 @@ class Customer < ApplicationRecord
   end
   
   def get_package_price
-    self.package_discounted_price.nil? ? self.package.price : self.package_discounted_price
+    self.package_discounted_price.nil? ? self.package.price : self.package.price.to_i - self.package_discounted_price.to_i
   end
 end
