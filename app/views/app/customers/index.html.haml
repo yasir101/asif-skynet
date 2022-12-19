@@ -66,6 +66,8 @@
                     %td= get_service(customer)
                     %td= customer&.staff&.full_name
                     %td.text-right
+                      - if customer.first_receiving == false 
+                        = link_to '<i title="First Payment">FP</i>'.html_safe, "#{new_receiving_path}?customer_id=#{customer.id}&term=first" , class: "btn btn-outline-danger btn-sm lift"
                       = link_to '<i class="fa fa-thin fa-rocket" title="Subscription"></i>'.html_safe, customer_subscriptions_path(customer), class: "btn btn-outline-success btn-sm lift"
                       = link_to '<i class="fa fa-eye" title="View"></i>'.html_safe, customer_path(customer), class: "btn btn-outline-success btn-sm lift"
                       = link_to '<i class="fa fa-edit" title="Edit"></i>'.html_safe, edit_customer_path(customer), class: "btn btn-outline-info btn-sm lift"

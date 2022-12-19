@@ -12,27 +12,28 @@
         = form.collection_select :staff_id, Staff.all, :id, :full_name, {prompt: true}, class: "form-control", required: true
     .col-sm-6
       .form-group
-        = form.label :amount
-        = form.number_field :amount, class: "form-control"
+        = form.label "Purpose"
+        = form.select :purpose, [["Salary", "salary"], ["Advance", "advance"], ["Loan", "loan"], ["Bonus", "bonus"],["Advance Return", "advance_return"], ["Loan Return", "loan_return"], ["Recovery", "recovery"]], {prompt: "Select Mode"}, { class: 'form-control'}
+    
   .row
-    .col-sm-6
-      .form-group
-        = form.label "Date"
-        = form.date_field :date, class: "form-control"
     .col-sm-6 
       .form-group
         = form.label "Payment Mode"
         = form.select :payment_mode, [["Cash", "Cash"], ["Bank Transfer", "Bank Transfer"]], {prompt: "Select Mode"}, { class: 'form-control'}
-  .row
     .col-sm-6
       .form-group
-        = form.label "Purpose"
-        = form.select :purpose, [["Salary", "Salary"], ["Advance", "Advance"], ["Loan", "Loan"], ["Bonus", "Bonus"]], {prompt: "Select Mode"}, { class: 'form-control'}
+        = form.label "Date"
+        = form.date_field :date, class: "form-control"
+  .row
+    
+    .col-sm-6
+      .form-group
+        = form.label :amount
+        = form.number_field :amount, class: "form-control"
     .col-sm-6
       .form-group
         = form.label "Reason"
         = form.text_area :reason, class: "form-control", rows: 2            
-  
   .row
     .col-sm-6
       

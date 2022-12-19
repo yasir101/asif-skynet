@@ -9,7 +9,7 @@ class Receiving < ApplicationRecord
   
   def add_bill
     receipt_book_page = ReceiptBookPage.find_by(id: self.receipt_book_page_id)
-    receipt_book_page.update_attribute(:amount, self.amount);
+    receipt_book_page.update_attribute(:amount, self.amount_received);
   end
   
   def update_customer

@@ -20,7 +20,8 @@ class Customer < ApplicationRecord
   scope :expired_subscriptioned_customer, -> { joins(:subscriptions).where(subscriptions: {status: :expired}) }
   
   after_create :sent_welcome_message
-
+  after_create :start_subscription
+  
   def sent_welcome_message
     puts 'Sms service'
     sms = SMSService.new(self.id, self.name, self.mobile_primary)
@@ -34,5 +35,20 @@ class Customer < ApplicationRecord
   
   def get_package_price
     self.package_discounted_price.nil? ? self.package.price : self.package.price.to_i - self.package_discounted_price.to_i
+  end
+  
+  private
+  
+  def start_subscription
+    self.subscriptions.create!(start_date: Date.today, expiry_date: self.username_expiry, subscription_type: 'Month', status: 'subscribed', profit: get_profit(self) < 0 ? 0 : get_profit(self))
+  end
+  
+  def get_profit(customer)
+    profit = calculate_profit(customer.package.price, customer.purchase_package.purchase_price)
+    !customer.package_discounted_price.nil? ? profit - customer.package_discounted_price : profit
+  end
+  
+  def calculate_profit(pp, pppp)
+    pp.to_i - pppp.to_i
   end
 end

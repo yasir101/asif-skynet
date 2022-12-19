@@ -26,6 +26,7 @@ require("../packs/custome.js");
 require("../packs/customer.js");
 require("../packs/receipt_book.js");
 require("../packs/subscription.js");
+require("../packs/staff.js");
 
 
 window.Noty = require("../packs/noty.js");

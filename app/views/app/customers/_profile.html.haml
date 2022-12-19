@@ -34,7 +34,7 @@
               - if request.fullpath.include?('edit')
                 = form.text_field :id, class: "form-control readonly_field", value: "#{customer&.id}", readonly: true
               - else    
-                = form.text_field :id, class: "form-control readonly_field", value: "#{Customer.any? ? Customer.last.id : ''}", readonly: true  
+                = form.text_field :id, class: "form-control readonly_field", value: "#{Customer.any? ? Customer.last.id : 1}", readonly: true  
           .col-sm-6
             .form-group
               = form.label "Old Referance No"
