@@ -110,6 +110,24 @@
     .col-sm-12
       .card
         .card-header
+          %h4.card-title-header Credentials
+        .card-body
+          .row
+            .col-sm-12   
+              .form-group
+                = form.label 'Username ( No Space)'
+                = form.text_field :username, class: "form-control"
+                %span.text-danger#username_error
+          .row
+            .col-sm-12   
+              .form-group
+                = form.label :password
+                = form.text_field :password, class: "form-control"
+                
+  .row
+    .col-sm-12
+      .card
+        .card-header
           %h4.card-title-header Other Information
         .card-body
           .row

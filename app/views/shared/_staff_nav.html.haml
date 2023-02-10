@@ -1,0 +1,67 @@
+%ul.navbar-nav
+  %li.nav-item
+    = active_link_to dashboard_path, class: "nav-link" do
+      %img.icon-size{:alt => "...", :src => "/img/icons/speedometer.png"}
+      &nbsp&nbspDashboard
+  
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarCustomer", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarCustomer", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/customer.png"}
+      &nbsp&nbspCustomer 
+    #sidebarCustomer.collapse{class: ("show" if request.fullpath.include?('app/customers') )}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to "#{customers_path}?filter=a", class: "nav-link" do
+            Customers                                 
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarReceiving", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarReceiving", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/receiving.png"}
+      &nbsp&nbspReceiving 
+    #sidebarReceiving.collapse{class: ("show" if request.fullpath.include?('app/receivings') )}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to receivings_path, class: "nav-link" do
+            Receivings
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarBook", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarBook", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/contract.png"}
+      &nbsp&nbspReceipt Book 
+    #sidebarBook.collapse{class: ("show" if request.fullpath.include?('app/receipt_books') )}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to receipt_books_path, class: "nav-link" do
+            Receipt Books          
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarCountry", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarCountry", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/google-maps.png"}
+      &nbsp&nbspArea 
+    #sidebarCountry.collapse{class: ("show" if request.fullpath.include?('app/countries') || request.fullpath.include?('app/cities') || request.fullpath.include?('app/areas')  || request.fullpath.include?('app/sub_areas'))}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to areas_path, class: "nav-link" do
+            Areas            
+        %li.nav-item
+          = active_link_to sub_areas_path, class: "nav-link" do
+            Sub Areas
+    
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarStaff", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarStaff", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/staff.png"}
+      &nbsp&nbspStaff 
+    #sidebarStaff.collapse{class: ("show" if request.fullpath.include?('app/staffs') )}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to staffs_path, class: "nav-link" do
+            Staffs
+                        
+  
+  %li.nav-item
+    %a.nav-link{"aria-controls" => "sidebarPayment", "aria-expanded" => "false", "data-bs-toggle" => "collapse", href: "#sidebarPayment", role: "button"}
+      %img.icon-size{:alt => "...", :src => "/img/icons/money.png"}
+      &nbsp&nbspPayment 
+    #sidebarPayment.collapse{class: ("show" if request.fullpath.include?('app/payments') )}
+      %ul.nav.nav-sm.flex-column
+        %li.nav-item
+          = active_link_to payments_path, class: "nav-link" do
+            Payments
+          

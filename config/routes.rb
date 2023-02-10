@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     resources :staffs do
       collection do
         get :archived
+        get :check_username
       end
       member do
         get :restore

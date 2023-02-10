@@ -49,10 +49,15 @@ module App
       end
     end
     
+    def check_username
+      username = Staff.where(username: params['username']).any?
+      render json: { data: username }
+    end
+    
     private
     
     def staff_params
-      params.require(:staff).permit(:staff_type_id, :blood_group_id, :full_name, :father_name, :dob, :cnic, :mobile_primary, :mobile_secondary, :address, :remarks, :joining, :starting_salary, :current_salary, :official_mobile_no, :official_mobile_model, :official_moterbike_no, :others)
+      params.require(:staff).permit(:staff_type_id, :blood_group_id, :full_name, :father_name, :dob, :cnic, :mobile_primary, :mobile_secondary, :address, :remarks, :joining, :starting_salary, :current_salary, :official_mobile_no, :official_mobile_model, :official_moterbike_no, :others, :username, :password)
     end
     
     def set_staff
