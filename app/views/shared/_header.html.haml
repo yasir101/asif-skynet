@@ -1,7 +1,6 @@
 %nav#topbar.navbar.navbar-expand-md.navbar-light.d-none.d-md-flex
   .container-fluid
     .mr-4.d-none.d-md-flex
-      = current_admin.roles.first.name.split('_').map(&:capitalize).join(' ')
     .navbar-user
       .dropdown
         %a.avatar.avatar-sm.avatar-online.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-bs-toggle" => "dropdown", href: "#", role: "button"}
