@@ -1,5 +1,7 @@
 class Admin < ApplicationRecord
   rolify
+  after_create :assign_super_admin_role
+
   
   attr_writer :login
   # Include default devise modules. Others available are:
@@ -20,6 +22,11 @@ class Admin < ApplicationRecord
       where(conditions.to_hash).first
     end
   end
+
+  def assign_super_admin_role
+    self.add_role(:super_admin) if Admin.count == 1
+  end
+  
   
   protected
 
