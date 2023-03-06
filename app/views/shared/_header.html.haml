@@ -7,6 +7,7 @@
           %img.avatar-img.rounded-circle{alt: "...", src: "/img/icons/project-manager.png"}/
         .dropdown-menu.dropdown-menu-end
           %a.dropdown-item{href: "javascript:void(0)"} Profile
-          %a.dropdown-item{href: "javascript:void(0)"} Settings
+          = link_to "Settings",edit_admin_registration_path, class: "dropdown-item"
           %hr.dropdown-divider/
           = button_to "Sign out", destroy_admin_session_path, method: :delete, class: "dropdown-item"
+          

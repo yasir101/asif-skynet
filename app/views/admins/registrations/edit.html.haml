@@ -1,0 +1,35 @@
+
+.header
+.container-fluid
+  .header-body
+    .row.align-items-end
+      .col
+        %h6.header-pretitle
+          Profile
+        %h1.header-title
+          Update Profile
+
+.container-fluid.mt-5   
+  .row
+    .col-sm-12
+      .card
+        .card-body
+          - resource.errors.full_messages.each do |message|
+            .col
+              .alert.alert-danger.text-white
+                = message
+          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            .form-group
+              = f.label :username
+              = f.text_field :username, class: "form-control"
+            .form-group
+              = f.label :password
+              = f.text_field :password, class: "form-control"
+            .form-group
+              = f.label :password_confirmation
+              = f.text_field :password_confirmation, class: "form-control"
+            .form-group
+              = f.label :current_password
+              = f.text_field :current_password, class: "form-control"
+            .actions
+              = f.submit "Update", class: "btn btn-primary"
