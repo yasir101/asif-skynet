@@ -56,9 +56,9 @@
               %thead
                 %tr
                   %th #
+                  %th Date
                   %th Staff Name
                   %th Amount
-                  %th Date
                   %th Payment Mode
                   %th Purpose
                   %th Reason
@@ -67,9 +67,9 @@
                 - @payments.each.with_index(1) do |payment, index|
                   %tr
                     %td= index
+                    %td= payment.date.strftime("%d-%B- %Y")
                     %td= payment.staff.full_name
                     %td= convert_amount(payment)
-                    %td= payment.date.strftime("%d-%B- %Y")
                     %td= payment.payment_mode
                     %td= payment.purpose.titleize
                     %td= payment.reason

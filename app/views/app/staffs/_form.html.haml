@@ -115,14 +115,23 @@
           .row
             .col-sm-12   
               .form-group
-                = form.label 'Username ( No Space)'
-                = form.text_field :username, class: "form-control"
-                %span.text-danger#username_error
+                - if request.fullpath.include?('edit')
+                  = form.label 'Username ( No Space)'
+                  = form.text_field :username, class: "form-control readonly_field", readonly: true
+                  %span.text-danger#username_error
+                - else 
+                  = form.label 'Username ( No Space)'
+                  = form.text_field :username, class: "form-control"
+                  %span.text-danger#username_error
           .row
             .col-sm-12   
               .form-group
-                = form.label :password
-                = form.text_field :password, class: "form-control"
+                - if request.fullpath.include?('edit')
+                  = form.label :password
+                  = form.text_field :password, class: "form-control readonly_field", readonly: true
+                - else 
+                  = form.label :password
+                  = form.text_field :password, class: "form-control"
                 
   .row
     .col-sm-12
