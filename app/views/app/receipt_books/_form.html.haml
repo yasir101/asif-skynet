@@ -40,7 +40,6 @@
   .row
     .col-sm-6
       .form-group
-        = form.label :status
-        = form.select :status, [["Created", "Created"], ["Assigned", "Assigned"], ["Completed", "Completed"]], {prompt: "Select Mode"}, { class: 'form-control'}            
+        = form.hidden_field :status, value: "Assigned"
   .actions
     = form.submit class: "btn btn-primary"
