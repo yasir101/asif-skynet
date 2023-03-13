@@ -1,0 +1,46 @@
+= form_with(model: additional_payment) do |form|
+  - if additional_payment.errors.any?
+    #error_explanation  
+      - additional_payment.errors.full_messages.each do |message|
+        .col
+          .alert.alert-danger.text-white
+            = message
+  .row
+    .col-sm-12
+      .form-group
+        .form-check.form-switch
+          = form.check_box :additional_payment, class: "form-check-input", id: 'additional_payment'
+          %label.form-check-label{for: "additional_payment"} Want Additional Settings?
+  .row.additional_payment.d-none
+    .col-sm-12
+      .form-group
+        .form-check.form-switch
+          = form.check_box :status, class: "form-check-input", id: 'router-charges'
+          %label.form-check-label{for: "status"} Want Router?
+        .form-group.router.d-none
+          = form.label :router_charges
+          = form.text_field :router_charges, class: "form-control", id: "router-charges"
+    .col-sm-12
+      .form-group
+        .form-check.form-switch
+          = form.check_box :status, class: "form-check-input", id: 'wire-charges'
+          %label.form-check-label{for: "status"} Want Wire?
+        .form-group.wire.d-none
+          = form.label :wire_charges
+          = form.text_field :wire_charges, class: "form-control"
+    .col-sm-12
+      .form-group
+        .form-check.form-switch
+          = form.check_box :status, class: "form-check-input", id: 'installment-charges'
+          %label.form-check-label{for: "status"} Installments?
+        .form-group.installments.d-none
+          = form.label :installement_charges
+          = form.text_field :installement_charges, class: "form-control"   
+    .col-sm-12
+      .form-group
+        = form.hidden_field :customer_id, value: @customer_id
+  .row
+    .col-sm-6
+      
+  .actions
+    = form.submit "Submit", class: "btn btn-primary"

@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   # APP Routes
   scope module: :app, path: 'app' do
     resource :dashboard, only: [:show]
+    resource :additional_payments, only: [:new, :create]
     resources :countries
     resources :cities
     resources :areas

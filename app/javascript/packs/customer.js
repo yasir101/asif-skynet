@@ -1,5 +1,19 @@
   
 $(document).on('turbolinks:load', function(){
+
+  $('#additional').on('click', function(){
+    var customer = $(this).data('customer-id');
+    console.log(customer);
+    var result = confirm("Do you want to proceed to additional payments?");
+    if (result) {
+      window.location.href = '/app/additional_payments/new?customer_id='+ customer;
+
+    } else {
+      window.location.href = '/app/receivings/new?customer_id=' + customer + '&term=first';
+    }
+  });
+  
+  
   
   // hide all form on page load if url includes new
   let url = window.location.pathname.split('/');

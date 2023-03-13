@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_19_181614) do
+ActiveRecord::Schema.define(version: 2023_03_13_092416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "additional_payments", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.integer "router_charges"
+    t.integer "wire_charges"
+    t.integer "installement_charges"
+    t.boolean "additional_payment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_additional_payments_on_customer_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "username", default: "", null: false

@@ -56,8 +56,37 @@ $(document).on("turbolinks:load", function () {
   $("#customer_mobile_secondary").mask("0000-0000000", {
     placeholder: "Enter Mobile (Secondary)",
   });
+  $("#additional_payment").on("click", function () {
+    if ($(this).is(":checked")) {
+      $(".additional_payment").removeClass("d-none");
+    } else {
+      $(".additional_payment").addClass("d-none");
+    }
+  });
+  $("#router-charges").on("click", function () {
+    if ($(this).is(":checked")) {
+      $(".router").removeClass("d-none");
+    } else {
+      $(".router").addClass("d-none");
+    }
+  });
+  $("#wire-charges").on("click", function () {
+    if ($(this).is(":checked")) {
+      $(".wire").removeClass("d-none");
+    } else {
+      $(".wire").addClass("d-none");
+    }
+  });
+  $("#installment-charges").on("click", function () {
+    if ($(this).is(":checked")) {
+      $(".installments").removeClass("d-none");
+    } else {
+      $(".installments").addClass("d-none");
+    }
+  });
 });
 
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+

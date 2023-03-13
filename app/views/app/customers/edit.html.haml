@@ -10,7 +10,10 @@
             Edit Customer
         .col-auto
           - if @customer.first_receiving == false 
-            = link_to 'Receive First Payment', "#{new_receiving_path}?customer_id=#{@customer.id}&term=first" , class: "btn btn-danger lift"
+            - if @customer.additional_payments.present?
+              = link_to 'Receive First Payment', "#{new_receiving_path}?customer_id=#{@customer.id}&term=first" , class: "btn btn-danger lift"
+            - else 
+              = link_to 'Receive First Payment', '', class: 'btn btn-danger lift', id: 'additional', data: { customer_id: @customer.id }
           - if @customer.welcome_message == false  
             = link_to 'Sent Welcome Message', "#{new_message_path}?number=#{@customer.mobile_primary}", class: "btn btn-success lift"
 .container-fluid   

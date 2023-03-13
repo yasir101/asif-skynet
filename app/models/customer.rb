@@ -12,7 +12,8 @@ class Customer < ApplicationRecord
   
   has_many :subscriptions
   has_many :receivings
-  
+  has_many :additional_payments
+
   scope :status, -> { where(status: true) } 
   scope :deactivated, -> { where(status: false) }
   scope :new_customer, -> { where("created_at >= ?", 1.month.ago.utc) }
@@ -20,7 +21,7 @@ class Customer < ApplicationRecord
   scope :expired_subscriptioned_customer, -> { joins(:subscriptions).where(subscriptions: {status: :expired}) }
   
   after_create :sent_welcome_message
-  after_create :start_subscription
+  # after_create :start_subscription
   
   def sent_welcome_message
     puts 'Sms service'
@@ -39,9 +40,9 @@ class Customer < ApplicationRecord
   
   private
   
-  def start_subscription
-    self.subscriptions.create!(start_date: Date.today, expiry_date: self.username_expiry, subscription_type: 'Month', status: 'subscribed', profit: get_profit(self) < 0 ? 0 : get_profit(self))
-  end
+  # def start_subscription
+  #   self.subscriptions.create!(start_date: Date.today, expiry_date: self.username_expiry, subscription_type: 'Month', status: 'subscribed', profit: get_profit(self) < 0 ? 0 : get_profit(self))
+  # end
   
   def get_profit(customer)
     profit = calculate_profit(customer.package.price, customer.purchase_package.purchase_price)
